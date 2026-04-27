@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>古典音乐图谱 · 入门聆听指南</title>
+  <style>
+    :root { --paper:#f4efe6; --ink:#26221d; --muted:#685f55; --line:#d8c9b7; --accent:#9b5e3d; --panel:#fbf7ef; --sidebar:#eee6d9; }
+    * { box-sizing: border-box; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Georgia, "Noto Serif SC", "Times New Roman", serif; line-height: 1.68; }
+    .topbar { position: sticky; top: 0; z-index: 20; height: 56px; display: flex; justify-content: flex-end; align-items: center; gap: .75rem; padding: 0 1rem; background: rgba(244,239,230,.94); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .topbar a, .button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+    .topbar a { color: var(--ink); text-decoration: none; border: 1px solid var(--line); padding: .45rem .85rem; background: var(--panel); }
+    .shell { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: calc(100vh - 56px); }
+    .sidebar { position: sticky; top: 56px; align-self: start; height: calc(100vh - 56px); overflow: auto; padding: 1.4rem 1.15rem 2rem; background: var(--sidebar); border-right: 1px solid var(--line); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .brand { display: block; margin-bottom: 1rem; color: var(--ink); text-decoration: none; }
+    .brand strong { display: block; font-family: Georgia, "Noto Serif SC", serif; font-size: 1.45rem; line-height: 1.1; }
+    .brand span { display: block; margin-top: .35rem; color: var(--muted); font-size: .86rem; }
+    .side-group { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid rgba(120,102,82,.25); }
+    .side-title { margin-bottom: .45rem; color: var(--accent); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+    .sidebar a.nav-link { display: block; padding: .24rem 0; color: var(--ink); text-decoration: none; font-size: .9rem; line-height: 1.35; }
+    .sidebar a.nav-link:hover { color: var(--accent); }
+    .content { min-width: 0; }
+    .page { width: min(980px, calc(100% - 48px)); margin: 0 auto; }
+    .hero { min-height: clamp(560px, 76vh, 780px); display: grid; align-content: center; border-bottom: 1px solid var(--line); }
+    .kicker { color: var(--accent); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { margin: .8rem 0 0; font-size: clamp(3rem, 7vw, 5.4rem); line-height: .98; letter-spacing: 0; }
+    .subtitle { max-width: 820px; color: var(--muted); font-size: 1.16rem; margin-top: 1.25rem; }
+    .overview-copy { max-width: 860px; margin-top: 1.4rem; font-size: 1.05rem; color: #40372f; }
+    .overview-copy p { margin: 0 0 .85rem; }
+    .fact-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 1.55rem; max-width: 880px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .fact { padding: .85rem 1rem; border-right: 1px solid var(--line); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .fact:last-child { border-right: 0; }
+    .fact strong { display: block; font-size: 1.05rem; }
+    .fact span { display: block; color: var(--muted); font-size: .88rem; margin-top: .12rem; }
+    .downloads { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.5rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .button { color: white; background: var(--accent); text-decoration: none; padding: .72rem .95rem; border: 1px solid transparent; }
+    .button.alt { color: var(--ink); background: var(--panel); border-color: var(--line); }
+    section { padding: 3.5rem 0; border-bottom: 1px solid var(--line); scroll-margin-top: 112px; }
+    .note { margin: 1.5rem 0; max-width: 820px; background: var(--panel); border-left: 5px solid var(--accent); padding: 1rem; }
+    .note p { margin: 0 0 .65rem; }
+    .note p:last-child { margin-bottom: 0; }
+    .doc-body { padding-top: 2.5rem; }
+    .doc-body h2 { margin: 3.2rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: clamp(1.7rem, 4vw, 2.7rem); line-height: 1.18; letter-spacing: 0; scroll-margin-top: 112px; }
+    .doc-body h3 { margin: 2rem 0 .55rem; font-size: 1.35rem; }
+    .doc-body h4, .doc-body h5 { margin: 1.25rem 0 .35rem; font-size: 1rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--accent); }
+    .doc-body p, .doc-body li { max-width: 820px; }
+    a { color: var(--accent); }
+    code { background: rgba(143,90,60,.09); padding: .08rem .25rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0 1.4rem; border: 1px solid var(--line); background: var(--panel); }
+    table { width: 100%; min-width: 980px; border-collapse: collapse; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: .9rem; line-height: 1.48; }
+    th, td { padding: .62rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+    th { color: var(--accent); background: rgba(143,90,60,.07); font-weight: 700; }
+    th:nth-child(1), td:nth-child(1), th:nth-child(2), td:nth-child(2), th:nth-child(6), td:nth-child(6) { white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    .chapter-art { max-width: 900px; margin: 1.2rem 0 2.1rem; aspect-ratio: 16 / 6; overflow: hidden; background: #eadcc6; box-shadow: 0 16px 38px rgba(54,43,31,.14); }
+    .chapter-art img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; filter: saturate(.92) contrast(1.03); outline: 1px solid rgba(54,43,31,.13); outline-offset: -1px; }
+    .chapter-art.art-early img { object-position: center 42%; }
+    .chapter-art.art-baroque img { object-position: center 24%; }
+    .chapter-art.art-classical img { object-position: center 22%; }
+    .chapter-art.art-romantic img { object-position: center 30%; }
+    .chapter-art.art-modern img { object-position: center 28%; }
+    .chapter-art.art-recording img { object-position: center 0%; }
+    .chapter-art.art-avant-garde img { object-position: center 50%; }
+    .chapter-art.art-minimal img { object-position: center 52%; }
+    .chapter-art.art-screen img { object-position: center 50%; }
+    .chapter-art.art-contemporary img { object-position: center 52%; }
+    @media (max-width: 640px) { .chapter-art { margin: 1rem 0 1.6rem; } }
+    .era-wall { margin-top: 1.6rem; background: #fbf6eb; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(54,43,31,.12); overflow: hidden; }
+    .era-head { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.1rem; border-bottom: 1px solid var(--line); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--muted); }
+    .era-head strong { color: var(--ink); }
+    .era-map { overflow-x: auto; padding: .4rem; }
+    .era-map svg { display: block; width: 100%; min-width: 0; height: auto; }
+    .era-map svg image { filter: saturate(.88) contrast(1.04); }
+    .era-map svg text { paint-order: stroke; stroke: #fbf6eb; stroke-width: 3px; stroke-linejoin: round; }
+    .region-key, .line-key { display: flex; flex-wrap: wrap; gap: .55rem .9rem; padding: .85rem 1.1rem; border-top: 1px solid var(--line); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--muted); font-size: .9rem; }
+    .line-key { padding-bottom: 0; }
+    .line-swatch { width: 2.2rem; height: .26rem; display: inline-block; margin-right: .45rem; border-radius: 999px; vertical-align: .12rem; opacity: .72; }
+    .swatch { width: .72rem; height: .72rem; display: inline-block; margin-right: .35rem; border-radius: 50%; vertical-align: -.08rem; }
+    .caption { margin-top: .75rem; color: var(--muted); font-size: .92rem; }
+    .credit-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(143,90,60,.35); }
+    footer { padding: 3rem 0; color: var(--muted); font-size: .95rem; }
+    @media (max-width: 760px) { .topbar { justify-content: flex-start; overflow-x: auto; } .topbar a { flex: 0 0 auto; } .shell { display: block; } .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); } .side-group.guide-nav { display: none; } .page { width: min(100% - 32px, 880px); } .fact-strip { grid-template-columns: 1fr; } .fact { border-right: 0; border-bottom: 1px solid var(--line); } .fact:last-child { border-bottom: 0; } .hero { min-height: clamp(520px, 72vh, 760px); } .era-map svg { min-width: 1060px; } }
+
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="Language and downloads">
+    <a href="classical_atlas_guide.zh-CN.html">中文版指南</a>
+  </nav>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Table of contents">
+      <a class="brand" href="#overview"><strong>古典音乐图谱</strong><span>一条按时间展开的古典音乐聆听路径：从圣咏、复调、歌剧和交响曲，到唱片、电影、游戏和当代跨类型创作。</span></a>
+      <div class="side-group">
+        <div class="side-title">下载</div>
+        <a class="nav-link" href="classical_atlas_guide.zh-CN.html">HTML 指南</a>
+      </div>
+      <div class="side-group guide-nav">
+        <div class="side-title">本页目录</div>
+        <a class="nav-link" href="#overview">概览</a>
+        <a class="nav-link" href="#playlist">配套歌单</a>
+        <a class="nav-link" href="#era-tree">音乐史地图</a>
+          <a class="nav-link" href="#guide-1">1. 早期音乐与复调（约 9 世纪-1600）：音乐先服务于文字、礼拜和空间</a>
+          <a class="nav-link" href="#guide-2">2. 巴洛克（约 1600-1750）：秩序、装饰和持续推进的低音</a>
+          <a class="nav-link" href="#guide-3">3. 古典主义（约 1750-1820）：音乐成为公共语言</a>
+          <a class="nav-link" href="#guide-4">4. 浪漫主义与民族风格（约 1810-1910）：个人情感、巨型乐队和歌剧工业</a>
+          <a class="nav-link" href="#guide-5">5. 现代主义开端（约 1890-1918）：旧语法开始松动</a>
+          <a class="nav-link" href="#guide-6">6. 两次大战之间（约 1918-1945）：新古典、爵士、苏联语境和电影工业</a>
+          <a class="nav-link" href="#guide-7">7. 战后先锋与声音实验（约 1945-1970s）：音乐开始追问声音本身</a>
+          <a class="nav-link" href="#guide-8">8. 极简主义与后极简（约 1960s-1990s）：重复不是停滞，而是变化被放慢</a>
+          <a class="nav-link" href="#guide-9">9. 电影、游戏与新的接触途径（电影约 1930s 至今；游戏约 1980s 至今）：很多人先听见管弦乐，再认识古典音乐</a>
+          <a class="nav-link" href="#guide-10">10. 1990 年以来的当代古典与跨类型创作（cross-genre composition，约 1990 至今）：边界变得更松</a>
+          <a class="nav-link" href="#guide-11">附录一：作品编号怎么看</a>
+          <a class="nav-link" href="#guide-12">附录二：这些因素会怎样改变同一部作品</a>
+          <a class="nav-link" href="#guide-13">附录三：基础术语表</a>
+          <a class="nav-link" href="#guide-14">附录四：作曲家名录与英文检索名</a>
+          <a class="nav-link" href="#guide-15">参考资料</a>
+      </div>
+    </aside>
+    <main class="content">
+      <section class="hero" id="overview">
+        <div class="page">
+          <div class="kicker">入门指南 + 180 首歌单</div>
+          <h1>古典音乐图谱</h1>
+          <p class="subtitle">一条按时间展开的古典音乐聆听路径：从圣咏、复调、歌剧和交响曲，到唱片、电影、游戏和当代跨类型创作。</p>
+          <div class="overview-copy">
+              <p>这是一份给初学者的古典音乐聆听指南。它不按名气排序，而是按时间、场景和媒介变化来组织：从教堂与宫廷，到歌剧院、音乐厅、唱片、电影、游戏和流媒体。</p>
+              <p>正文分成十个章节，每章先解释这一时期该听什么，再给出可以直接点开的基础曲目。配套歌单放在下一节，适合边读边听。</p>
+          </div>
+          <div class="fact-strip" aria-label="Guide statistics">
+              <div class="fact"><strong>180 首</strong><span>按建议顺序排列的配套歌单</span></div>
+              <div class="fact"><strong>约 9 世纪-2020 年代</strong><span>从圣咏到当代跨类型创作</span></div>
+              <div class="fact"><strong>128 位作曲家 / 作者</strong><span>包含音乐会、电影、游戏和当代创作者</span></div>
+              <div class="fact"><strong>100+ 体裁 / 形式标签</strong><span>可筛选交响曲、歌剧、配乐等类型</span></div>
+          </div>
+          <div class="downloads">
+            <a class="button" href="classical_atlas_guide.zh-CN.html">打开中文指南</a>
+          </div>
+        </div>
+      </section>
+      <section id="playlist">
+        <div class="page">
+          
+          <h2>配套歌单</h2>
+          <p>这份指南配有一张 180 首的歌单表。表格文件是 <code>classical_atlas_playlist.zh-CN.tsv</code>，TSV 是一种用制表符分隔的表格文件，可以用 Excel、Numbers 或 Google Sheets 打开。每一行对应歌单里的一首曲目。</p>
+          <p>歌单覆盖约 9 世纪到 2020 年代，涉及 128 位作曲家、作曲者或屏幕音乐作者，其中 108 首来自 1900 年以后。表格里还有 100 多个细分体裁和形式标签，可以按交响曲、协奏曲、歌剧、宗教声乐、电影配乐、游戏配乐等线索重新筛选。</p>
+          <p><code>track_no</code> 是建议播放顺序，<code>chapter</code> 对应下面十个章节，<code>difficulty</code> 标出基础或进阶。每章正文先列 5 首基础曲目；想补齐完整路径，再打开表格按 <code>track_no</code> 从 001 听到 180。</p>
+          <p>如果你使用 Apple Music 或 Apple Music Classical，可以从表格里的 <code>apple_search_keywords</code> 开始找版本；如果你使用 Spotify、YouTube Music、TIDAL、网易云音乐或其他平台，也可以用同一张表按顺序重建歌单。不同平台的曲库不完全一样，所以替代版本最好记录下来。</p>
+          <div class="note">
+            <p><a href="classical_atlas_playlist.zh-CN.tsv">打开完整 TSV 表格</a></p>
+            <p>如果想让 AI 助手在指定平台重建这份 180 首歌单，可以把 <a href="create_playlist_on_platform.prompt.zh-CN.txt">歌单生成 prompt</a> 和 TSV 表格一起交给它。</p>
+          </div>
+        </div>
+      </section>
+      <div class="page">
+        <section id="era-tree">
+      <h2>音乐史地图</h2>
+      <p>这张图只选取少数关键人物，不是完整作曲家索引，也不等同于歌单覆盖范围。它把人物放在三条听觉线索上：礼拜与声乐、舞台与音乐厅、录音与屏幕媒介。头像边框颜色表示地区或传统，横向位置表示大致年代；线条不是师承关系，而是提示不同听法如何延续和转移。</p>
+      <div class="era-wall">
+        <div class="era-head"><strong>900-2020：作曲家、媒介与风格迁移</strong><span>完整时间轴；窄屏可横向滚动</span></div>
+        <div class="era-map" role="img" aria-label="古典音乐时代时间轴信息图">
+          <svg viewBox="0 0 1240 620" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="paperShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#3a2d20" flood-opacity=".18"/></filter>
+              <clipPath id="portraitClip" clipPathUnits="objectBoundingBox"><circle cx=".5" cy=".5" r=".5"/></clipPath>
+            </defs>
+            <rect x="0" y="0" width="1240" height="620" fill="#fbf6eb"/>
+            <rect x="68" y="82" width="1112" height="112" fill="#efe2cf" opacity=".55"/>
+            <rect x="68" y="214" width="1112" height="112" fill="#e8f0ec" opacity=".52"/>
+            <rect x="68" y="346" width="1112" height="112" fill="#ecebf4" opacity=".55"/>
+            <text x="22" y="142" font-family="system-ui, sans-serif" font-size="13" fill="#6f655a">礼拜/声乐</text>
+            <text x="22" y="274" font-family="system-ui, sans-serif" font-size="13" fill="#6f655a">舞台/音乐厅</text>
+            <text x="22" y="406" font-family="system-ui, sans-serif" font-size="13" fill="#6f655a">录音/屏幕</text>
+            <line x1="70" y1="512" x2="1180" y2="512" stroke="#5c5248" stroke-width="3"/>
+            <g font-family="system-ui, sans-serif" font-size="12" fill="#6f655a">
+              <text x="68" y="540">900</text><text x="222" y="540">1500</text><text x="322" y="540">1600</text><text x="470" y="540">1750</text><text x="560" y="540">1820</text><text x="730" y="540">1900</text><text x="890" y="540">1950</text><text x="1138" y="540">2020</text>
+            </g>
+            <g stroke="#9b8f80" stroke-width="1" opacity=".65">
+              <line x1="70" y1="500" x2="70" y2="520"/><line x1="235" y1="500" x2="235" y2="520"/><line x1="335" y1="500" x2="335" y2="520"/><line x1="485" y1="500" x2="485" y2="520"/><line x1="575" y1="500" x2="575" y2="520"/><line x1="750" y1="500" x2="750" y2="520"/><line x1="905" y1="500" x2="905" y2="520"/><line x1="1180" y1="500" x2="1180" y2="520"/>
+            </g>
+            <path d="M95 135 C200 135 205 155 260 155 S350 135 405 154 S520 215 575 205 S690 140 760 156 S885 238 945 235 S1020 176 1070 186" fill="none" stroke="#b9852b" stroke-width="4" opacity=".42"/>
+            <path d="M315 270 C420 245 500 260 590 255 S720 285 810 260 S930 360 1070 382" fill="none" stroke="#3f697d" stroke-width="4" opacity=".38"/>
+            <path d="M735 390 C820 360 900 390 960 410 S1015 450 1062 438 S1120 418 1174 448" fill="none" stroke="#8a6bb1" stroke-width="4" opacity=".40"/>
+            <g font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">
+              <g transform="translate(95 132)" filter="url(#paperShadow)"><circle r="36" fill="#80776c"/><image href="assets/portraits/anonymous-chant.gif" x="-31" y="-31" width="62" height="62" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="34" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="37" fill="none" stroke="#80776c" stroke-width="5"/><text y="52" fill="#24201b">佚名</text><text y="68" fill="#6f655a">圣咏</text></g>
+              <g transform="translate(205 102)" filter="url(#paperShadow)"><circle r="36" fill="#b9852b"/><image href="assets/portraits/hildegard.jpg" x="-31" y="-31" width="62" height="62" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="34" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="37" fill="none" stroke="#b9852b" stroke-width="5"/><text y="52" fill="#24201b">希尔德加德</text><text y="68" fill="#6f655a">德语区</text></g>
+              <g transform="translate(265 170)" filter="url(#paperShadow)"><circle r="36" fill="#4b79a1"/><image href="assets/portraits/josquin.jpg" x="-31" y="-31" width="62" height="62" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="34" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="37" fill="none" stroke="#4b79a1" stroke-width="5"/><text y="52" fill="#24201b">若斯坎</text><text y="68" fill="#6f655a">法兰德斯</text></g>
+              <g transform="translate(350 264)" filter="url(#paperShadow)"><circle r="36" fill="#a85c3e"/><image href="assets/portraits/monteverdi.jpg" x="-31" y="-31" width="62" height="62" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="34" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="37" fill="none" stroke="#a85c3e" stroke-width="5"/><text y="52" fill="#24201b">蒙特威尔第</text><text y="68" fill="#6f655a">意大利</text></g>
+              <g transform="translate(448 176)" filter="url(#paperShadow)"><circle r="38" fill="#b9852b"/><image href="assets/portraits/bach.jpg" x="-33" y="-33" width="66" height="66" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="36" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="39" fill="none" stroke="#b9852b" stroke-width="5"/><text y="56" fill="#24201b">巴赫</text><text y="72" fill="#6f655a">德语区</text></g>
+              <g transform="translate(512 112)" filter="url(#paperShadow)"><circle r="35" fill="#697d4f"/><image href="assets/portraits/handel.jpg" x="-30" y="-30" width="60" height="60" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="33" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="36" fill="none" stroke="#697d4f" stroke-width="5"/><text y="51" fill="#24201b">亨德尔</text><text y="67" fill="#6f655a">英德</text></g>
+              <g transform="translate(558 262)" filter="url(#paperShadow)"><circle r="37" fill="#b9852b"/><image href="assets/portraits/mozart.png" x="-32" y="-32" width="64" height="64" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="35" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="38" fill="none" stroke="#b9852b" stroke-width="5"/><text y="54" fill="#24201b">莫扎特</text><text y="70" fill="#6f655a">奥地利</text></g>
+              <g transform="translate(600 186)" filter="url(#paperShadow)"><circle r="39" fill="#b9852b"/><image href="assets/portraits/beethoven.jpg" x="-34" y="-34" width="68" height="68" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="37" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="40" fill="none" stroke="#b9852b" stroke-width="5"/><text y="58" fill="#24201b">贝多芬</text><text y="74" fill="#6f655a">德语区</text></g>
+              <g transform="translate(675 104)" filter="url(#paperShadow)"><circle r="35" fill="#6f6fa8"/><image href="assets/portraits/chopin.jpg" x="-30" y="-30" width="60" height="60" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="33" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="36" fill="none" stroke="#6f6fa8" stroke-width="5"/><text y="51" fill="#24201b">肖邦</text><text y="67" fill="#6f655a">波兰/法国</text></g>
+              <g transform="translate(690 286)" filter="url(#paperShadow)"><circle r="36" fill="#b9852b"/><image href="assets/portraits/wagner.png" x="-31" y="-31" width="62" height="62" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="34" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="37" fill="none" stroke="#b9852b" stroke-width="5"/><text y="52" fill="#24201b">瓦格纳</text><text y="68" fill="#6f655a">德国</text></g>
+              <g transform="translate(755 232)" filter="url(#paperShadow)"><circle r="36" fill="#9a5659"/><image href="assets/portraits/tchaikovsky.jpg" x="-31" y="-31" width="62" height="62" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="34" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="37" fill="none" stroke="#9a5659" stroke-width="5"/><line x1="-8" y1="-37" x2="-20" y2="-48" stroke="#9a5659" stroke-width="1.5"/><text x="-22" y="-52" text-anchor="end" fill="#24201b">柴可夫斯基</text><text x="-22" y="-36" text-anchor="end" fill="#6f655a">俄罗斯</text></g>
+              <g transform="translate(792 154)" filter="url(#paperShadow)"><circle r="36" fill="#4b79a1"/><image href="assets/portraits/debussy.jpg" x="-31" y="-31" width="62" height="62" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="34" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="37" fill="none" stroke="#4b79a1" stroke-width="5"/><text y="52" fill="#24201b">德彪西</text><text y="68" fill="#6f655a">法国</text></g>
+              <g transform="translate(835 248)" filter="url(#paperShadow)"><circle r="37" fill="#9a5659"/><image href="assets/portraits/stravinsky.jpg" x="-32" y="-32" width="64" height="64" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="35" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="38" fill="none" stroke="#9a5659" stroke-width="5"/><text y="54" fill="#24201b">斯特拉文斯基</text><text y="70" fill="#6f655a">俄/法/美</text></g>
+              <g transform="translate(872 372)" filter="url(#paperShadow)"><circle r="36" fill="#9a5659"/><image href="assets/portraits/shostakovich.jpg" x="-31" y="-31" width="62" height="62" preserveAspectRatio="xMinYMid slice" clip-path="url(#portraitClip)"/><circle r="34" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="37" fill="none" stroke="#9a5659" stroke-width="5"/><text y="52" fill="#24201b">肖斯塔科维奇</text><text y="68" fill="#6f655a">苏联</text></g>
+              <g transform="translate(930 108)" filter="url(#paperShadow)"><circle r="35" fill="#3f7d72"/><image href="assets/portraits/cage.jpg" x="-30" y="-30" width="60" height="60" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="33" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="36" fill="none" stroke="#3f7d72" stroke-width="5"/><text y="51" fill="#24201b">凯奇</text><text y="67" fill="#6f655a">美国</text></g>
+              <g transform="translate(958 226)" filter="url(#paperShadow)"><circle r="35" fill="#6f6fa8"/><image href="assets/portraits/ligeti.jpg" x="-30" y="-30" width="60" height="60" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="33" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="36" fill="none" stroke="#6f6fa8" stroke-width="5"/><text y="51" fill="#24201b">利盖蒂</text><text y="67" fill="#6f655a">中欧</text></g>
+              <g transform="translate(985 356)" filter="url(#paperShadow)"><circle r="35" fill="#3f7d72"/><image href="assets/portraits/reich.jpg" x="-30" y="-30" width="60" height="60" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="33" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="36" fill="none" stroke="#3f7d72" stroke-width="5"/><text y="51" fill="#24201b">Reich</text><text y="67" fill="#6f655a">美国</text></g>
+              <g transform="translate(1010 452)" filter="url(#paperShadow)"><circle r="32" fill="#3f7d72"/><image href="assets/portraits/williams.jpg" x="-27" y="-27" width="54" height="54" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="30" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="33" fill="none" stroke="#3f7d72" stroke-width="5"/><text y="49" fill="#24201b">John Williams</text><text y="65" fill="#6f655a">电影</text></g>
+              <g transform="translate(1090 438)" filter="url(#paperShadow)"><circle r="32" fill="#8a6bb1"/><image href="assets/portraits/hisaishi.jpg" x="-27" y="-27" width="54" height="54" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="30" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="33" fill="none" stroke="#8a6bb1" stroke-width="5"/><text y="-48" fill="#24201b">久石让</text><text y="-32" fill="#6f655a">日本</text></g><g transform="translate(1164 448)" filter="url(#paperShadow)"><circle r="32" fill="#3f7d72"/><image href="assets/portraits/zimmer.jpg" x="-27" y="-27" width="54" height="54" preserveAspectRatio="xMidYMid slice" clip-path="url(#portraitClip)"/><circle r="30" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="33" fill="none" stroke="#3f7d72" stroke-width="5"/><text y="49" fill="#24201b">Hans Zimmer</text><text y="65" fill="#6f655a">电影</text></g>
+              <g transform="translate(1120 188)" filter="url(#paperShadow)"><circle r="34" fill="#3f7d72"/><image href="assets/portraits/shaw.jpg" x="-29" y="-29" width="58" height="58" preserveAspectRatio="xMaxYMid slice" clip-path="url(#portraitClip)"/><circle r="32" fill="none" stroke="#fff8ea" stroke-width="3"/><circle r="35" fill="none" stroke="#3f7d72" stroke-width="5"/><text y="50" fill="#24201b">Shaw</text><text y="66" fill="#6f655a">当代</text></g>
+            </g>
+          </svg>
+        </div>
+        <div class="line-key" aria-label="线条说明">
+          <span><i class="line-swatch" style="background:#b9852b"></i>声乐、宗教与复调传统的延伸</span>
+          <span><i class="line-swatch" style="background:#3f697d"></i>歌剧、舞台与公共音乐会传统的延伸</span>
+          <span><i class="line-swatch" style="background:#8a6bb1"></i>录音、屏幕媒介与当代跨类型路径</span>
+        </div>
+        <div class="region-key" aria-label="头像边框颜色说明">
+          <span><i class="swatch" style="background:#b9852b"></i>德奥/德语区</span>
+          <span><i class="swatch" style="background:#a85c3e"></i>意大利</span>
+          <span><i class="swatch" style="background:#4b79a1"></i>法国/法兰德斯</span>
+          <span><i class="swatch" style="background:#9a5659"></i>俄罗斯/苏联</span>
+          <span><i class="swatch" style="background:#3f7d72"></i>美国/屏幕媒介</span>
+          <span><i class="swatch" style="background:#8a6bb1"></i>东亚/全球当代</span>
+          <span><i class="swatch" style="background:#80776c"></i>佚名/泛欧洲传统</span>
+        </div>
+      </div>
+    </section>
+        <section class="doc-body" id="guide">
+<h2 id="guide-1">1. 早期音乐与复调（约 9 世纪-1600）：音乐先服务于文字、礼拜和空间</h2>
+<figure class="chapter-art art-early">
+  <img src="assets/artworks/medieval-music-manuscript.jpg" alt="中世纪音乐手稿中的演奏场景" loading="lazy">
+</figure>
+<p>早期欧洲音乐最重要的场景不是音乐厅，而是教堂、修道院和宫廷。圣咏以单旋律承载拉丁文文本，复调出现后，多条旋律开始同时运动，音乐的纵向空间被打开。帕莱斯特里纳、伯德、塔利斯这些作曲家关注的是声音如何服务文字，蒙特威尔第则把文字、戏剧和器乐推向歌剧的门口。</p>
+<p>听这一章时，先不要急着找主题旋律。可以听人声如何在空间里展开，听句子怎样被拉长，听不同声部如何互相模仿。早期音乐的魅力不在强烈戏剧冲突，而在音响的纯度、线条的秩序和文字的光泽。</p>
+<p>影响链条可以这样理解：圣咏给了西方音乐旋律与礼拜结构，复调训练了后来的对位写作，蒙特威尔第把文艺复兴晚期的声乐语言推向巴洛克戏剧。后来的巴赫、勃拉姆斯、斯特拉文斯基和阿沃·帕特都以不同方式回望过这一传统。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>001</td><td>基础</td><td>佚名圣咏传统</td><td>Gregorian Chant: Dies irae</td><td>Chant: Music for the Soul / Benedictine Monks of Santo Domingo de Silos</td><td><a href="https://music.apple.com/us/search?term=Gregorian%20Chant%20Dies%20irae%20Benedictine%20Monks%20Santo%20Domingo%20de%20Silos">搜索</a></td><td>圣咏入门，听单旋律如何服务文本</td></tr><tr><td>002</td><td>基础</td><td>宾根的希尔德加德（Hildegard von Bingen）</td><td>O viridissima virga, BN 19</td><td>A Feather on the Breath of God / Emma Kirkby, Gothic Voices, Christopher Page</td><td><a href="https://music.apple.com/us/search?term=Hildegard%20O%20viridissima%20virga%20Emma%20Kirkby%20Gothic%20Voices">搜索</a></td><td>女性作曲家与中世纪神秘主义声音</td></tr><tr><td>006</td><td>基础</td><td>若斯坎·德普雷（Josquin des Prez）</td><td>Ave Maria ... virgo serena</td><td>Josquin: Motets / The Tallis Scholars, Peter Phillips</td><td><a href="https://music.apple.com/us/search?term=Josquin%20Ave%20Maria%20virgo%20serena%20Tallis%20Scholars">搜索</a></td><td>模仿复调的清晰入门路径</td></tr><tr><td>007</td><td>基础</td><td>乔瓦尼·皮耶路易吉·达·帕莱斯特里纳（Giovanni Pierluigi da Palestrina）</td><td>Missa Papae Marcelli: Kyrie</td><td>Palestrina: Missa Papae Marcelli / The Tallis Scholars, Peter Phillips</td><td><a href="https://music.apple.com/us/search?term=Palestrina%20Missa%20Papae%20Marcelli%20Kyrie%20Tallis%20Scholars">搜索</a></td><td>反宗教改革时期的文本清晰度</td></tr><tr><td>009</td><td>基础</td><td>威廉·伯德（William Byrd）</td><td>Haec dies</td><td>Byrd: Masses and Motets / The Cardinall's Musick, Andrew Carwood</td><td><a href="https://music.apple.com/us/search?term=William%20Byrd%20Haec%20dies%20Cardinall&#39;s%20Musick">搜索</a></td><td>英国文艺复兴声乐的明亮节奏</td></tr></tbody></table></div>
+<h2 id="guide-2">2. 巴洛克（约 1600-1750）：秩序、装饰和持续推进的低音</h2>
+<figure class="chapter-art art-baroque">
+  <img src="assets/artworks/caravaggio-musicians.jpg" alt="卡拉瓦乔《音乐家》" loading="lazy">
+</figure>
+<p>巴洛克音乐建立了很多后来仍然有效的语法：低音通奏让音乐有稳定地基，协奏曲让独奏者和乐队对话，赋格把一个短主题发展成复杂结构，舞曲组曲把宫廷节奏带进器乐。巴赫是这套语言的高峰，但维瓦尔第、亨德尔、拉莫、科雷利、珀塞尔也各自代表了不同地区的声音。</p>
+<p>听巴洛克音乐，可以抓住三个东西：低音线是否持续推动，装饰音是否像说话时的语气，主题是否在不同声部间传递。巴赫的音乐常被说成理性，但真正打动人的是理性和情感并不分开。</p>
+<p>巴洛克对后世影响很深。门德尔松在 19 世纪推动巴赫复兴，20 世纪的新古典主义又回到巴洛克和古典时期的清晰形式。录音技术也改变了巴洛克音乐的命运，LP 和小型唱片公司让早期音乐、室内乐、古乐器演奏逐渐进入家庭聆听。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>015</td><td>基础</td><td>阿尔坎杰洛·科雷利（Arcangelo Corelli）</td><td>Concerto Grosso in G Minor, Op. 6 No. 8 &quot;Christmas Concerto&quot;</td><td>Corelli: Concerti Grossi Op. 6 / Trevor Pinnock, The English Concert</td><td><a href="https://music.apple.com/us/search?term=Corelli%20Christmas%20Concerto%20Op%206%20No%208%20Trevor%20Pinnock">搜索</a></td><td>大协奏曲和巴洛克合奏平衡</td></tr><tr><td>016</td><td>基础</td><td>安东尼奥·维瓦尔第（Antonio Vivaldi）</td><td>The Four Seasons: Spring, I. Allegro</td><td>Vivaldi: The Four Seasons / Fabio Biondi, Europa Galante</td><td><a href="https://music.apple.com/us/search?term=Vivaldi%20Spring%20Fabio%20Biondi%20Europa%20Galante">搜索</a></td><td>标题协奏曲，听节奏和图像感</td></tr><tr><td>017</td><td>基础</td><td>安东尼奥·维瓦尔第（Antonio Vivaldi）</td><td>Gloria, RV 589: Gloria in excelsis Deo</td><td>Vivaldi: Gloria / Robert King, The King's Consort</td><td><a href="https://music.apple.com/us/search?term=Vivaldi%20Gloria%20RV%20589%20Robert%20King%20King&#39;s%20Consort">搜索</a></td><td>巴洛克宗教合唱的直接光亮</td></tr><tr><td>018</td><td>基础</td><td>乔治·弗里德里克·亨德尔（George Frideric Handel）</td><td>Zadok the Priest</td><td>Handel: Coronation Anthems / Trevor Pinnock, The English Concert</td><td><a href="https://music.apple.com/us/search?term=Handel%20Zadok%20the%20Priest%20Trevor%20Pinnock%20English%20Concert">搜索</a></td><td>仪式音乐和公共权力的声音</td></tr><tr><td>019</td><td>基础</td><td>乔治·弗里德里克·亨德尔（George Frideric Handel）</td><td>Messiah: Hallelujah</td><td>Handel: Messiah / John Eliot Gardiner, Monteverdi Choir</td><td><a href="https://music.apple.com/us/search?term=Handel%20Messiah%20Hallelujah%20Gardiner%20Monteverdi%20Choir">搜索</a></td><td>英语清唱剧和大众经典</td></tr></tbody></table></div>
+<h2 id="guide-3">3. 古典主义（约 1750-1820）：音乐成为公共语言</h2>
+<figure class="chapter-art art-classical">
+  <img src="assets/artworks/mozart-family.jpg" alt="莫扎特一家演奏肖像画" loading="lazy">
+</figure>
+<p>18 世纪后半叶，音乐从宫廷和教会走向更广泛的公共生活。海顿、莫扎特和贝多芬把交响曲、弦乐四重奏、奏鸣曲和协奏曲变成可以被反复讨论的形式。这里的“古典主义”不是整个古典音乐，而是一个强调平衡、句法、主题发展和结构清晰的时期。</p>
+<p>这一章可以重点听形式。奏鸣曲式常把两个性格不同的主题放在一起，再通过发展部制造冲突和回归。协奏曲常让独奏者既与乐队合作，又保持个人声音。弦乐四重奏则像四个人在高密度对话。</p>
+<p>贝多芬是连接古典主义和浪漫主义的关键人物。他从海顿、莫扎特那里继承形式，却把形式推向更强的戏剧张力。后来的勃拉姆斯、布鲁克纳、马勒和肖斯塔科维奇都绕不开这个问题：在贝多芬之后，交响曲还能怎样继续写。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>033</td><td>基础</td><td>卡尔·菲利普·埃马努埃尔·巴赫（Carl Philipp Emanuel Bach）</td><td>Solfeggietto in C Minor, Wq. 117/2</td><td>C.P.E. Bach: Keyboard Works / Miklós Spányi</td><td><a href="https://music.apple.com/us/search?term=CPE%20Bach%20Solfeggietto%20Miklos%20Spanyi">搜索</a></td><td>从巴洛克到古典的情绪化键盘语言</td></tr><tr><td>034</td><td>基础</td><td>约瑟夫·海顿（Joseph Haydn）</td><td>Trumpet Concerto in E-flat Major: III. Allegro</td><td>Haydn: Trumpet Concerto / Håkan Hardenberger, Academy of St Martin in the Fields</td><td><a href="https://music.apple.com/us/search?term=Haydn%20Trumpet%20Concerto%20Hardenberger%20Marriner">搜索</a></td><td>新乐器和古典协奏曲的明亮表达</td></tr><tr><td>035</td><td>基础</td><td>约瑟夫·海顿（Joseph Haydn）</td><td>String Quartet Op. 76 No. 3 &quot;Emperor&quot;: II. Poco adagio</td><td>Haydn: String Quartets Op. 76 / Quatuor Mosaïques</td><td><a href="https://music.apple.com/us/search?term=Haydn%20Emperor%20Quartet%20Op%2076%20No%203%20Quatuor%20Mosaiques">搜索</a></td><td>弦乐四重奏作为室内对话</td></tr><tr><td>036</td><td>基础</td><td>约瑟夫·海顿（Joseph Haydn）</td><td>Symphony No. 94 &quot;Surprise&quot;: II. Andante</td><td>Haydn: London Symphonies / Leonard Bernstein, New York Philharmonic</td><td><a href="https://music.apple.com/us/search?term=Haydn%20Surprise%20Symphony%20Bernstein%20New%20York%20Philharmonic">搜索</a></td><td>公共音乐会中的幽默和听众期待</td></tr><tr><td>037</td><td>基础</td><td>路易吉·博凯里尼（Luigi Boccherini）</td><td>String Quintet in E Major, G. 275: Minuet</td><td>Boccherini: String Quintets / Europa Galante</td><td><a href="https://music.apple.com/us/search?term=Boccherini%20Minuet%20G%20275%20Europa%20Galante">搜索</a></td><td>古典室内乐的优雅舞曲</td></tr></tbody></table></div>
+<h2 id="guide-4">4. 浪漫主义与民族风格（约 1810-1910）：个人情感、巨型乐队和歌剧工业</h2>
+<figure class="chapter-art art-romantic">
+  <img src="assets/artworks/degas-orchestra.jpg" alt="德加《歌剧院乐池》" loading="lazy">
+</figure>
+<p>19 世纪的音乐更强调个人情感、文学想象和民族身份。舒伯特把诗歌和钢琴伴奏结合成高度浓缩的戏剧，肖邦让钢琴像歌唱，李斯特把炫技变成舞台人格，瓦格纳把歌剧扩展为持续流动的音乐戏剧，勃拉姆斯则在贝多芬之后继续维护结构的重量。</p>
+<p>听浪漫主义音乐，最容易抓住的是旋律和和声的扩张。调性不再只是稳定的家，而是可以被推远、拖延、悬置的空间。管弦乐队越来越大，铜管、打击乐和弦乐群制造出更强的体积感。歌剧在这一时期也是大众娱乐、商业系统和民族文化的结合体。</p>
+<p>这里有两条影响线很重要。一条是瓦格纳的主导动机进入电影配乐，人物、地点和命运可以由主题标识。另一条是民族乐派把民歌、舞曲、语言节奏和地方传说带进交响曲与歌剧，后来影响了巴托克、亚纳切克、科普兰和很多电影作曲家。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>051</td><td>基础</td><td>弗朗茨·舒伯特（Franz Schubert）</td><td>Symphony No. 8 &quot;Unfinished&quot;: I. Allegro moderato</td><td>Schubert: Symphony No. 8 / Carlos Kleiber, Vienna Philharmonic</td><td><a href="https://music.apple.com/us/search?term=Schubert%20Unfinished%20Symphony%20Kleiber%20Vienna%20Philharmonic">搜索</a></td><td>浪漫主义阴影和歌唱性旋律</td></tr><tr><td>052</td><td>基础</td><td>弗朗茨·舒伯特（Franz Schubert）</td><td>Erlkönig, D. 328</td><td>Schubert: Lieder / Dietrich Fischer-Dieskau, Gerald Moore</td><td><a href="https://music.apple.com/us/search?term=Schubert%20Erlk%C3%B6nig%20Fischer-Dieskau%20Gerald%20Moore">搜索</a></td><td>艺术歌曲里的戏剧角色</td></tr><tr><td>053</td><td>基础</td><td>费利克斯·门德尔松（Felix Mendelssohn）</td><td>A Midsummer Night's Dream: Overture</td><td>Mendelssohn: A Midsummer Night's Dream / Claudio Abbado, London Symphony Orchestra</td><td><a href="https://music.apple.com/us/search?term=Mendelssohn%20Midsummer%20Night&#39;s%20Dream%20Overture%20Abbado">搜索</a></td><td>文学、轻盈管弦乐和标题音乐</td></tr><tr><td>055</td><td>基础</td><td>罗伯特·舒曼（Robert Schumann）</td><td>Kinderszenen, Op. 15: Träumerei</td><td>Schumann: Kinderszenen / Vladimir Horowitz</td><td><a href="https://music.apple.com/us/search?term=Schumann%20Tr%C3%A4umerei%20Horowitz%20Kinderszenen">搜索</a></td><td>钢琴小品里的内心叙事</td></tr><tr><td>057</td><td>基础</td><td>弗雷德里克·肖邦（Frédéric Chopin）</td><td>Nocturne in E-flat Major, Op. 9 No. 2</td><td>Chopin: Nocturnes / Arthur Rubinstein</td><td><a href="https://music.apple.com/us/search?term=Chopin%20Nocturne%20Op%209%20No%202%20Rubinstein">搜索</a></td><td>钢琴歌唱性和装饰音</td></tr></tbody></table></div>
+<h2 id="guide-5">5. 现代主义开端（约 1890-1918）：旧语法开始松动</h2>
+<figure class="chapter-art art-modern">
+  <img src="assets/artworks/nijinsky-faun-de-meyer-1912.jpg" alt="尼金斯基《牧神午后》舞台照片" loading="lazy">
+</figure>
+<p>1900 年前后，很多作曲家不再满足于浪漫主义的扩张。德彪西和拉威尔改变了和声与管弦乐色彩，萨蒂用简洁和冷感挑战宏大叙事，斯特拉文斯基把节奏变成结构核心，勋伯格和第二维也纳乐派则让调性中心彻底动摇。1913 年《春之祭》的巴黎首演常被当作象征性转折点，因为它把节奏、音色和身体性推到前台。</p>
+<p>这一章要听“陌生感”。德彪西的和声常不像传统和声那样急着解决，拉威尔的配器清晰到近乎精密，斯特拉文斯基的重音让节拍失去稳定地面，勋伯格之后的音乐不再总是回到一个主调。现代主义不是一种风格，而是一组不同的反应。</p>
+<p>影响链条很密。德彪西影响了拉威尔、武满彻和很多电影音乐的色彩写作；斯特拉文斯基影响了 20 世纪对节奏和拼贴的理解；勋伯格、贝尔格、韦伯恩影响了战后先锋。好莱坞也继承了理查·施特劳斯、瓦格纳、马勒式的大乐队想象。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>073</td><td>基础</td><td>克洛德·德彪西（Claude Debussy）</td><td>Prélude à l'après-midi d'un faune</td><td>Debussy: Orchestral Works / Pierre Boulez, Cleveland Orchestra</td><td><a href="https://music.apple.com/us/search?term=Debussy%20Prelude%20afternoon%20of%20a%20faun%20Boulez%20Cleveland">搜索</a></td><td>印象主义色彩和现代管弦开端</td></tr><tr><td>076</td><td>基础</td><td>莫里斯·拉威尔（Maurice Ravel）</td><td>Pavane pour une infante défunte</td><td>Ravel: Piano Works / Alexandre Tharaud</td><td><a href="https://music.apple.com/us/search?term=Ravel%20Pavane%20pour%20une%20infante%20d%C3%A9funte%20Tharaud">搜索</a></td><td>古典姿态和现代和声</td></tr><tr><td>078</td><td>基础</td><td>莫里斯·拉威尔（Maurice Ravel）</td><td>Boléro</td><td>Ravel: Boléro / Claudio Abbado, London Symphony Orchestra</td><td><a href="https://music.apple.com/us/search?term=Ravel%20Bolero%20Abbado%20London%20Symphony">搜索</a></td><td>重复、配器和渐强的实验</td></tr><tr><td>081</td><td>基础</td><td>理查德·施特劳斯（Richard Strauss）</td><td>Salome: Dance of the Seven Veils</td><td>Strauss: Salome / Georg Solti, Vienna Philharmonic</td><td><a href="https://music.apple.com/us/search?term=Strauss%20Salome%20Dance%20Seven%20Veils%20Solti%20Vienna">搜索</a></td><td>歌剧、欲望和现代和声刺激</td></tr><tr><td>083</td><td>基础</td><td>查尔斯·艾夫斯（Charles Ives）</td><td>The Unanswered Question</td><td>Ives: Orchestral Works / Leonard Bernstein, New York Philharmonic</td><td><a href="https://music.apple.com/us/search?term=Ives%20Unanswered%20Question%20Bernstein%20New%20York%20Philharmonic">搜索</a></td><td>美国实验主义和空间分层</td></tr></tbody></table></div>
+<h2 id="guide-6">6. 两次大战之间（约 1918-1945）：新古典、爵士、苏联语境和电影工业</h2>
+<figure class="chapter-art art-recording">
+  <img src="assets/artworks/king-of-jazz-brox-rhythm-boys.jpg" alt="《爵士之王》中的 Brox Sisters 与 Rhythm Boys 演出照" loading="lazy">
+</figure>
+<p>第一次世界大战后，很多作曲家对浪漫主义的膨胀产生警惕。斯特拉文斯基、普罗科菲耶夫、欣德米特、普朗克等人回到古典形式，却用现代和声与节奏重新处理。美国作曲家把爵士、赞美诗、民间舞曲和电影工业带进管弦乐。苏联作曲家则在政治压力下写作，肖斯塔科维奇第五交响曲就是这一语境中最复杂的作品之一。</p>
+<p>听这一章，节奏会比旋律更醒目。格什温把爵士语汇放进协奏曲式的框架，科普兰用开阔音程塑造美国式空间，普罗科菲耶夫让古典形式带上讽刺感，肖斯塔科维奇的进行曲常在胜利和恐惧之间摇摆。</p>
+<p>录音技术在这里很关键。78 转唱片时代不适合完整长作品，LP 出现后，交响曲、四重奏和歌剧可以更完整地进入家庭。电影工业也让管弦乐获得新的大众接触途径，科恩戈尔德从欧洲歌剧和交响传统转入好莱坞，直接影响了后来的电影配乐语言。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>097</td><td>基础</td><td>谢尔盖·普罗科菲耶夫（Sergei Prokofiev）</td><td>Symphony No. 1 &quot;Classical&quot;: I. Allegro</td><td>Prokofiev: Classical Symphony / Claudio Abbado, London Symphony Orchestra</td><td><a href="https://music.apple.com/us/search?term=Prokofiev%20Classical%20Symphony%20Abbado%20LSO">搜索</a></td><td>新古典主义，古典外壳里的现代讽刺</td></tr><tr><td>098</td><td>基础</td><td>谢尔盖·普罗科菲耶夫（Sergei Prokofiev）</td><td>Romeo and Juliet: Dance of the Knights</td><td>Prokofiev: Romeo and Juliet / Valery Gergiev, London Symphony Orchestra</td><td><a href="https://music.apple.com/us/search?term=Prokofiev%20Romeo%20Juliet%20Dance%20Knights%20Gergiev">搜索</a></td><td>芭蕾、重音和戏剧人物</td></tr><tr><td>100</td><td>基础</td><td>德米特里·肖斯塔科维奇（Dmitri Shostakovich）</td><td>Symphony No. 5: IV. Allegro non troppo</td><td>Shostakovich: Symphony No. 5 / Yevgeny Mravinsky, Leningrad Philharmonic</td><td><a href="https://music.apple.com/us/search?term=Shostakovich%20Symphony%205%20Mravinsky%20Leningrad">搜索</a></td><td>苏联语境、胜利和讽刺的歧义</td></tr><tr><td>101</td><td>基础</td><td>德米特里·肖斯塔科维奇（Dmitri Shostakovich）</td><td>Jazz Suite No. 2: Waltz II</td><td>Shostakovich: Jazz Suites / Riccardo Chailly, Royal Concertgebouw Orchestra</td><td><a href="https://music.apple.com/us/search?term=Shostakovich%20Waltz%202%20Chailly%20Concertgebouw">搜索</a></td><td>轻音乐、讽刺和大众传播</td></tr><tr><td>105</td><td>基础</td><td>乔治·格什温（George Gershwin）</td><td>Rhapsody in Blue</td><td>Gershwin: Rhapsody in Blue / Leonard Bernstein, Columbia Symphony Orchestra</td><td><a href="https://music.apple.com/us/search?term=Gershwin%20Rhapsody%20in%20Blue%20Bernstein%20Columbia">搜索</a></td><td>爵士和协奏曲传统的交汇</td></tr></tbody></table></div>
+<h2 id="guide-7">7. 战后先锋与声音实验（约 1945-1970s）：音乐开始追问声音本身</h2>
+<figure class="chapter-art art-avant-garde">
+  <img src="assets/artworks/prepared-piano.jpg" alt="预置钢琴内部照片" loading="lazy">
+</figure>
+<p>1945 年后，欧洲和美国的作曲家面对战争后的断裂感，开始重新定义音乐材料。布列兹和斯托克豪森发展序列主义和电子音乐，凯奇让偶然和沉默进入作品，泽纳基斯把数学和建筑思维带进声音组织，利盖蒂和潘德列茨基关注音块、密度和质感。这里的难点不是“难听”，而是听法已经变了。</p>
+<p>听这一章时，可以暂时放下旋律。关注声音如何出现、聚集、变形、消失。利盖蒂的《大气》像没有边界的云团，潘德列茨基的《广岛受难者的哀歌》把弦乐变成尖锐的声响事件，武满彻让日本传统乐器和西方管弦乐保持距离又互相照亮。</p>
+<p>这条线影响了很多电影和当代配乐。库布里克在《2001：太空漫游》中使用利盖蒂，让先锋音乐进入大众记忆。恐怖片和科幻片也大量吸收音块、微分音、噪声和电子声响。音乐会、录音棚和电影声轨之间的边界开始松动。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>117</td><td>基础</td><td>奥利维耶·梅西安（Olivier Messiaen）</td><td>Turangalîla-Symphonie: V. Joie du sang des étoiles</td><td>Messiaen: Turangalîla-Symphonie / Esa-Pekka Salonen, Philharmonia Orchestra</td><td><a href="https://music.apple.com/us/search?term=Messiaen%20Turangalila%20Salonen%20Philharmonia">搜索</a></td><td>节奏、色彩和昂德马特诺</td></tr><tr><td>121</td><td>基础</td><td>约翰·凯奇（John Cage）</td><td>Sonatas and Interludes: Sonata V</td><td>Cage: Sonatas and Interludes / John Tilbury</td><td><a href="https://music.apple.com/us/search?term=John%20Cage%20Sonatas%20Interludes%20John%20Tilbury">搜索</a></td><td>预置钢琴和声音对象</td></tr><tr><td>124</td><td>基础</td><td>捷尔吉·利盖蒂（György Ligeti）</td><td>Atmosphères</td><td>Ligeti: Orchestral Works / Jonathan Nott, Berlin Philharmonic</td><td><a href="https://music.apple.com/us/search?term=Ligeti%20Atmospheres%20Jonathan%20Nott%20Berlin%20Philharmonic">搜索</a></td><td>音块写作和科幻电影记忆</td></tr><tr><td>126</td><td>基础</td><td>克日什托夫·潘德列茨基（Krzysztof Penderecki）</td><td>Threnody for the Victims of Hiroshima</td><td>Penderecki: Threnody / Antoni Wit, Polish National Radio Symphony</td><td><a href="https://music.apple.com/us/search?term=Penderecki%20Threnody%20Antoni%20Wit">搜索</a></td><td>弦乐噪声、历史创伤和现代音响</td></tr><tr><td>128</td><td>基础</td><td>本杰明·布里顿（Benjamin Britten）</td><td>War Requiem: Libera me</td><td>Britten: War Requiem / Benjamin Britten, London Symphony Orchestra</td><td><a href="https://music.apple.com/us/search?term=Britten%20War%20Requiem%20Libera%20me%20Britten%20LSO">搜索</a></td><td>战争记忆、拉丁弥撒和英文诗</td></tr></tbody></table></div>
+<h2 id="guide-8">8. 极简主义与后极简（约 1960s-1990s）：重复不是停滞，而是变化被放慢</h2>
+<figure class="chapter-art art-minimal">
+  <img src="assets/artworks/reich-music-for-18-musicians.jpg" alt="史蒂夫·赖希《18 位音乐家的音乐》现场演出照" loading="lazy">
+</figure>
+<p>20 世纪 60 年代以后，极简主义对复杂先锋作出反应。Terry Riley、Steve Reich、Philip Glass、John Adams 用重复、脉冲、相位错位和清晰和声重建可听性。阿沃·帕特和格雷茨基则把简约语言推向宗教和静观体验。后极简主义进一步进入歌剧、电影、舞台和跨界场景。</p>
+<p>听极简主义，不要只问“主题什么时候来”。变化常发生在细节里：两个声部的相位慢慢错开，一个和弦循环被配器和重音改变，一个短动机在长时间重复中获得新的重量。它很适合现代听众，因为我们已经习惯电子音乐、环境音乐和电影配乐中的循环结构。</p>
+<p>极简主义对后来的电影和游戏音乐影响很大。重复可以制造时间感、行进感和心理压力，也能给画面留空间。Philip Glass、John Adams、Max Richter、Michael Nyman、Jóhann Jóhannsson 这条线，让当代听众更容易从银幕进入音乐厅。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>137</td><td>基础</td><td>特里·赖利（Terry Riley）</td><td>In C</td><td>In C / Shanghai Film Orchestra, Wang Yongji</td><td><a href="https://music.apple.com/us/search?term=Terry%20Riley%20In%20C">搜索</a></td><td>极简主义起点，模块重复和开放结构</td></tr><tr><td>138</td><td>基础</td><td>史蒂夫·赖希（Steve Reich）</td><td>Clapping Music</td><td>Reich: Works 1965-1995 / Steve Reich and Musicians</td><td><a href="https://music.apple.com/us/search?term=Steve%20Reich%20Clapping%20Music">搜索</a></td><td>相位思维的最小模型</td></tr><tr><td>139</td><td>基础</td><td>史蒂夫·赖希（Steve Reich）</td><td>Music for 18 Musicians: Pulses</td><td>Reich: Music for 18 Musicians / Steve Reich and Musicians</td><td><a href="https://music.apple.com/us/search?term=Steve%20Reich%20Music%20for%2018%20Musicians%20Pulses">搜索</a></td><td>脉冲、呼吸和渐变过程</td></tr><tr><td>141</td><td>基础</td><td>菲利普·格拉斯（Philip Glass）</td><td>Glassworks: Opening</td><td>Glassworks / Philip Glass Ensemble</td><td><a href="https://music.apple.com/us/search?term=Philip%20Glass%20Glassworks%20Opening">搜索</a></td><td>重复和流行化极简主义入门</td></tr><tr><td>143</td><td>基础</td><td>约翰·亚当斯（John Adams）</td><td>Short Ride in a Fast Machine</td><td>Adams: Short Ride in a Fast Machine / Michael Tilson Thomas, San Francisco Symphony</td><td><a href="https://music.apple.com/us/search?term=John%20Adams%20Short%20Ride%20in%20a%20Fast%20Machine%20Tilson%20Thomas">搜索</a></td><td>后极简主义的速度和管弦亮度</td></tr></tbody></table></div>
+<p>从第 9 节开始，指南不再只按年份往后排。第 9 节是“接触途径”专题，讨论电影、剧集、游戏和短视频怎样把管弦乐带给新听众；它横跨 20 世纪电影工业、1970 年代以后好莱坞交响传统、1980 年代以来的游戏音乐和今天的流媒体传播。第 10 节才回到 1990 年以来的音乐会作品、当代作曲家和跨类型创作（cross-genre composition）。这里用 1990 年前后做参考，是因为冷战结束、CD 与全球唱片市场、音乐节和学院网络、后来互联网与流媒体共同改变了新作品的传播环境，不是说电影或游戏音乐从 1990 年才开始。</p>
+<h2 id="guide-9">9. 电影、游戏与新的接触途径（电影约 1930s 至今；游戏约 1980s 至今）：很多人先听见管弦乐，再认识古典音乐</h2>
+<figure class="chapter-art art-screen">
+  <img src="assets/artworks/ai-futuristic-opera-diva.png" alt="AI 生成的未来歌剧舞台插图" loading="lazy">
+</figure>
+<p>很多人不是从音乐厅开始接触古典音乐，而是先通过电影、剧集、游戏和短视频听见管弦乐。这条线比 1990 年早得多：好莱坞黄金时代已经把欧洲晚期浪漫主义、歌剧和交响乐语言带进电影，伯纳德·赫尔曼、尼诺·罗塔、莫里康内、约翰·威廉姆斯都属于这条传统的不同阶段。游戏音乐主要在 1980 年代以后形成自己的语法，早期受技术限制，后来通过管弦改编、现场音乐会和流媒体重新进入古典音乐听众的视野。</p>
+<p>这一章可以听主题如何绑定角色和世界观。电影配乐通常要在很短时间内建立情绪，所以旋律轮廓、配器和节奏标识非常清楚。游戏音乐还要适应重复和场景切换，因此主题常被做成可循环、可变奏、可重新配器的材料。</p>
+<p>这不是把电影音乐简单归入古典音乐，而是承认当代听众的真实路径。皇家爱乐等机构的观众研究显示，影视和游戏音乐已经成为年轻听众接触管弦乐的重要途径。对初学者来说，从熟悉的影像声音转向德彪西、瓦格纳、斯特拉文斯基、科普兰和极简主义，是很自然的路线。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>153</td><td>基础</td><td>约翰·威廉姆斯（John Williams）</td><td>Star Wars: Main Title</td><td>Star Wars: A New Hope / John Williams, London Symphony Orchestra</td><td><a href="https://music.apple.com/us/search?term=John%20Williams%20Star%20Wars%20Main%20Title%20London%20Symphony">搜索</a></td><td>瓦格纳式主题和好莱坞交响传统</td></tr><tr><td>154</td><td>基础</td><td>约翰·威廉姆斯（John Williams）</td><td>E.T.: Flying Theme</td><td>E.T. The Extra-Terrestrial / John Williams, Hollywood Studio Symphony</td><td><a href="https://music.apple.com/us/search?term=John%20Williams%20ET%20Flying%20Theme">搜索</a></td><td>管弦乐的飞翔感和童年记忆</td></tr><tr><td>155</td><td>基础</td><td>约翰·威廉姆斯（John Williams）</td><td>Schindler's List: Theme</td><td>Schindler's List / Itzhak Perlman, John Williams</td><td><a href="https://music.apple.com/us/search?term=John%20Williams%20Schindler&#39;s%20List%20Perlman">搜索</a></td><td>独奏小提琴和历史哀悼</td></tr><tr><td>156</td><td>基础</td><td>恩尼奥·莫里康内（Ennio Morricone）</td><td>The Mission: Gabriel's Oboe</td><td>The Mission / Ennio Morricone</td><td><a href="https://music.apple.com/us/search?term=Ennio%20Morricone%20Gabriel&#39;s%20Oboe%20The%20Mission">搜索</a></td><td>电影旋律如何成为管弦乐入门路径</td></tr><tr><td>158</td><td>基础</td><td>尼诺·罗塔（Nino Rota）</td><td>The Godfather Waltz</td><td>The Godfather / Nino Rota</td><td><a href="https://music.apple.com/us/search?term=Nino%20Rota%20Godfather%20Waltz">搜索</a></td><td>圆舞曲、记忆和家族叙事</td></tr></tbody></table></div>
+<h2 id="guide-10">10. 1990 年以来的当代古典与跨类型创作（cross-genre composition，约 1990 至今）：边界变得更松</h2>
+<figure class="chapter-art art-contemporary">
+  <img src="assets/artworks/digidesign-control-24.jpg" alt="数字录音控制台照片" loading="lazy">
+</figure>
+<p>1990 年以来的当代古典音乐没有单一主流。这里的“1990 年以来”是大致的音乐生态划分，不是严格断代。萨里亚霍用光和音色写歌剧，Adès 让复杂节奏和戏剧能量并存，Jennifer Higdon、Jessie Montgomery、Anna Clyne、Gabriela Ortiz 等作曲家把美国音乐、拉丁美洲节奏、弦乐传统和当代音色混合起来。Caroline Shaw、Roomful of Teeth、Max Richter、Jonny Greenwood 则让古典、流行、电子、电影、实验人声之间的边界更松。</p>
+<p>听当代音乐，关键是不要预设它一定艰深。很多当代作品很直接，有明确脉冲、清楚音色和强烈画面感。也有一些作品需要更耐心，先听声音材质和空间，而不是传统旋律。</p>
+<p>流媒体改变了当代作品的传播。过去新作品依赖首演、乐评和唱片厂牌；现在作品可以通过电影、游戏、播客、短视频、Apple Music Classical 的导赏歌单和艺术家的个人平台被听见。问题也随之改变：不是缺少入门材料，而是需要知道这些材料后面连接着哪条历史线。</p>
+<h3>基础曲目（先听这 5 首）</h3>
+<div class="table-wrap"><table><thead><tr><th>歌单编号</th><th>难度</th><th>作曲家</th><th>作品</th><th>推荐版本 / 演奏者</th><th>Apple Music 检索</th><th>这首承担的作用</th></tr></thead><tbody><tr><td>169</td><td>基础</td><td>詹妮弗·希格登（Jennifer Higdon）</td><td>blue cathedral</td><td>Higdon: blue cathedral / Robert Spano, Atlanta Symphony Orchestra</td><td><a href="https://music.apple.com/us/search?term=Jennifer%20Higdon%20blue%20cathedral%20Robert%20Spano">搜索</a></td><td>当代美国抒情管弦乐</td></tr><tr><td>170</td><td>基础</td><td>米西·马佐利（Missy Mazzoli）</td><td>Sinfonia for Orbiting Spheres</td><td>Mazzoli: Vespers for a New Dark Age / Victoire</td><td><a href="https://music.apple.com/us/search?term=Missy%20Mazzoli%20Sinfonia%20for%20Orbiting%20Spheres%20Victoire">搜索</a></td><td>后极简、电子质感和当代室内乐</td></tr><tr><td>171</td><td>基础</td><td>杰西·蒙哥马利（Jessie Montgomery）</td><td>Starburst</td><td>Strum: Music for Strings / Jessie Montgomery, Catalyst Quartet</td><td><a href="https://music.apple.com/us/search?term=Jessie%20Montgomery%20Starburst%20Catalyst%20Quartet">搜索</a></td><td>弦乐能量和当代美国声音</td></tr><tr><td>172</td><td>基础</td><td>卡罗琳·肖（Caroline Shaw）</td><td>Partita for 8 Voices: Passacaglia</td><td>Roomful of Teeth / Roomful of Teeth</td><td><a href="https://music.apple.com/us/search?term=Caroline%20Shaw%20Partita%20Passacaglia%20Roomful%20of%20Teeth">搜索</a></td><td>人声实验和普利策获奖作品</td></tr><tr><td>173</td><td>基础</td><td>安娜·克莱因（Anna Clyne）</td><td>Within Her Arms</td><td>Clyne: Mythologies / Esa-Pekka Salonen, Philharmonia Orchestra</td><td><a href="https://music.apple.com/us/search?term=Anna%20Clyne%20Within%20Her%20Arms%20Salonen%20Philharmonia">搜索</a></td><td>弦乐哀歌和当代直接表达</td></tr></tbody></table></div>
+<h2 id="guide-11">附录一：作品编号怎么看</h2>
+<p>古典音乐标题常有编号，这是为了区分作品，而不是为了吓人。<code>Op.</code> 是 opus，通常指作品号，常和出版顺序有关，但不一定等于创作顺序。贝多芬《第五交响曲》是 <code>Op. 67</code>，表示作品号 67。<code>WoO</code> 是 without opus number，指没有作品号的作品，比如贝多芬《致爱丽丝》常写作 <code>WoO 59</code>。</p>
+<p>巴赫常用 <code>BWV</code>，来自 Bach-Werke-Verzeichnis，按体裁和目录整理，不是严格创作顺序。莫扎特常用 <code>K.</code> 或 <code>KV</code>，来自 Köchel 目录。海顿常用 <code>Hob.</code>，舒伯特常用 <code>D</code>，维瓦尔第常用 <code>RV</code>，德彪西常用 <code>L</code>，拉威尔常用 <code>M</code>，巴托克常用 <code>Sz.</code> 或 <code>BB</code>。</p>
+<p>一个实用原则：搜索时优先用“作曲家 + 作品类型 + 编号 + 调性”。比如 <code>Mozart Clarinet Concerto K 622</code> 比只搜 <code>Mozart concerto</code> 准确得多。遇到同名作品，编号比昵称可靠；遇到巴赫、莫扎特、舒伯特这类作品很多的作曲家，目录号尤其重要。</p>
+<h2 id="guide-12">附录二：这些因素会怎样改变同一部作品</h2>
+<p>同一部作品的不同录音，差别通常来自几个层面。它们不是元数据标签，而是会直接改变听感的变量。</p>
+<ul><li>指挥会改变速度、句法、重音和大结构。贝多芬第五交响曲如果速度紧、重音硬，会显得像持续推进的危机；如果速度宽、弦乐厚，听感会更宏大。</li><li>乐团会改变音色和透明度。柏林爱乐的厚度、维也纳爱乐的弦乐和木管色彩、克利夫兰管弦乐团的精密度、欧洲室内乐团的轻盈感，会让同一份乐谱呈现不同重心。</li><li>独奏者会改变作品的叙述视角。协奏曲里，独奏者可能像主角，也可能像室内乐中的第一声部；钢琴或大提琴独奏作品里，触键、揉弦、呼吸和停顿就是解释本身。</li><li>乐器和演奏法会改变历史距离。巴赫用现代钢琴、羽管键琴、古大提琴或现代大提琴演奏，线条、舞蹈感和和声重量都会不同。</li><li>录音年代和场地会改变空间感。老录音可能频宽窄、噪声多，但保留了重要传统；现代录音更清晰，细节和低频更容易听见。现场录音常有更强的风险感，录音室版本通常更稳。</li><li>厂牌和重制会改变音质。历史录音的不同转制会影响高频、动态和速度感；同一录音在不同重制版里可能听起来更亮、更暗或更近。</li></ul>
+<p>下面的链接是 Apple Music 搜索链接，便于在不同地区帐号中打开；在 Apple Music Classical 里也可以用同样关键词搜索。这个表不是只比较指挥，有些例子把指挥和乐团一起比较，有些主要比较独奏者、乐器/演奏法或录音年代。</p>
+<div class="table-wrap"><table><thead><tr><th>作品</th><th>主要对比变量</th><th>对比版本</th><th>Apple Music 链接</th><th>主要差别</th></tr></thead><tbody><tr><td>贝多芬《第五交响曲》</td><td>指挥、乐团、演奏传统</td><td>赫伯特·冯·卡拉扬（<a href="https://en.wikipedia.org/wiki/Herbert_von_Karajan">Herbert von Karajan</a>，/ˈhɛrbərt fɒn ˈkærəjæn/）/ 柏林爱乐；卡洛斯·克莱伯（<a href="https://en.wikipedia.org/wiki/Carlos_Kleiber">Carlos Kleiber</a>，/ˈkɑːrloʊs ˈklaɪbər/）/ 维也纳爱乐；尼古劳斯·哈农库特（<a href="https://en.wikipedia.org/wiki/Nikolaus_Harnoncourt">Nikolaus Harnoncourt</a>，/ˈnɪkəlaʊs ˈhɑːrnənkʊərt/）/ 欧洲室内乐团</td><td><a href="https://music.apple.com/us/search?term=Beethoven%20Symphony%205%20Karajan%20Berlin%20Philharmonic">Karajan</a> / <a href="https://music.apple.com/us/search?term=Beethoven%20Symphony%205%20Kleiber%20Vienna%20Philharmonic">Kleiber</a> / <a href="https://music.apple.com/us/search?term=Beethoven%20Symphony%205%20Harnoncourt%20Chamber%20Orchestra%20of%20Europe">Harnoncourt</a></td><td>卡拉扬偏厚重和整体光泽；克莱伯紧张、推进力强；哈农库特更透明，重音和句法更接近历史演奏法思路。</td></tr><tr><td>巴赫《无伴奏大提琴组曲》</td><td>独奏者、乐器/弓法、录音年代</td><td>帕布罗·卡萨尔斯（<a href="https://en.wikipedia.org/wiki/Pablo_Casals">Pablo Casals</a>，/ˈpɑːbloʊ kəˈsɑːlz/）；马友友（<a href="https://en.wikipedia.org/wiki/Yo-Yo_Ma">Yo-Yo Ma</a>，/ˈjoʊjoʊ mɑː/）；安纳·拜尔斯玛（<a href="https://en.wikipedia.org/wiki/Anner_Bylsma">Anner Bylsma</a>，/ˈɑːnər ˈbaɪlzmə/）或让-吉扬·凯拉斯（<a href="https://en.wikipedia.org/wiki/Jean-Guihen_Queyras">Jean-Guihen Queyras</a>，/ˌʒɑːn ɡiˈɛn keɪˈrɑːs/）</td><td><a href="https://music.apple.com/us/search?term=Bach%20Cello%20Suites%20Pablo%20Casals">Casals</a> / <a href="https://music.apple.com/us/search?term=Bach%20Cello%20Suites%20Yo-Yo%20Ma">Yo-Yo Ma</a> / <a href="https://music.apple.com/us/search?term=Bach%20Cello%20Suites%20Anner%20Bylsma">Bylsma</a> / <a href="https://music.apple.com/us/search?term=Bach%20Cello%20Suites%20Jean-Guihen%20Queyras">Queyras</a></td><td>卡萨尔斯像在重新发现作品，歌唱性强；马友友的现代录音更平滑、亲近；拜尔斯玛和凯拉斯更强调舞蹈、弓法和历史风格。</td></tr><tr><td>斯特拉文斯基《春之祭》</td><td>指挥、乐团精密度、录音声场</td><td>皮埃尔·布列兹（<a href="https://en.wikipedia.org/wiki/Pierre_Boulez">Pierre Boulez</a>，/pjɛər buːˈlɛz/）/ 克利夫兰管弦乐团；埃萨-佩卡·萨洛宁（<a href="https://en.wikipedia.org/wiki/Esa-Pekka_Salonen">Esa-Pekka Salonen</a>，/ˈɛsə ˈpɛkə ˈsɑːloʊnən/）/ 洛杉矶爱乐；伦纳德·伯恩斯坦（<a href="https://en.wikipedia.org/wiki/Leonard_Bernstein">Leonard Bernstein</a>，/ˈbɜːrnstaɪn/）/ 纽约爱乐</td><td><a href="https://music.apple.com/us/search?term=Stravinsky%20Rite%20of%20Spring%20Boulez%20Cleveland">Boulez</a> / <a href="https://music.apple.com/us/search?term=Stravinsky%20Rite%20of%20Spring%20Salonen%20Los%20Angeles%20Philharmonic">Salonen</a> / <a href="https://music.apple.com/us/search?term=Stravinsky%20Rite%20of%20Spring%20Bernstein%20New%20York%20Philharmonic">Bernstein</a></td><td>布列兹强调节奏和配器的清晰；萨洛宁兼顾透明度和冲击力；伯恩斯坦更粗粝、更戏剧化。</td></tr><tr><td>肖斯塔科维奇《第五交响曲》</td><td>指挥、政治语境的解释、乐团传统</td><td>叶夫根尼·穆拉文斯基（<a href="https://en.wikipedia.org/wiki/Yevgeny_Mravinsky">Yevgeny Mravinsky</a>，/jɛvˈɡɛni mrəˈvɪnski/）；伦纳德·伯恩斯坦；伯纳德·海廷克（<a href="https://en.wikipedia.org/wiki/Bernard_Haitink">Bernard Haitink</a>，/ˈbɜːrnɑːrd ˈhaɪtɪŋk/）或瓦西里·佩特连科（<a href="https://en.wikipedia.org/wiki/Vasily_Petrenko">Vasily Petrenko</a>，/vəˈsiːli pɛˈtrɛŋkoʊ/）</td><td><a href="https://music.apple.com/us/search?term=Shostakovich%20Symphony%205%20Mravinsky">Mravinsky</a> / <a href="https://music.apple.com/us/search?term=Shostakovich%20Symphony%205%20Bernstein%20New%20York%20Philharmonic">Bernstein</a> / <a href="https://music.apple.com/us/search?term=Shostakovich%20Symphony%205%20Haitink">Haitink</a> / <a href="https://music.apple.com/us/search?term=Shostakovich%20Symphony%205%20Vasily%20Petrenko">Petrenko</a></td><td>关键在结尾：它可以被听成被迫的胜利、公开的庆典，也可以听成压迫下的讽刺。慢乐章的克制程度也很能区分版本。</td></tr><tr><td>德彪西《大海》</td><td>指挥、乐团音色、法式/现代管弦传统</td><td>皮埃尔·布列兹 / 克利夫兰；克劳迪奥·阿巴多（<a href="https://en.wikipedia.org/wiki/Claudio_Abbado">Claudio Abbado</a>，/ˈklaʊdioʊ əˈbɑːdoʊ/）/ 卢塞恩；夏尔·明希（<a href="https://en.wikipedia.org/wiki/Charles_Munch_(conductor)">Charles Munch</a>，/ʃɑːrl mʊntʃ/）/ 波士顿</td><td><a href="https://music.apple.com/us/search?term=Debussy%20La%20mer%20Boulez%20Cleveland">Boulez</a> / <a href="https://music.apple.com/us/search?term=Debussy%20La%20mer%20Abbado%20Lucerne">Abbado</a> / <a href="https://music.apple.com/us/search?term=Debussy%20La%20mer%20Munch%20Boston">Munch</a></td><td>布列兹清晰冷静，阿巴多流动自然，明希更有法国传统的弹性和热度。</td></tr><tr><td>莫扎特《单簧管协奏曲》</td><td>独奏者、乐器音色、呼吸和连线</td><td>杰克·布莱默（<a href="https://en.wikipedia.org/wiki/Jack_Brymer">Jack Brymer</a>，/dʒæk ˈbraɪmər/）；萨宾娜·迈耶（<a href="https://en.wikipedia.org/wiki/Sabine_Meyer">Sabine Meyer</a>，/zaˈbiːnə ˈmaɪər/）；马丁·弗罗斯特（<a href="https://en.wikipedia.org/wiki/Martin_Fr%C3%B6st">Martin Fröst</a>，/ˈmɑːrtɪn frɜːst/）</td><td><a href="https://music.apple.com/us/search?term=Mozart%20Clarinet%20Concerto%20Jack%20Brymer">Brymer</a> / <a href="https://music.apple.com/us/search?term=Mozart%20Clarinet%20Concerto%20Sabine%20Meyer">Meyer</a> / <a href="https://music.apple.com/us/search?term=Mozart%20Clarinet%20Concerto%20Martin%20Frost">Fr%C3%B6st</a></td><td>独奏者的音色、连线和呼吸会改变作品气质。布莱默温暖，迈耶更圆润，弗罗斯特更灵活、细节更鲜明。</td></tr></tbody></table></div>
+<p><strong>补充：如何自己做版本对比。</strong>做版本对比时，可以从同一乐章开始，不要一上来比较整部作品。先听开头一分钟，记下速度、音量、低音清晰度、旋律线是否突出；再听高潮前后，比较指挥如何处理渐强、停顿和声部平衡。最后再看录音年份、现场或录音室、乐团和厂牌。这样听几轮之后，版本差异会比文字描述更清楚。</p>
+<h2 id="guide-13">附录三：基础术语表</h2>
+<p>术语表优先列西文，IPA 采用通行英语读法。意大利语、法语、德语等术语在原语中可能有不同发音；这里的目的主要是帮你在唱片、乐谱、Apple Music Classical 和英文资料中识别关键词。</p>
+<h3>Genre and Form</h3>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>IPA</th><th>中文</th><th>说明和入门听法</th></tr></thead><tbody><tr><td>Chant</td><td>/tʃænt/</td><td>圣咏</td><td>单声部宗教歌唱，通常没有伴奏。听文字和旋律如何连在一起，不要期待强烈高潮。</td></tr><tr><td>Motet</td><td>/moʊˈtɛt/</td><td>经文歌</td><td>多声部宗教声乐作品。听不同声部如何模仿和交错。</td></tr><tr><td>Mass</td><td>/mæs/</td><td>弥撒</td><td>基于固定礼拜文本的大型宗教作品。注意 Kyrie、Gloria、Credo 等部分的性格差异。</td></tr><tr><td>Requiem</td><td>/ˈrɛkwiəm/</td><td>安魂曲</td><td>为逝者礼拜文本而写的弥撒类型，常有哀悼、审判、安慰几种情绪。</td></tr><tr><td>Oratorio</td><td>/ˌɔːrəˈtɔːrioʊ/</td><td>清唱剧</td><td>有戏剧性和角色，但通常不在舞台上表演，介于宗教音乐、戏剧和音乐会之间。</td></tr><tr><td>Cantata</td><td>/kænˈtɑːtə/</td><td>康塔塔</td><td>较短的声乐-器乐作品，常分多个段落。听合唱、宣叙调、咏叹调如何交替。</td></tr><tr><td>Opera</td><td>/ˈɑːpərə/</td><td>歌剧</td><td>由声乐、管弦乐、戏剧和舞台构成的综合体裁。看人物、情节和音乐主题如何互相绑定。</td></tr><tr><td>Recitative</td><td>/ˌrɛsɪtəˈtiːv/</td><td>宣叙调</td><td>接近说话的歌唱，用来推进剧情。听语言节奏，不必只等旋律。</td></tr><tr><td>Aria</td><td>/ˈɑːriə/</td><td>咏叹调</td><td>歌剧或清唱剧中较完整的独唱段落，通常是人物情绪停下来被放大的一刻。</td></tr><tr><td>Serenade</td><td>/ˌsɛrəˈneɪd/</td><td>小夜曲</td><td>原本偏社交和户外场景的轻型器乐体裁。听轻盈、清楚、易亲近的句法。</td></tr><tr><td>Sonata</td><td>/səˈnɑːtə/</td><td>奏鸣曲</td><td>通常为一件或两件乐器写的多乐章作品。听主题如何出现、发展、回归。</td></tr><tr><td>Sonata form</td><td>/səˈnɑːtə fɔːrm/</td><td>奏鸣曲式</td><td>古典主义以来常见的结构逻辑，不等于奏鸣曲体裁。常有呈示、发展、再现，适合听冲突和回归。</td></tr><tr><td>Concerto</td><td>/kənˈtʃɛərtoʊ/</td><td>协奏曲</td><td>独奏者和乐队对话或竞争的作品。听独奏者像主角、对手还是合作者。</td></tr><tr><td>Concerto grosso</td><td>/kənˈtʃɛərtoʊ ˈɡroʊsoʊ/</td><td>大协奏曲</td><td>巴洛克常见，小独奏组和大合奏组对话。听小组与整体之间的明暗变化。</td></tr><tr><td>Symphony</td><td>/ˈsɪmfəni/</td><td>交响曲</td><td>为管弦乐队写的大型多乐章作品。听整部作品的结构和乐队色彩。</td></tr><tr><td>Chamber music</td><td>/ˈtʃeɪmbər ˈmjuːzɪk/</td><td>室内乐</td><td>为较小编制写的音乐，像近距离对话，细节比规模重要。</td></tr><tr><td>String quartet</td><td>/strɪŋ kwɔːrˈtɛt/</td><td>弦乐四重奏</td><td>两把小提琴、中提琴、大提琴的室内乐核心体裁。听四个声部如何平等说话。</td></tr><tr><td>Suite</td><td>/swiːt/</td><td>组曲</td><td>一组舞曲或场景音乐的集合，不一定有强叙事，适合按段落听性格。</td></tr><tr><td>Prelude</td><td>/ˈprɛljuːd/</td><td>前奏曲</td><td>常作为开头，也可独立成篇。听它如何建立气氛或音型。</td></tr><tr><td>Fugue</td><td>/fjuːɡ/</td><td>赋格</td><td>一个主题在多个声部中依次进入和发展。先抓主题，再听它如何被追逐和变形。</td></tr><tr><td>Toccata</td><td>/təˈkɑːtə/</td><td>托卡塔</td><td>常见于键盘，强调触键、速度和即兴感。听动作感和手指运动。</td></tr><tr><td>Variation</td><td>/ˌvɛriˈeɪʃən/</td><td>变奏曲</td><td>一个主题被反复改写。听同一个材料如何换装。</td></tr><tr><td>Etude</td><td>/ˈeɪtjuːd/</td><td>练习曲</td><td>原本服务技术训练，后来常成为音乐会作品。听技术问题怎样变成音乐表情。</td></tr><tr><td>Nocturne</td><td>/ˈnɑːktɜːrn/</td><td>夜曲</td><td>常见于钢琴，偏夜晚、歌唱性和内省。听右手旋律和左手伴奏的距离。</td></tr><tr><td>Waltz</td><td>/wɔːlts/</td><td>圆舞曲</td><td>三拍子舞曲。听强-弱-弱的摆动感。</td></tr><tr><td>Ballet</td><td>/bæˈleɪ/</td><td>芭蕾</td><td>为舞蹈和舞台动作写的音乐。听节奏、场景和身体动作感。</td></tr><tr><td>Tone poem</td><td>/toʊn ˈpoʊəm/</td><td>交响诗</td><td>单乐章管弦乐，常有文学或图像标题。听音乐如何描绘人物、风景或故事。</td></tr><tr><td>Film score</td><td>/fɪlm skɔːr/</td><td>电影配乐</td><td>为电影画面和叙事服务的音乐。听主题如何绑定角色、地点和情绪。</td></tr><tr><td>Game score</td><td>/ɡeɪm skɔːr/</td><td>游戏配乐</td><td>为互动场景、循环和玩家行动服务的音乐。听主题如何适应重复、切换和变奏。</td></tr></tbody></table></div>
+<h3>Descriptive Terms</h3>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>IPA</th><th>中文</th><th>说明和入门听法</th></tr></thead><tbody><tr><td>Melody</td><td>/ˈmɛlədi/</td><td>旋律</td><td>最容易哼出来的线条。听它是歌唱性的、跳跃的，还是碎片化的。</td></tr><tr><td>Theme</td><td>/θiːm/</td><td>主题</td><td>被作品反复使用和发展的核心材料。听它后来有没有变形、换调、换乐器。</td></tr><tr><td>Motive</td><td>/ˈmoʊtɪv/</td><td>动机</td><td>比主题更短的音乐细胞。一个短节奏或几个音也可能撑起整段音乐。</td></tr><tr><td>Harmony</td><td>/ˈhɑːrməni/</td><td>和声</td><td>多个音同时或连续形成的关系。它会让音乐稳定、紧张或漂浮。</td></tr><tr><td>Tonality</td><td>/toʊˈnæləti/</td><td>调性</td><td>音乐围绕某个中心音组织。听你能不能感觉到音乐想回到哪里。</td></tr><tr><td>Atonality</td><td>/ˌeɪtoʊˈnæləti/</td><td>无调性</td><td>不再围绕单一主音组织。听色彩、密度和方向，不要硬找主调。</td></tr><tr><td>Rhythm</td><td>/ˈrɪðəm/</td><td>节奏</td><td>音的长短和重音组织。听它是平稳、舞蹈性、机械性，还是不规则。</td></tr><tr><td>Meter</td><td>/ˈmiːtər/</td><td>节拍</td><td>强弱拍的周期。听它是二拍、三拍，还是故意让你失去重心。</td></tr><tr><td>Syncopation</td><td>/ˌsɪŋkəˈpeɪʃən/</td><td>切分</td><td>重音落在意外位置。听它如何制造摇摆、紧张或爵士感。</td></tr><tr><td>Ostinato</td><td>/ˌɑːstɪˈnɑːtoʊ/</td><td>固定音型</td><td>反复出现的短音型。听它是在推动、催眠，还是制造压力。</td></tr><tr><td>Tempo</td><td>/ˈtɛmpoʊ/</td><td>速度</td><td>音乐快慢。快慢会直接改变作品性格。</td></tr><tr><td>Dynamics</td><td>/daɪˈnæmɪks/</td><td>力度</td><td>音量强弱。听渐强、突强、突然变弱是否带来戏剧效果。</td></tr><tr><td>Timbre</td><td>/ˈtæmbər/</td><td>音色</td><td>声音颜色。听弦乐、木管、铜管、打击乐或电子声哪个更突出。</td></tr><tr><td>Orchestration</td><td>/ˌɔːrkɪˈstreɪʃən/</td><td>配器</td><td>作曲家如何分配乐器。同一旋律换乐器后，情绪可能完全不同。</td></tr><tr><td>Texture</td><td>/ˈtɛkstʃər/</td><td>织体</td><td>声部之间的组织密度。听它是单线条、旋律加伴奏，还是多声部纠缠。</td></tr><tr><td>Counterpoint</td><td>/ˈkaʊntərpɔɪnt/</td><td>对位</td><td>多条独立旋律同时进行。听每条线是否都能单独成立。</td></tr><tr><td>Polyphony</td><td>/pəˈlɪfəni/</td><td>复调</td><td>多声部同时展开。注意声部交错，而不只听最上方旋律。</td></tr><tr><td>Homophony</td><td>/həˈmɑːfəni/</td><td>主调音乐</td><td>旋律突出，伴奏支撑。很多古典主义和浪漫主义作品更接近这种听感。</td></tr><tr><td>Legato</td><td>/ləˈɡɑːtoʊ/</td><td>连奏</td><td>音与音之间连贯，旋律会更像歌唱。</td></tr><tr><td>Staccato</td><td>/stəˈkɑːtoʊ/</td><td>断奏</td><td>音与音之间分开，节奏轮廓更清楚，常更轻巧或尖锐。</td></tr><tr><td>Rubato</td><td>/ruːˈbɑːtoʊ/</td><td>自由速度</td><td>演奏者有意识地拉伸或压缩速度。肖邦、拉赫玛尼诺夫等作品里很常见。</td></tr><tr><td>Bright / dark</td><td>/braɪt/ /dɑːrk/</td><td>明亮/阴暗</td><td>常由调性、音区、配器和和声共同造成，不是固定标签。</td></tr><tr><td>Lyrical / dramatic</td><td>/ˈlɪrɪkəl/ /drəˈmætɪk/</td><td>抒情/戏剧性</td><td>前者偏歌唱和延展，后者偏冲突和转折。听作品是在展开情绪，还是推动事件。</td></tr><tr><td>Tension / release</td><td>/ˈtɛnʃən/ /rɪˈliːs/</td><td>紧张/松弛</td><td>和声、节奏、音量、音区共同制造的状态。听哪一刻需要解决，哪一刻真的解决了。</td></tr><tr><td>Solemn / light</td><td>/ˈsɑːləm/ /laɪt/</td><td>庄严/轻盈</td><td>和速度、节奏、低音、音色有关。听它更像仪式，还是更像舞蹈和社交场景。</td></tr></tbody></table></div>
+<h2 id="guide-14">附录四：作曲家名录与英文检索名</h2>
+<p>这份名录按时代和文化圈整理，放在最后作为检索辅助。年代范围只用于定位，不是严格分界；很多作曲家跨越两个时期，活动地区也不总是等同于现代国籍。IPA 主要参考通行英语读法，方便在英文资料和音乐平台中识别姓名。</p>
+<h3>中世纪与文艺复兴（约 9 世纪-1600）</h3>
+<h4>泛欧洲/佚名传统</h4>
+<ul><li>佚名圣咏传统（检索词：Gregorian chant / Anonymous）</li></ul>
+<h4>德语区</h4>
+<ul><li>宾根的希尔德加德（<a href="https://en.wikipedia.org/wiki/Hildegard_of_Bingen">Hildegard von Bingen</a>，/ˈhɪldəɡɑːrd vɒn ˈbɪŋən/）</li></ul>
+<h4>法国与法兰德斯传统</h4>
+<ul><li>佩罗坦（<a href="https://en.wikipedia.org/wiki/P%C3%A9rotin">Pérotin</a>，/ˈpɛrətɪn/）</li><li>纪尧姆·德·马肖（<a href="https://en.wikipedia.org/wiki/Guillaume_de_Machaut">Guillaume de Machaut</a>，/ɡiˈjoʊm də mæˈʃoʊ/）</li><li>纪尧姆·迪费（<a href="https://en.wikipedia.org/wiki/Guillaume_Du_Fay">Guillaume Dufay</a>，/ɡiˈjoʊm duːˈfaɪ/）</li><li>若斯坎·德普雷（<a href="https://en.wikipedia.org/wiki/Josquin_des_Prez">Josquin des Prez</a>，/ʒɒsˈkæn deɪ ˈpreɪ/）</li></ul>
+<h4>意大利</h4>
+<ul><li>乔瓦尼·皮耶路易吉·达·帕莱斯特里纳（<a href="https://en.wikipedia.org/wiki/Giovanni_Pierluigi_da_Palestrina">Giovanni Pierluigi da Palestrina</a>，/dʒoʊˈvɑːni ˌpjɛərluˈiːdʒi dɑː ˌpælɛˈstriːnə/）</li><li>克劳迪奥·蒙特威尔第（<a href="https://en.wikipedia.org/wiki/Claudio_Monteverdi">Claudio Monteverdi</a>，/ˈklaʊdioʊ ˌmɒntɪˈvɛərdi/）</li><li>乔瓦尼·加布里埃利（<a href="https://en.wikipedia.org/wiki/Giovanni_Gabrieli">Giovanni Gabrieli</a>，/dʒoʊˈvɑːni ˌɡæbriˈɛli/）</li><li>卡洛·杰苏阿尔多（<a href="https://en.wikipedia.org/wiki/Carlo_Gesualdo">Carlo Gesualdo</a>，/ˈkɑːrloʊ ˌdʒɛzuˈɑːldoʊ/）</li></ul>
+<h4>英格兰</h4>
+<ul><li>托马斯·塔利斯（<a href="https://en.wikipedia.org/wiki/Thomas_Tallis">Thomas Tallis</a>，/ˈtɒməs ˈtælɪs/）</li><li>威廉·伯德（<a href="https://en.wikipedia.org/wiki/William_Byrd">William Byrd</a>，/ˈwɪljəm bɜːrd/）</li><li>约翰·道兰（<a href="https://en.wikipedia.org/wiki/John_Dowland">John Dowland</a>，/ˈdʒɒn ˈdaʊlənd/）</li></ul>
+<h3>巴洛克与前古典（约 1600-1750；前古典约 1730-1770）</h3>
+<h4>意大利</h4>
+<ul><li>阿尔坎杰洛·科雷利（<a href="https://en.wikipedia.org/wiki/Arcangelo_Corelli">Arcangelo Corelli</a>，/ɑːrˈkændʒəloʊ kɔːˈrɛli/）</li><li>安东尼奥·维瓦尔第（<a href="https://en.wikipedia.org/wiki/Antonio_Vivaldi">Antonio Vivaldi</a>，/ænˈtoʊnioʊ vɪˈvɑːldi/）</li><li>多梅尼科·斯卡拉蒂（<a href="https://en.wikipedia.org/wiki/Domenico_Scarlatti">Domenico Scarlatti</a>，/doʊˈmɛnɪkoʊ skɑːrˈlɑːti/）</li></ul>
+<h4>德语区</h4>
+<ul><li>约翰·塞巴斯蒂安·巴赫（<a href="https://en.wikipedia.org/wiki/Johann_Sebastian_Bach">Johann Sebastian Bach</a>，/ˈjoʊhɑːn səˈbæstiən bɑːx/）</li><li>格奥尔格·菲利普·泰勒曼（<a href="https://en.wikipedia.org/wiki/Georg_Philipp_Telemann">Georg Philipp Telemann</a>，/ˈɡeɪɔːrɡ ˈfɪlɪp ˈtɛləmən/）</li><li>海因里希·伊格纳茨·弗朗茨·比伯（<a href="https://en.wikipedia.org/wiki/Heinrich_Ignaz_Franz_Biber">Heinrich Ignaz Franz Biber</a>，/ˈhaɪnrɪx ˈɪɡnɑːts frɑːnts ˈbiːbər/）</li><li>卡尔·菲利普·埃马努埃尔·巴赫（<a href="https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach">Carl Philipp Emanuel Bach</a>，/kɑːrl ˈfɪlɪp ɪˈmænjuəl bɑːx/）</li></ul>
+<h4>德国出生、英国活动</h4>
+<ul><li>乔治·弗里德里克·亨德尔（<a href="https://en.wikipedia.org/wiki/George_Frideric_Handel">George Frideric Handel</a>，/ˈdʒɔːrdʒ ˈfrɪdərɪk ˈhændəl/）</li></ul>
+<h4>法国</h4>
+<ul><li>让-菲利普·拉莫（<a href="https://en.wikipedia.org/wiki/Jean-Philippe_Rameau">Jean-Philippe Rameau</a>，/ˌʒɑːn fɪˈliːp ræˈmoʊ/）</li><li>弗朗索瓦·库普兰（<a href="https://en.wikipedia.org/wiki/Fran%C3%A7ois_Couperin">François Couperin</a>，/frɑːnˈswɑː kuːpəˈræn/）</li><li>让-巴蒂斯特·吕利（<a href="https://en.wikipedia.org/wiki/Jean-Baptiste_Lully">Jean-Baptiste Lully</a>，/ˌʒɑːn bæpˈtiːst luːˈliː/）</li></ul>
+<h4>英格兰</h4>
+<ul><li>亨利·珀塞尔（<a href="https://en.wikipedia.org/wiki/Henry_Purcell">Henry Purcell</a>，/ˈhɛnri ˈpɜːrsəl/）</li></ul>
+<h3>古典主义（约 1750-1820）</h3>
+<h4>奥地利与德语区</h4>
+<ul><li>约瑟夫·海顿（<a href="https://en.wikipedia.org/wiki/Joseph_Haydn">Joseph Haydn</a>，/ˈdʒoʊzəf ˈhaɪdən/）</li><li>沃尔夫冈·阿马德乌斯·莫扎特（<a href="https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart">Wolfgang Amadeus Mozart</a>，/ˈwʊlfɡæŋ ˌæməˈdeɪəs ˈmoʊtsɑːrt/）</li><li>路德维希·范·贝多芬（<a href="https://en.wikipedia.org/wiki/Ludwig_van_Beethoven">Ludwig van Beethoven</a>，/ˈlʊdvɪɡ væn ˈbeɪtoʊvən/）</li><li>约翰·内波穆克·胡梅尔（<a href="https://en.wikipedia.org/wiki/Johann_Nepomuk_Hummel">Johann Nepomuk Hummel</a>，/ˈjoʊhɑːn nəˈpoʊmʊk ˈhʊməl/）</li><li>克里斯托夫·维利巴尔德·格鲁克（<a href="https://en.wikipedia.org/wiki/Christoph_Willibald_Gluck">Christoph Willibald Gluck</a>，/ˈkrɪstɒf ˈvɪlibɑːld ɡlʊk/）</li></ul>
+<h4>意大利</h4>
+<ul><li>路易吉·博凯里尼（<a href="https://en.wikipedia.org/wiki/Luigi_Boccherini">Luigi Boccherini</a>，/luˈiːdʒi ˌbɒkəˈriːni/）</li></ul>
+<h3>浪漫主义与民族乐派（约 1810-1910）</h3>
+<h4>德奥与中欧</h4>
+<ul><li>弗朗茨·舒伯特（<a href="https://en.wikipedia.org/wiki/Franz_Schubert">Franz Schubert</a>，/frɑːnts ˈʃuːbərt/）</li><li>费利克斯·门德尔松（<a href="https://en.wikipedia.org/wiki/Felix_Mendelssohn">Felix Mendelssohn</a>，/ˈfiːlɪks ˈmɛndəlsoʊn/）</li><li>罗伯特·舒曼（<a href="https://en.wikipedia.org/wiki/Robert_Schumann">Robert Schumann</a>，/ˈroʊbərt ˈʃuːmɑːn/）</li><li>克拉拉·舒曼（<a href="https://en.wikipedia.org/wiki/Clara_Schumann">Clara Schumann</a>，/ˈklɑːrə ˈʃuːmɑːn/）</li><li>弗朗茨·李斯特（<a href="https://en.wikipedia.org/wiki/Franz_Liszt">Franz Liszt</a>，/frɑːnts lɪst/）</li><li>约翰内斯·勃拉姆斯（<a href="https://en.wikipedia.org/wiki/Johannes_Brahms">Johannes Brahms</a>，/joʊˈhɑːnəs brɑːmz/）</li><li>古斯塔夫·马勒（<a href="https://en.wikipedia.org/wiki/Gustav_Mahler">Gustav Mahler</a>，/ˈɡʊstɑːv ˈmɑːlər/）</li></ul>
+<h4>法国与波兰-法国传统</h4>
+<ul><li>埃克托·柏辽兹（<a href="https://en.wikipedia.org/wiki/Hector_Berlioz">Hector Berlioz</a>，/ˈhɛktər ˈbɛərlioʊz/）</li><li>弗雷德里克·肖邦（<a href="https://en.wikipedia.org/wiki/Fr%C3%A9d%C3%A9ric_Chopin">Frédéric Chopin</a>，/ˈfreɪdərɪk ˈʃoʊpæn/）</li></ul>
+<h4>德国歌剧传统</h4>
+<ul><li>理查德·瓦格纳（<a href="https://en.wikipedia.org/wiki/Richard_Wagner">Richard Wagner</a>，/ˈrɪtʃərd ˈvɑːɡnər/）</li></ul>
+<h4>意大利歌剧传统</h4>
+<ul><li>朱塞佩·威尔第（<a href="https://en.wikipedia.org/wiki/Giuseppe_Verdi">Giuseppe Verdi</a>，/dʒuːˈsɛpi ˈvɛərdi/）</li><li>贾科莫·普契尼（<a href="https://en.wikipedia.org/wiki/Giacomo_Puccini">Giacomo Puccini</a>，/ˈdʒɑːkəmoʊ puːˈtʃiːni/）</li></ul>
+<h4>俄罗斯</h4>
+<ul><li>彼得·伊里奇·柴可夫斯基（<a href="https://en.wikipedia.org/wiki/Pyotr_Ilyich_Tchaikovsky">Pyotr Ilyich Tchaikovsky</a>，/ˈpjɔːtər ɪlˈjiːtʃ tʃaɪˈkɒfski/）</li><li>莫杰斯特·穆索尔斯基（<a href="https://en.wikipedia.org/wiki/Modest_Mussorgsky">Modest Mussorgsky</a>，/ˈmoʊdɛst mʊˈsɔːrɡski/）</li><li>尼古拉·里姆斯基-科萨科夫（<a href="https://en.wikipedia.org/wiki/Nikolai_Rimsky-Korsakov">Nikolai Rimsky-Korsakov</a>，/ˈnɪkəlaɪ ˈrɪmski ˈkɔːrsəkɒf/）</li></ul>
+<h4>捷克与波希米亚</h4>
+<ul><li>安东宁·德沃夏克（<a href="https://en.wikipedia.org/wiki/Anton%C3%ADn_Dvo%C5%99%C3%A1k">Antonín Dvořák</a>，/ænˈtoʊniːn dəˈvɔːrʒɑːk/）</li><li>贝德日赫·斯美塔那（<a href="https://en.wikipedia.org/wiki/Bed%C5%99ich_Smetana">Bedřich Smetana</a>，/ˈbɛdrɪx smɛˈtɑːnə/）</li></ul>
+<h4>北欧</h4>
+<ul><li>爱德华·格里格（<a href="https://en.wikipedia.org/wiki/Edvard_Grieg">Edvard Grieg</a>，/ˈɛdvɑːrd ɡriːɡ/）</li></ul>
+<h3>20 世纪前半叶：现代主义、民族现代主义与两次大战之间（约 1890-1945）</h3>
+<h4>法国</h4>
+<ul><li>克洛德·德彪西（<a href="https://en.wikipedia.org/wiki/Claude_Debussy">Claude Debussy</a>，/klɔːd dəˈbjuːsi/）</li><li>莫里斯·拉威尔（<a href="https://en.wikipedia.org/wiki/Maurice_Ravel">Maurice Ravel</a>，/mɔːˈriːs rəˈvɛl/）</li><li>埃里克·萨蒂（<a href="https://en.wikipedia.org/wiki/Erik_Satie">Erik Satie</a>，/ˈɛrɪk sæˈtiː/）</li><li>弗朗西斯·普朗克（<a href="https://en.wikipedia.org/wiki/Francis_Poulenc">Francis Poulenc</a>，/ˈfrɑːnsɪs puːˈlɛŋk/）</li><li>达律斯·米约（<a href="https://en.wikipedia.org/wiki/Darius_Milhaud">Darius Milhaud</a>，/dəˈriːəs miːˈjoʊ/）</li></ul>
+<h4>德奥与中欧</h4>
+<ul><li>理查德·施特劳斯（<a href="https://en.wikipedia.org/wiki/Richard_Strauss">Richard Strauss</a>，/ˈrɪtʃərd straʊs/）</li><li>阿诺德·勋伯格（<a href="https://en.wikipedia.org/wiki/Arnold_Schoenberg">Arnold Schoenberg</a>，/ˈɑːrnəld ˈʃoʊnbɜːrɡ/）</li><li>阿尔班·贝尔格（<a href="https://en.wikipedia.org/wiki/Alban_Berg">Alban Berg</a>，/ˈɑːlbɑːn bɛərɡ/）</li><li>安东·韦伯恩（<a href="https://en.wikipedia.org/wiki/Anton_Webern">Anton Webern</a>，/ˈæntɒn ˈveɪbərn/）</li><li>保罗·欣德米特（<a href="https://en.wikipedia.org/wiki/Paul_Hindemith">Paul Hindemith</a>，/ˈpaʊl ˈhɪndəmɪt/）</li><li>库尔特·魏尔（<a href="https://en.wikipedia.org/wiki/Kurt_Weill">Kurt Weill</a>，/kʊrt vaɪl/）</li><li>卡尔·奥尔夫（<a href="https://en.wikipedia.org/wiki/Carl_Orff">Carl Orff</a>，/kɑːrl ɔːrf/）</li></ul>
+<h4>俄罗斯与苏联</h4>
+<ul><li>亚历山大·斯克里亚宾（<a href="https://en.wikipedia.org/wiki/Alexander_Scriabin">Alexander Scriabin</a>，/skriˈɑːbɪn/）</li><li>伊戈尔·斯特拉文斯基（<a href="https://en.wikipedia.org/wiki/Igor_Stravinsky">Igor Stravinsky</a>，/ˈiːɡɔːr strəˈvɪnski/）</li><li>谢尔盖·普罗科菲耶夫（<a href="https://en.wikipedia.org/wiki/Sergei_Prokofiev">Sergei Prokofiev</a>，/sərˈɡeɪ proʊˈkɒfiɛf/）</li><li>德米特里·肖斯塔科维奇（<a href="https://en.wikipedia.org/wiki/Dmitri_Shostakovich">Dmitri Shostakovich</a>，/ˈdmiːtri ˌʃɒstəˈkoʊvɪtʃ/）</li></ul>
+<h4>匈牙利与捷克</h4>
+<ul><li>贝拉·巴托克（<a href="https://en.wikipedia.org/wiki/B%C3%A9la_Bart%C3%B3k">Béla Bartók</a>，/ˈbeɪlə ˈbɑːrtɒk/）</li><li>莱奥什·雅纳切克（<a href="https://en.wikipedia.org/wiki/Leos_Janacek">Leoš Janáček</a>，/ˈleɪoʊʃ jəˈnɑːtʃɛk/）</li></ul>
+<h4>英国</h4>
+<ul><li>古斯塔夫·霍尔斯特（<a href="https://en.wikipedia.org/wiki/Gustav_Holst">Gustav Holst</a>，/ˈɡʊstɑːv hoʊlst/）</li><li>本杰明·布里顿（<a href="https://en.wikipedia.org/wiki/Benjamin_Britten">Benjamin Britten</a>，/ˈbɛndʒəmɪn ˈbrɪtən/）</li></ul>
+<h4>西班牙与拉丁美洲</h4>
+<ul><li>曼努埃尔·德·法雅（<a href="https://en.wikipedia.org/wiki/Manuel_de_Falla">Manuel de Falla</a>，/mænˈwɛl deɪ ˈfaɪjə/）</li><li>西尔维斯特雷·雷韦尔塔斯（<a href="https://en.wikipedia.org/wiki/Silvestre_Revueltas">Silvestre Revueltas</a>，/sɪlˈvɛstreɪ rɛˈvwɛltəs/）</li></ul>
+<h4>美国</h4>
+<ul><li>查尔斯·艾夫斯（<a href="https://en.wikipedia.org/wiki/Charles_Ives">Charles Ives</a>，/tʃɑːrlz aɪvz/）</li><li>乔治·格什温（<a href="https://en.wikipedia.org/wiki/George_Gershwin">George Gershwin</a>，/ˈdʒɔːrdʒ ˈɡɜːrʃwɪn/）</li><li>阿伦·科普兰（<a href="https://en.wikipedia.org/wiki/Aaron_Copland">Aaron Copland</a>，/ˈɛərən ˈkoʊplənd/）</li><li>弗洛伦斯·普莱斯（<a href="https://en.wikipedia.org/wiki/Florence_Price">Florence Price</a>，/ˈflɔːrəns praɪs/）</li><li>威廉·格兰特·斯蒂尔（<a href="https://en.wikipedia.org/wiki/William_Grant_Still">William Grant Still</a>，/ˈwɪljəm ɡrænt stɪl/）</li><li>塞缪尔·巴伯（<a href="https://en.wikipedia.org/wiki/Samuel_Barber">Samuel Barber</a>，/ˈsæmjuəl ˈbɑːrbər/）</li></ul>
+<h4>欧洲移民与好莱坞</h4>
+<ul><li>埃里希·沃尔夫冈·科恩戈尔德（<a href="https://en.wikipedia.org/wiki/Erich_Wolfgang_Korngold">Erich Wolfgang Korngold</a>，/ˈɛrɪk ˈwʊlfɡæŋ ˈkɔːrnɡoʊld/）</li></ul>
+<h3>战后先锋与声音实验（约 1945-1970s）</h3>
+<h4>法国</h4>
+<ul><li>奥利维耶·梅西安（<a href="https://en.wikipedia.org/wiki/Olivier_Messiaen">Olivier Messiaen</a>，/ˌɒlɪviˈeɪ mɛˈsjɑːn/）</li><li>皮埃尔·布列兹（<a href="https://en.wikipedia.org/wiki/Pierre_Boulez">Pierre Boulez</a>，/pjɛər buːˈlɛz/）</li><li>埃德加·瓦雷兹（<a href="https://en.wikipedia.org/wiki/Edgard_Var%C3%A8se">Edgard Varèse</a>，/ɛdˈɡɑːr vəˈrɛz/）</li></ul>
+<h4>德国</h4>
+<ul><li>卡尔海因茨·斯托克豪森（<a href="https://en.wikipedia.org/wiki/Karlheinz_Stockhausen">Karlheinz Stockhausen</a>，/ˈkɑːrlhaɪnts ˈʃtɒkhaʊzən/）</li></ul>
+<h4>美国</h4>
+<ul><li>约翰·凯奇（<a href="https://en.wikipedia.org/wiki/John_Cage">John Cage</a>，/dʒɒn keɪdʒ/）</li><li>米尔顿·巴比特（<a href="https://en.wikipedia.org/wiki/Milton_Babbitt">Milton Babbitt</a>，/ˈmɪltən ˈbæbɪt/）</li><li>乔治·克拉姆（<a href="https://en.wikipedia.org/wiki/George_Crumb">George Crumb</a>，/dʒɔːrdʒ krʌm/）</li></ul>
+<h4>希腊-法国</h4>
+<ul><li>扬尼斯·泽纳基斯（<a href="https://en.wikipedia.org/wiki/Iannis_Xenakis">Iannis Xenakis</a>，/ˈjɑːnɪs zɛˈnɑːkɪs/）</li></ul>
+<h4>匈牙利-奥地利</h4>
+<ul><li>捷尔吉·利盖蒂（<a href="https://en.wikipedia.org/wiki/Gy%C3%B6rgy_Ligeti">György Ligeti</a>，/ˈdʒɜːrdʒi lɪˈɡɛti/）</li></ul>
+<h4>波兰</h4>
+<ul><li>克日什托夫·潘德列茨基（<a href="https://en.wikipedia.org/wiki/Krzysztof_Penderecki">Krzysztof Penderecki</a>，/ˈkrɪʃtɒf ˌpɛndəˈrɛtski/）</li><li>维托尔德·卢托斯瓦夫斯基（<a href="https://en.wikipedia.org/wiki/Witold_Lutos%C5%82awski">Witold Lutosławski</a>，/ˈviːtɒld ˌluːtoʊˈslɑːfski/）</li></ul>
+<h4>日本</h4>
+<ul><li>武满彻（<a href="https://en.wikipedia.org/wiki/Toru_Takemitsu">Tōru Takemitsu</a>，/ˈtoʊruː ˌtɑːkəˈmɪtsuː/）</li></ul>
+<h4>意大利</h4>
+<ul><li>卢恰诺·贝里奥（<a href="https://en.wikipedia.org/wiki/Luciano_Berio">Luciano Berio</a>，/luːˈtʃɑːnoʊ ˈbɛrioʊ/）</li></ul>
+<h4>苏联/俄罗斯</h4>
+<ul><li>阿尔弗雷德·施尼特凯（<a href="https://en.wikipedia.org/wiki/Alfred_Schnittke">Alfred Schnittke</a>，/ˈælfrɛd ˈʃnɪtkə/）</li><li>索菲娅·古拜杜丽娜（<a href="https://en.wikipedia.org/wiki/Sofia_Gubaidulina">Sofia Gubaidulina</a>，/ˈsoʊfiə ˌɡuːbaɪˈduːlɪnə/）</li></ul>
+<h3>极简主义与后极简（约 1960s-1990s）</h3>
+<h4>美国</h4>
+<ul><li>特里·赖利（<a href="https://en.wikipedia.org/wiki/Terry_Riley">Terry Riley</a>，/ˈtɛri ˈraɪli/）</li><li>史蒂夫·赖希（<a href="https://en.wikipedia.org/wiki/Steve_Reich">Steve Reich</a>，/stiːv raɪʃ/）</li><li>菲利普·格拉斯（<a href="https://en.wikipedia.org/wiki/Philip_Glass">Philip Glass</a>，/ˈfɪlɪp ɡlæs/）</li><li>约翰·亚当斯（<a href="https://en.wikipedia.org/wiki/John_Adams_%28composer%29">John Adams</a>，/dʒɒn ˈædəmz/）</li><li>梅雷迪思·蒙克（<a href="https://en.wikipedia.org/wiki/Meredith_Monk">Meredith Monk</a>，/ˈmɛrədɪθ mʌŋk/）</li><li>弗雷德里克·热夫斯基（<a href="https://en.wikipedia.org/wiki/Frederic_Rzewski">Frederic Rzewski</a>，/ˈfrɛdərɪk ˈʒɛfski/）</li></ul>
+<h4>欧洲</h4>
+<ul><li>阿沃·帕特（<a href="https://en.wikipedia.org/wiki/Arvo_P%C3%A4rt">Arvo Pärt</a>，/ˈɑːrvoʊ pɛərt/）</li><li>亨里克·格雷茨基（<a href="https://en.wikipedia.org/wiki/Henryk_G%C3%B3recki">Henryk Górecki</a>，/ˈhɛnrik ɡəˈrɛtski/）</li><li>路易斯·安德里森（<a href="https://en.wikipedia.org/wiki/Louis_Andriessen">Louis Andriessen</a>，/ˈluːi ˈɑːndriəsən/）</li><li>迈克尔·尼曼（<a href="https://en.wikipedia.org/wiki/Michael_Nyman">Michael Nyman</a>，/ˈmaɪkəl ˈnaɪmən/）</li></ul>
+<h3>电影、游戏与屏幕媒介音乐（电影约 1930s 至今；游戏约 1980s 至今）</h3>
+<h4>美国与好莱坞</h4>
+<ul><li>约翰·威廉姆斯（<a href="https://en.wikipedia.org/wiki/John_Williams">John Williams</a>，/dʒɒn ˈwɪljəmz/）</li><li>伯纳德·赫尔曼（<a href="https://en.wikipedia.org/wiki/Bernard_Herrmann">Bernard Herrmann</a>，/ˈbɜːrnərd ˈhɜːrmən/）</li><li>奥斯汀·温托里（<a href="https://en.wikipedia.org/wiki/Austin_Wintory">Austin Wintory</a>，/ˈɔːstɪn ˈwɪntəri/）</li></ul>
+<h4>意大利电影音乐</h4>
+<ul><li>恩尼奥·莫里康内（<a href="https://en.wikipedia.org/wiki/Ennio_Morricone">Ennio Morricone</a>，/ˈɛnioʊ ˌmɒrɪˈkoʊneɪ/）</li><li>尼诺·罗塔（<a href="https://en.wikipedia.org/wiki/Nino_Rota">Nino Rota</a>，/ˈniːnoʊ ˈroʊtə/）</li></ul>
+<h4>日本动画与游戏</h4>
+<ul><li>久石让（<a href="https://en.wikipedia.org/wiki/Joe_Hisaishi">Joe Hisaishi</a>，/dʒoʊ hɪˈsaɪʃi/）</li><li>植松伸夫（<a href="https://en.wikipedia.org/wiki/Nobuo_Uematsu">Nobuo Uematsu</a>，/ˈnoʊbuoʊ ˌuːeɪˈmætsuː/）</li><li>下村阳子（<a href="https://en.wikipedia.org/wiki/Yoko_Shimomura">Yoko Shimomura</a>，/ˈjoʊkoʊ ˌʃiːmoʊˈmʊərə/）</li></ul>
+<h4>德国/英国-美国电影音乐</h4>
+<ul><li>汉斯·季默（<a href="https://en.wikipedia.org/wiki/Hans_Zimmer">Hans Zimmer</a>，/hɑːns ˈzɪmər/）</li></ul>
+<h4>冰岛与英国当代影像音乐</h4>
+<ul><li>希尔迪·古德纳多蒂尔（<a href="https://en.wikipedia.org/wiki/Hildur_Gu%C3%B0nad%C3%B3ttir">Hildur Guðnadóttir</a>，/ˈhɪldʊr ˈɡʊðnəˌdoʊtɪr/）</li><li>米卡·莱维（<a href="https://en.wikipedia.org/wiki/Mica_Levi">Mica Levi</a>，/ˈmiːkə ˈliːvi/）</li></ul>
+<h3>1990 年以来的当代古典与跨类型创作（cross-genre composition，约 1990 至今）</h3>
+<h4>北欧与英国/欧洲</h4>
+<ul><li>凯娅·萨里亚霍（<a href="https://en.wikipedia.org/wiki/Kaija_Saariaho">Kaija Saariaho</a>，/ˈkaɪjə ˈsɑːriɑːhoʊ/）</li><li>托马斯·阿代斯（<a href="https://en.wikipedia.org/wiki/Thomas_Ad%C3%A8s">Thomas Adès</a>，/ˈtɒməs əˈdɛs/）</li><li>安娜·克莱因（<a href="https://en.wikipedia.org/wiki/Anna_Clyne">Anna Clyne</a>，/ˈænə klaɪn/）</li><li>马克斯·里希特（<a href="https://en.wikipedia.org/wiki/Max_Richter">Max Richter</a>，/mæks ˈrɪktər/）</li><li>乔尼·格林伍德（<a href="https://en.wikipedia.org/wiki/Jonny_Greenwood">Jonny Greenwood</a>，/ˈdʒɒni ˈɡriːnwʊd/）</li></ul>
+<h4>美国</h4>
+<ul><li>詹妮弗·希格登（<a href="https://en.wikipedia.org/wiki/Jennifer_Higdon">Jennifer Higdon</a>，/ˈdʒɛnɪfər ˈhɪɡdən/）</li><li>米西·马佐利（<a href="https://en.wikipedia.org/wiki/Missy_Mazzoli">Missy Mazzoli</a>，/ˈmɪsi məˈzoʊli/）</li><li>杰西·蒙哥马利（<a href="https://en.wikipedia.org/wiki/Jessie_Montgomery">Jessie Montgomery</a>，/ˈdʒɛsi mɒntˈɡʌməri/）</li><li>卡罗琳·肖（<a href="https://en.wikipedia.org/wiki/Caroline_Shaw">Caroline Shaw</a>，/ˈkærəlaɪn ʃɔː/）</li><li>梅森·贝茨（<a href="https://en.wikipedia.org/wiki/Mason_Bates">Mason Bates</a>，/ˈmeɪsən beɪts/）</li><li>塔尼娅·莱昂（<a href="https://en.wikipedia.org/wiki/Tania_Le%C3%B3n">Tania León</a>，/ˈtɑːnjə leɪˈoʊn/）</li></ul>
+<h4>东亚与欧洲新音乐圈</h4>
+<ul><li>陈银淑（<a href="https://en.wikipedia.org/wiki/Unsuk_Chin">Unsuk Chin</a>，/ˈʊn sʊk tʃɪn/）</li></ul>
+<h4>拉丁美洲</h4>
+<ul><li>加布里埃拉·奥尔蒂斯（<a href="https://en.wikipedia.org/wiki/Gabriela_Ortiz">Gabriela Ortiz</a>，/ˌɡæbriˈɛlə ɔːrˈtiːz/）</li></ul>
+<h4>英国/香港背景</h4>
+<ul><li>丹妮·霍华德（<a href="https://en.wikipedia.org/wiki/Dani_Howard">Dani Howard</a>，/ˈdæni ˈhaʊərd/）</li></ul>
+<h2 id="guide-15">参考资料</h2>
+<ul><li><a href="https://www.classical-music.com/features/works/classical-music-for-beginners">Classical music for beginners, BBC Music Magazine/Classical Music</a></li><li><a href="https://www.classicfm.com/discover-music/best-classical-music-beginners/">Classic FM beginner list</a></li><li><a href="https://classical.music.apple.com/us/playlist/pl.837b482334fe40afb88255e5a008c49c">Apple Music Classical, The Story of Classical: Part V</a></li><li><a href="https://music.apple.com/us/playlist/the-story-of-classical-part-vi/pl.68c7a0948e014e679190553e7783f94f">Apple Music Classical, The Story of Classical: Part VI</a></li><li><a href="https://classical.music.apple.com/us/playlist/pl.7e07569c075744379626588eaf9b30c0">Apple Music Classical, The Story of Classical: Part VII</a></li><li><a href="https://music.apple.com/us/playlist/20-%E4%B8%96%E7%BA%AA%E9%9F%B3%E4%B9%90%E4%BB%A3%E8%A1%A8%E4%BD%9C%E5%93%81/pl.e40e236ba31148788607745f3422d8cd?l=zh-Hans-CN">Apple Music 20 世纪音乐代表作品</a></li><li><a href="https://www.britannica.com/topic/music-recording/Advancements-after-World-War-II">Britannica, music recording after World War II</a></li><li><a href="https://www.metopera.org/about/the-met/">Metropolitan Opera, Our Story</a></li><li><a href="https://www.rpo.co.uk/stories/rpo-unveils-report-on-the-future-of-orchestral-music">Royal Philharmonic Orchestra 2024 audience report</a></li><li><a href="https://www.rpo.co.uk/press/the-royal-philharmonic-orchestra-brings-the-video-game-world-to-life-at-londons-royal-albert-hall">Royal Philharmonic Orchestra, video game music as an audience gateway</a></li><li><a href="https://www.abc.net.au/news/2024-06-08/abc-classic-100-tracks-classical-music-s-changing-audience/103945816">ABC Classic, film, social media and video games changing classical audiences</a></li><li><a href="https://support.apple.com/en-euro/guide/apple-music-classical/dev8de5fc472/web">Apple Music Classical search guide</a></li><li><a href="https://support.idagio.com/en/articles/7203075-how-do-i-best-use-the-search">IDAGIO search guidance</a></li></ul>
+        </section>
+        <footer>Original guide text, playlist data, and HTML layout are licensed CC BY 4.0. Third-party images and linked platform metadata keep their original terms.</footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

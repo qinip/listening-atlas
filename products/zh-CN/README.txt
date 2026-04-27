@@ -1,9 +1,9 @@
-古典之路：中文版指南包
+古典音乐图谱：中文版指南包
 
 包含文件：
-- classical_music_intro_guide.zh-CN.md：中文 Markdown 指南
-- classical_music_intro_guide.zh-CN.html：中文静态 HTML 电子书
-- classical_music_intro_playlist.zh-CN.tsv：中文歌单数据
+- classical_atlas_guide.zh-CN.md：中文 Markdown 指南
+- classical_atlas_guide.zh-CN.html：中文静态 HTML 电子书
+- classical_atlas_playlist.zh-CN.tsv：中文歌单数据
 - create_playlist_on_platform.prompt.zh-CN.txt：用于 computer-use agent 创建歌单的平台无关 prompt
 - assets/：肖像图片，以及记录来源和授权信息的 ASSET_MANIFEST.tsv
 

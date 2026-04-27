@@ -1,4 +1,4 @@
-# Classical Music Agent Kit
+# Listening Atlas Agent Kit
 
 A documentation-first toolkit for using browser/computer-use AI agents to create classical music playlists, listening guides, and static ebook releases on any music platform.
 
@@ -20,7 +20,7 @@ The goal is platform independence. A user should be able to create a playlist an
 - `products/en/`: the English finished guide and playlist.
 - `site/`: static GitHub Pages ebook prototype with a language switch.
 - `samples/`: original Apple Music case-study material.
-- `release-assets/`: generated ZIP files intended for GitHub Releases.
+- GitHub Releases: downloadable ZIP files for the finished Chinese and English products.
 
 ## Quick Start
 
@@ -46,15 +46,10 @@ For detailed instructions, read [docs/USAGE.md](docs/USAGE.md).
 
 The repository contains two independent finished products:
 
-- Chinese: `products/zh-CN/classical_music_intro_guide.zh-CN.md` and `products/zh-CN/classical_music_intro_playlist.zh-CN.tsv`
-- English: `products/en/classical_music_intro_guide.en.md` and `products/en/classical_music_intro_playlist.en.tsv`
+- Chinese: `products/zh-CN/classical_atlas_guide.zh-CN.md` and `products/zh-CN/classical_atlas_playlist.zh-CN.tsv`
+- English: `products/en/classical_atlas_guide.en.md` and `products/en/classical_atlas_playlist.en.tsv`
 
-The release ZIP files are:
-
-- `release-assets/classical-music-intro-zh-CN.zip`
-- `release-assets/classical-music-intro-en.zip`
-
-These ZIP files are meant to be uploaded to a GitHub Release page as downloadable product artifacts.
+Release ZIP files are uploaded to the GitHub Release page as downloadable product artifacts. Local build output may be kept in `release-assets/`, but that directory is not committed.
 
 ## GitHub Pages
 

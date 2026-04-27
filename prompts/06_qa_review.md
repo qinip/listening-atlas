@@ -3,7 +3,7 @@
 Use this prompt before publishing.
 
 ```text
-Review this classical music agent kit output against the quality checklists.
+Review this classical overture agent kit output against the quality checklists.
 
 Check:
 

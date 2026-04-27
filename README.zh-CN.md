@@ -1,4 +1,4 @@
-# 古典音乐 Agent 生成套件
+# Listening Atlas Agent Kit（聆听图谱 Agent Kit）
 
 这是一套文档优先的工具包，用来让具备浏览器或 computer-use 能力的 AI agent 在任意音乐平台上生成古典音乐歌单、听音指南和静态 HTML 电子书。
 
@@ -20,7 +20,7 @@ English README: [README.md](README.md).
 - `products/en/`：英文成品指南和歌单。
 - `site/`：带语言切换的 GitHub Pages 静态电子书原型。
 - `samples/`：原始 Apple Music 案例材料。
-- `release-assets/`：准备上传到 GitHub Releases 的 ZIP 包。
+- GitHub Releases：中英文成品 ZIP 下载包。
 
 ## 快速开始
 
@@ -46,15 +46,10 @@ English README: [README.md](README.md).
 
 仓库里有两套独立成品：
 
-- 中文：`products/zh-CN/classical_music_intro_guide.zh-CN.md` 和 `products/zh-CN/classical_music_intro_playlist.zh-CN.tsv`
-- 英文：`products/en/classical_music_intro_guide.en.md` 和 `products/en/classical_music_intro_playlist.en.tsv`
+- 中文：`products/zh-CN/classical_atlas_guide.zh-CN.md` 和 `products/zh-CN/classical_atlas_playlist.zh-CN.tsv`
+- 英文：`products/en/classical_atlas_guide.en.md` 和 `products/en/classical_atlas_playlist.en.tsv`
 
-对应的发布 ZIP 包：
-
-- `release-assets/classical-music-intro-zh-CN.zip`
-- `release-assets/classical-music-intro-en.zip`
-
-这些 ZIP 包适合上传到 GitHub Release 页面，作为用户可下载的成品文件。
+发布 ZIP 包会上传到 GitHub Release 页面，作为用户可下载的成品文件。本地可以用 `release-assets/` 暂存这些 ZIP，但该目录不提交进仓库。
 
 ## GitHub Pages
 

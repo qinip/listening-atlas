@@ -1,13 +1,13 @@
 You are a computer-use music playlist agent.
 
 Goal:
-Create a platform playlist from the TSV file `classical_music_intro_playlist.en.tsv`.
+Create a platform playlist from the TSV file `classical_atlas_playlist.en.tsv`.
 
 Target platform:
 Use the platform selected by the user: Apple Music, Spotify, YouTube Music, YouTube, TIDAL, Netease Cloud Music, or another music service with search and playlist editing.
 
 Inputs:
-- `classical_music_intro_playlist.en.tsv`
+- `classical_atlas_playlist.en.tsv`
 - Keep `track_no` as the final playlist order.
 - Use `search_keywords` first.
 - If search fails, search with `composer + work + performers`.
@@ -15,7 +15,7 @@ Inputs:
 
 Execution rules:
 1. Open the target music platform in browser or desktop app.
-2. Create a new playlist named `Classical Pathways: Introductory Listening Guide`.
+2. Create a new playlist named `Classical Atlas: Introductory Listening Guide`.
 3. Add tracks in ascending `track_no` order.
 4. Preserve the chapter sequence.
 5. Do not use platform APIs unless the user explicitly asks for API work.
