@@ -12,6 +12,8 @@
     .topbar { position: sticky; top: 0; z-index: 20; height: 56px; display: flex; justify-content: flex-end; align-items: center; gap: .75rem; padding: 0 1rem; background: rgba(244,239,230,.94); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .topbar a, .button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
     .topbar a { color: var(--ink); text-decoration: none; border: 1px solid var(--line); padding: .45rem .85rem; background: var(--panel); }
+    .topbar .icon-link { width: 44px; padding: 0; }
+    .topbar .icon-link svg { width: 20px; height: 20px; display: block; fill: currentColor; }
     .shell { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: calc(100vh - 56px); }
     .sidebar { position: sticky; top: 56px; align-self: start; height: calc(100vh - 56px); overflow: auto; padding: 1.4rem 1.15rem 2rem; background: var(--sidebar); border-right: 1px solid var(--line); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .brand { display: block; margin-bottom: 1rem; color: var(--ink); text-decoration: none; }
@@ -86,8 +88,13 @@
   </style>
 </head>
 <body>
-  <nav class="topbar" aria-label="Language switch">
+  <nav class="topbar" aria-label="Site links">
     <a href="../" aria-label="Switch to Chinese">中文</a>
+    <a class="icon-link" href="https://github.com/qinip/listening-atlas" aria-label="Open Listening Atlas on GitHub" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.18c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18.92-.26 1.9-.38 2.88-.39.98.01 1.96.13 2.88.39 2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.42-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.18c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+      </svg>
+    </a>
   </nav>
   <div class="shell">
     <aside class="sidebar" aria-label="Table of contents">
