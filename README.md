@@ -1,6 +1,6 @@
 # Listening Atlas Agent Kit
 
-A documentation-first toolkit for using browser/computer-use AI agents to create classical music playlists, listening guides, and static ebook releases on any music platform.
+A documentation-first toolkit for using browser/computer-use AI agents to create structured music playlists, listening guides, and static ebook releases on any music platform. The included reference product is `Classical Atlas`.
 
 中文说明见 [README.zh-CN.md](README.zh-CN.md).
 
@@ -13,7 +13,7 @@ The goal is platform independence. A user should be able to create a playlist an
 ## What Is Included
 
 - `docs/`: the workflow and QA checklists.
-- `specs/`: schemas and publishing requirements.
+- `specs/`: deliverable contract, schemas, platform protocol, visual modules, and publishing requirements.
 - `prompts/`: copy-ready prompts for agents.
 - `templates/`: project brief, playlist row, and asset manifest templates.
 - `products/zh-CN/`: the Chinese finished guide and playlist.
@@ -29,7 +29,9 @@ If you want to make your own playlist:
 1. Download or clone this repository.
 2. Give your agent these files:
    - `docs/USAGE.md`
+   - `docs/AGENT_HANDOFF.md`
    - `docs/PLAYBOOK.md`
+   - `specs/DELIVERABLES.md`
    - `templates/project_brief.template.md`
    - `specs/PLAYLIST_SCHEMA.md`
    - `specs/PLATFORM_ADAPTERS.md`

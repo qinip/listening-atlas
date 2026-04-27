@@ -1,11 +1,25 @@
 # Playbook
 
-This playbook explains how to use a browser/computer-use AI agent to create a classical music playlist, listening guide, and static HTML ebook without binding the method to one music platform.
+This playbook explains how to use a browser/computer-use AI agent to create a structured music playlist, listening guide, and static HTML ebook without binding the method to one music platform. The current reference product is classical, but the workflow can be adapted to other music domains.
+
+## 0. Deliverable Contract
+
+Before generating content, read `specs/DELIVERABLES.md`.
+
+The hard deliverables are:
+
+- A completed project brief.
+- A platform-agnostic source playlist TSV.
+- A Markdown listening guide.
+- A platform execution log TSV if the agent creates or edits a streaming playlist.
+
+Optional deliverables include a static HTML ebook, music-history map, chapter images, appendices, asset manifest, and release ZIPs.
 
 ## 1. Define The Brief
 
 Start from `templates/project_brief.template.md`. The brief must settle:
 
+- Music domain, such as classical, jazz, rock, film music, game music, or a local tradition.
 - Audience and assumed listening background.
 - Output language.
 - Target music platform or manual execution mode.
@@ -21,7 +35,7 @@ Start from `templates/project_brief.template.md`. The brief must settle:
 
 Use a chronological backbone, then add topical chapters only when they explain modern listening paths.
 
-Recommended chapter model:
+For a classical atlas, this chapter model works well:
 
 1. Early music and polyphony
 2. Baroque
@@ -33,6 +47,8 @@ Recommended chapter model:
 8. Minimalism and post-minimalism
 9. Film, game, and screen media music
 10. Contemporary classical and cross-genre composition after 1990
+
+For another domain, keep the same editorial logic but replace the chapter model with a domain-specific timeline, geography, scene, label, technology, or subgenre structure.
 
 ## 3. Create The Candidate Universe
 
@@ -71,12 +87,13 @@ For each selected work:
 
 ## 6. Execute On The Platform
 
-Use `specs/PLATFORM_ADAPTERS.md`. The execution agent should:
+Use `specs/PLATFORM_ADAPTERS.md` and `specs/PLATFORM_EXECUTION_LOG_SCHEMA.md`. The execution agent should:
 
 - Search one row at a time.
 - Confirm title, composer, movement, performers, album, and duration when available.
 - Add the best match to the playlist.
 - Record mismatches, unavailable tracks, duplicate adds, and fallback choices.
+- Verify final playlist order against ascending `track_no`.
 - Keep platform execution notes separate from the source dataset.
 
 ## 7. Write The Guide
@@ -105,6 +122,13 @@ Requirements:
 - Asset manifest for every packaged visual.
 - Clear separation between source links and bundled assets.
 
+If the project asks for a richer ebook, use `specs/VISUAL_AND_APPENDIX_MODULES.md` for:
+
+- A music-history map.
+- Chapter opener images.
+- Composer, catalog-number, recording-comparison, and glossary appendices.
+- Platform playback or search links derived from the execution log.
+
 ## 9. Package The Finished Products
 
 Keep finished products separate from source instructions:
@@ -123,4 +147,3 @@ Before release:
 - Confirm all bundled visuals are listed in an asset manifest.
 - Confirm sample output is labeled as a case study.
 - Confirm platform-specific instructions are advisory, not dependencies.
-

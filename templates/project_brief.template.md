@@ -3,6 +3,8 @@
 ## Basic
 
 - Project title:
+- Project slug:
+- Music domain:
 - Audience:
 - Language:
 - Tone:
@@ -27,6 +29,16 @@
 - Glossary needed:
 - Recording comparison appendix:
 - Ebook target:
+- Link guide entry works to playlist rows:
+
+## Platform Execution
+
+- Create or edit streaming playlist:
+- Playlist name:
+- Playlist privacy:
+- Platform account confirmed:
+- Execution log required:
+- Final order verification required:
 
 ## Asset Policy
 
@@ -36,6 +48,16 @@
 - Portrait policy:
 - Required attribution style:
 
+## Optional Modules
+
+- Music-history map:
+- Chapter images:
+- Platform playback/search links in ebook:
+- Expanded composer appendix:
+- Catalog-number appendix:
+- Recording-comparison appendix:
+- Release ZIPs:
+
 ## Acceptance Criteria
 
 - Reproducibility criteria:
@@ -43,4 +65,3 @@
 - Content QA criteria:
 - Asset QA criteria:
 - Release QA criteria:
-

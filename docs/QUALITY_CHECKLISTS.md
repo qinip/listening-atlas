@@ -7,6 +7,7 @@ Use these checklists before publishing a generated playlist, guide, ebook, GitHu
 - A new agent can follow the repository without private context.
 - The agent can fill a project brief.
 - The agent can generate 50-track, 100-track, and 180-track playlist drafts.
+- The agent can produce the required files listed in `specs/DELIVERABLES.md`.
 - The outputs preserve the requested language and audience level.
 - The outputs use the platform-agnostic schema, not platform-only fields.
 
@@ -14,6 +15,9 @@ Use these checklists before publishing a generated playlist, guide, ebook, GitHu
 
 - The same playlist spec can be executed on at least two platforms.
 - Platform-specific fields are stored as execution notes or case-study fields.
+- A platform execution log exists when a streaming playlist was created or edited.
+- The execution log has one row per source playlist row.
+- Final playlist order is verified against `track_no`, or the platform limitation is explicitly logged.
 - Missing tracks are recorded with fallback decisions.
 - Duplicates are identified before final ordering.
 - No platform artwork, thumbnails, screenshots, or account-specific data are bundled.
@@ -21,6 +25,7 @@ Use these checklists before publishing a generated playlist, guide, ebook, GitHu
 ## Content
 
 - The playlist has a readable historical sequence.
+- The guide Markdown ties entry works back to playlist rows using `track_no` or stable row identifiers.
 - Each chapter has enough representative works for its scope.
 - Post-1900 proportion matches the project brief.
 - Basic/advanced split matches the project brief.
@@ -31,6 +36,7 @@ Use these checklists before publishing a generated playlist, guide, ebook, GitHu
 ## Assets
 
 - Every bundled image appears in an asset manifest.
+- Music-history maps and chapter images follow `specs/VISUAL_AND_APPENDIX_MODULES.md`.
 - Each asset has source URL, creator, license, attribution text, and reuse notes.
 - Wikimedia Commons assets are checked at file level.
 - The Met Open Access assets are marked as CC0 or public domain according to the source page.
@@ -59,4 +65,3 @@ Use these checklists before publishing a generated playlist, guide, ebook, GitHu
 - `LICENSE.md` is present.
 - Third-party content exceptions are documented.
 - Links to platform terms and asset reuse guidance are present where relevant.
-

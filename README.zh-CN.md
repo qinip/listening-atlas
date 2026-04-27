@@ -1,6 +1,6 @@
 # Listening Atlas Agent Kit（聆听图谱 Agent Kit）
 
-这是一套文档优先的工具包，用来让具备浏览器或 computer-use 能力的 AI agent 在任意音乐平台上生成古典音乐歌单、听音指南和静态 HTML 电子书。
+这是一套文档优先的工具包，用来让具备浏览器或 computer-use 能力的 AI agent 在任意音乐平台上生成结构化音乐歌单、听音指南和静态 HTML 电子书。仓库里的参考成品是 `Classical Atlas / 古典音乐图谱`。
 
 English README: [README.md](README.md).
 
@@ -13,7 +13,7 @@ English README: [README.md](README.md).
 ## 包含内容
 
 - `docs/`：工作流和 QA 检查清单。
-- `specs/`：数据 schema 和发布规范。
+- `specs/`：交付物 contract、数据 schema、平台协议、视觉模块和发布规范。
 - `prompts/`：可直接复制给 agent 的 prompts。
 - `templates/`：project brief、playlist row 和 asset manifest 模板。
 - `products/zh-CN/`：中文成品指南和歌单。
@@ -29,7 +29,9 @@ English README: [README.md](README.md).
 1. 下载或 clone 这个仓库。
 2. 把这些文件交给你的 agent：
    - `docs/USAGE.md`
+   - `docs/AGENT_HANDOFF.md`
    - `docs/PLAYBOOK.md`
+   - `specs/DELIVERABLES.md`
    - `templates/project_brief.template.md`
    - `specs/PLAYLIST_SCHEMA.md`
    - `specs/PLATFORM_ADAPTERS.md`

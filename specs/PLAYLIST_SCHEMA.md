@@ -6,12 +6,13 @@ This schema defines the platform-agnostic source table for generated playlists. 
 
 | Field | Required | Description |
 | --- | --- | --- |
+| `row_id` | recommended | Stable ID such as `classical_atlas_001`; useful for guide links and appendices. |
 | `chapter` | yes | Chapter label and order. |
 | `period_range` | yes | Approximate historical range. |
 | `genre_or_form` | yes | Form or medium, such as symphony, opera, chant, film score, or game score. |
 | `track_no` | yes | Stable playlist order. |
 | `after_1900` | yes | Boolean or localized yes/no marker. |
-| `composer` | yes | Composer name in the output language or source language. |
+| `composer` | yes | Composer, creator, artist, group, or source-tradition name in the output language or source language. |
 | `composer_zh` | optional | Chinese composer name when needed. |
 | `composer_western` | optional | Western or source-language composer name when different from `composer`. |
 | `composer_ipa` | optional | Pronunciation helper. |
@@ -20,6 +21,9 @@ This schema defines the platform-agnostic source table for generated playlists. 
 | `recommended_recording` | yes | Recommended album, release, or canonical recording label. |
 | `performers` | yes | Performer, conductor, ensemble, vocalist, or production credits. |
 | `search_keywords` | yes | Platform-neutral search query. |
+| `strict_search_query` | recommended | Composer + exact work/movement + key performer/release. |
+| `medium_search_query` | recommended | Composer + work/catalog + one performer or ensemble. |
+| `fallback_search_query` | recommended | Composer + work/catalog without version-specific metadata. |
 | `difficulty` | yes | Basic, advanced, or custom scale. |
 | `role` | yes | Why this row exists in the guide. |
 
@@ -63,6 +67,6 @@ For a broad beginner-to-intermediate classical music guide:
 - Every row must be searchable by composer plus work.
 - Every recommended recording must name at least one performer, conductor, ensemble, or release.
 - Every chapter must have a clear educational reason.
-- The final playlist order must be stable and reproducible.
+- `track_no` must be unique, zero-padded when useful, and sortable as the final playlist order.
+- Guide entry works should be able to cite rows by `track_no` or `row_id`.
 - Platform execution data must not overwrite source metadata.
-
