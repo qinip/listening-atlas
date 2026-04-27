@@ -94,7 +94,7 @@ A complete project should produce:
 - A listening guide in Markdown.
 - A static HTML ebook.
 - An asset manifest if images are bundled.
-- A release checklist result.
+- A QA review result against `docs/QUALITY_CHECKLISTS.md`.
 
 For exact filenames and acceptance rules, use `specs/DELIVERABLES.md`.
 
