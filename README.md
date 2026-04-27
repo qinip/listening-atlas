@@ -76,6 +76,6 @@ This project uses a conservative open-publishing policy:
 
 ## License
 
-Original documentation, prompts, specs, templates, sample data, and generated guide text in this repository are licensed under [CC BY 4.0](LICENSE.md), unless otherwise noted.
+Reusable kit materials in `docs/`, `specs/`, `prompts/`, and `templates/` are dedicated under [CC0 1.0](LICENSE.md). Finished demo products, sample guide text, sample playlist data, and site guide content are licensed under [CC BY 4.0](LICENSE.md), unless otherwise noted.
 
 Third-party sources keep their own licenses and terms. This repository does not provide legal advice.

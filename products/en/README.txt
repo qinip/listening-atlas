@@ -9,11 +9,11 @@ Files:
 - classical_atlas_apple_music_execution_log.en.tsv: reconstructed Apple Music case-study execution log
 - create_playlist_on_platform.prompt.en.txt: Apple Music edition computer-use prompt for recreating the playlist
 - THIRD_PARTY_NOTICES.txt: third-party asset license notes
-- LICENSE.md: CC BY 4.0 project license text
+- LICENSE.md: product license text covering CC BY 4.0 demo content and CC0 package prompt
 - assets/: portrait images and ASSET_MANIFEST.tsv with source and license metadata
 
 License:
-Original text, tables, and HTML layout are licensed CC BY 4.0. Third-party links and platform metadata keep their original terms.
+Original guide text, playlist tables, reconstructed execution logs, and HTML layout are licensed CC BY 4.0. The package prompt is CC0 1.0. Third-party links, platform metadata, and bundled visual assets keep their original or manifest-recorded terms.
 
 Notes:
 This package contains no platform automation scripts, album artwork, platform screenshots, or unmanifested images.

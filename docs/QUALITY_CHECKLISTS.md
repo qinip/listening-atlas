@@ -62,6 +62,6 @@ Use these checklists before publishing a generated playlist, guide, ebook, GitHu
 
 - No `.py`, `.swift`, `.applescript`, shell script, binary helper, or platform automation code is included in the open kit.
 - Sample outputs are labeled as sample output or case study.
-- `LICENSE.md` is present.
+- `LICENSE.md` is present and explains which materials are CC0, which are CC BY 4.0, and which assets retain third-party licenses.
 - Third-party content exceptions are documented.
 - Links to platform terms and asset reuse guidance are present where relevant.

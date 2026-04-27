@@ -14,4 +14,4 @@ Before publishing this repository:
 - Confirm sample output and product packages are clearly labeled as Apple Music case-study editions where platform-specific fields appear.
 - Confirm every bundled visual asset appears in an asset manifest.
 - Confirm no platform album art, artist image, thumbnail, or screenshot is bundled without separate license review.
-- Confirm `LICENSE.md` is present and third-party exceptions are noted.
+- Confirm `LICENSE.md` is present, split CC0 / CC BY licensing is clear, and third-party exceptions are noted.

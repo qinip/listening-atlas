@@ -76,6 +76,6 @@ English README: [README.md](README.md).
 
 ## 授权
 
-除另有说明外，本仓库原创文档、prompts、specs、模板、样本数据和生成的指南文字采用 [CC BY 4.0](LICENSE.md) 授权。
+`docs/`、`specs/`、`prompts/` 和 `templates/` 中的可复用 agent kit 材料采用 [CC0 1.0](LICENSE.md)。成品 demo、样本指南文字、样本歌单数据和站点指南内容采用 [CC BY 4.0](LICENSE.md)，除非具体文件另有说明。
 
 第三方来源保留各自授权和条款。本仓库不提供法律建议。

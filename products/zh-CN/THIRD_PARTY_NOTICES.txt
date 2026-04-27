@@ -1,6 +1,6 @@
 第三方素材说明
 
-本包中的原创指南文字、歌单表格、prompt 和 HTML 布局，按 README.txt 和 LICENSE.md 中说明的项目授权发布。
+本包中的原创指南文字、歌单表格、重建的 execution log 和 HTML 布局按 README.txt 和 LICENSE.md 中说明的 CC BY 4.0 发布。包内 prompt 采用 CC0 1.0。
 
 打包进来的肖像、艺术作品图片和生成式图片，不整体改授权为项目原创文字授权。每张图片保留 assets/ASSET_MANIFEST.tsv 中记录的原始授权或权利依据。
 
