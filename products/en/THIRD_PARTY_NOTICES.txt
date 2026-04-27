@@ -1,0 +1,11 @@
+Third-Party Asset Notices
+
+Original guide text, playlist tables, prompts, and HTML layout in this package are released under the project license stated in README.txt and LICENSE.md.
+
+Bundled portraits, artwork images, and generated visuals are not blanket-relicensed as project text. Each image keeps the license or rights basis recorded in assets/ASSET_MANIFEST.tsv.
+
+Important notes:
+- Wikimedia Commons assets may be CC BY, CC BY-SA, public domain, or another file-level license. Use the manifest source URL and license URL before reusing them outside this package.
+- CC BY-SA assets retain their ShareAlike license. The manifest records attribution, source URL, license URL, and modifications.
+- The AI-generated chapter image is documented in the manifest as a project-generated sample asset. Its reuse notes state that it was not generated from a copyrighted film still, album cover, character design, or living artist reference.
+- Platform album art, platform screenshots, and music-service thumbnails are not bundled in this package.

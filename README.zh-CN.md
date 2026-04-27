@@ -51,7 +51,9 @@ English README: [README.md](README.md).
 - 中文：`products/zh-CN/classical_atlas_guide.zh-CN.md` 和 `products/zh-CN/classical_atlas_playlist.zh-CN.tsv`
 - 英文：`products/en/classical_atlas_guide.en.md` 和 `products/en/classical_atlas_playlist.en.tsv`
 
-发布 ZIP 包会上传到 GitHub Release 页面，作为用户可下载的成品文件。本地可以用 `release-assets/` 暂存这些 ZIP，但该目录不提交进仓库。
+这两套成品是 Classical Atlas demo 的 Apple Music edition。Apple Music 搜索列、包内执行 prompt 和重建的 execution log 都属于案例材料；可复用的平台无关 contract 在 `specs/`、`prompts/` 和 `templates/` 里。
+
+发布 ZIP 包会上传到 GitHub Release 页面，作为用户可下载的成品文件。`site/downloads/` 保存一份提交进仓库的副本，供 GitHub Pages 下载链接使用。本地可以用 `release-assets/` 暂存 ZIP，但该目录不提交，也不是 source of truth。
 
 ## GitHub Pages
 

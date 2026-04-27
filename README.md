@@ -51,7 +51,9 @@ The repository contains two independent finished products:
 - Chinese: `products/zh-CN/classical_atlas_guide.zh-CN.md` and `products/zh-CN/classical_atlas_playlist.zh-CN.tsv`
 - English: `products/en/classical_atlas_guide.en.md` and `products/en/classical_atlas_playlist.en.tsv`
 
-Release ZIP files are uploaded to the GitHub Release page as downloadable product artifacts. Local build output may be kept in `release-assets/`, but that directory is not committed.
+These products are the Apple Music edition of the Classical Atlas demo. Apple Music search columns, package prompts, and reconstructed execution logs are case-study material; the reusable platform-agnostic contract lives in `specs/`, `prompts/`, and `templates/`.
+
+Release ZIP files are uploaded to the GitHub Release page as downloadable product artifacts. `site/downloads/` contains committed copies for GitHub Pages links. Local build output may be staged in `release-assets/`, but that directory is not committed and is not the source of truth.
 
 ## GitHub Pages
 

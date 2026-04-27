@@ -146,10 +146,10 @@
           <p>The guide comes with a 180-track playlist table. The file is <code>classical_atlas_playlist.en.tsv</code>. A TSV is a spreadsheet separated by tab characters, and Excel, Numbers, or Google Sheets can open it. Each row is one track in the playlist.</p>
           <p>The playlist runs from roughly the ninth century to the 2020s. It covers 128 composers, creators, and screen-music figures, with 108 tracks from after 1900. The table also keeps more than 100 genre and form tags, so you can filter by symphony, concerto, opera, sacred vocal music, film score, game score, and other paths.</p>
           <p><code>track_no</code> gives the listening order, <code>chapter</code> matches the ten sections below, and <code>difficulty</code> marks starter or advanced tracks. Each chapter lists five starter tracks; for the full route, open the table and follow <code>track_no</code> from 001 to 180.</p>
-          <p>On Apple Music or Apple Music Classical, paste the <code>search_keywords</code> field. On Spotify, YouTube Music, TIDAL, NetEase Cloud Music, or another platform, use the same table to rebuild the playlist in order. If a platform lacks the exact recording, record the substitute instead of silently skipping it.</p>
+          <p>On Apple Music or Apple Music Classical, paste the <code>apple_search_keywords</code> field. On Spotify, YouTube Music, TIDAL, NetEase Cloud Music, or another platform, start with <code>strict_search_query</code>, then try <code>medium_search_query</code> or <code>fallback_search_query</code>. If a platform lacks the exact recording, record the substitute instead of silently skipping it.</p>
           <div class="note">
             <p><a href="classical_atlas_playlist.en.tsv">Open the full TSV table</a></p>
-            <p>To recreate this 180-track playlist on a specific platform, give an AI assistant the <a href="create_playlist_on_platform.prompt.en.txt">playlist recreation prompt</a> together with the TSV table.</p>
+            <p>To recreate the Apple Music edition, give an AI assistant the <a href="create_playlist_on_platform.prompt.en.txt">playlist recreation prompt</a> together with the TSV table. For other platforms, use the generic platform execution prompt from the repository kit.</p>
           </div>
         </div>
       </section>

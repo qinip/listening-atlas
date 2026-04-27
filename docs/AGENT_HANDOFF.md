@@ -58,7 +58,7 @@ Output:
 
 - `{project_slug}_playlist.{lang}.tsv`
 
-The TSV is the source of truth. Keep it platform-agnostic. Use stable `track_no` order and add `row_id` when possible.
+The TSV is the source of truth. Keep it platform-agnostic. Use stable `track_no` order and stable `row_id` values.
 
 ### Phase 3: Recording Review
 

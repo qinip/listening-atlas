@@ -1,0 +1,11 @@
+第三方素材说明
+
+本包中的原创指南文字、歌单表格、prompt 和 HTML 布局，按 README.txt 和 LICENSE.md 中说明的项目授权发布。
+
+打包进来的肖像、艺术作品图片和生成式图片，不整体改授权为项目原创文字授权。每张图片保留 assets/ASSET_MANIFEST.tsv 中记录的原始授权或权利依据。
+
+重要说明：
+- Wikimedia Commons 素材可能是 CC BY、CC BY-SA、公有领域或其他逐图授权。复用前请查看 manifest 中的 source URL 和 license URL。
+- CC BY-SA 素材继续保留 ShareAlike 授权。manifest 记录了署名、来源、授权链接和修改方式。
+- AI 生成的章节图片已在 manifest 中标记为项目生成样本素材，并说明未基于受版权保护的电影剧照、专辑封面、角色设计或在世艺术家参考图生成。
+- 本包不打包平台专辑封面、平台截图或音乐服务缩略图。

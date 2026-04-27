@@ -40,6 +40,8 @@ Use `templates/asset_manifest.template.tsv`.
 | `reviewed_by` | yes | Person or agent that checked it. |
 | `review_date` | yes | ISO date. |
 
+Generated visuals should additionally explain the generator or provider, whether a third-party reference image was used, and why the result is not a copy of a copyrighted still, album cover, character design, or living artist's protected likeness. If that cannot be stated plainly in `reuse_notes`, do not bundle the image.
+
 ## Source Guidance
 
 - Wikimedia Commons: check each file page. Commons content may have different attribution, license-linking, and derivative-license requirements.
@@ -52,3 +54,4 @@ Use `templates/asset_manifest.template.tsv`.
 
 If the reviewer cannot explain why an asset is reusable in one sentence, do not bundle it.
 
+Do not treat CC BY-SA as equivalent to CC BY. A release may include CC BY-SA assets only when the manifest preserves the original license, attribution, source URL, and derivative notes, and the release text makes clear that third-party assets keep their original licenses.

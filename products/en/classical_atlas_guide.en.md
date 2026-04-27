@@ -8,7 +8,7 @@ The companion playlist has 180 tracks from roughly the ninth century to the 2020
 
 The playlist table is `classical_atlas_playlist.en.tsv`. A TSV is a spreadsheet file separated by tab characters; Excel, Numbers, and Google Sheets can open it. Each row is one track in the playlist. `track_no` gives the listening order, `chapter` matches the ten sections below, `difficulty` marks starter and advanced tracks, and `genre_or_form` lets you filter opera, concertos, symphonies, film scores, game scores, and other forms.
 
-If you want the shortest path, read one chapter and listen to the five starter tracks listed there. If you want the full path, open the TSV and follow `track_no` from 001 to 180. On Apple Music or Apple Music Classical, paste the `search_keywords` field. If the exact recording is missing, keep the work and main performer as anchors, then choose a clearly labeled substitute.
+If you want the shortest path, read one chapter and listen to the five starter tracks listed there. If you want the full path, open the TSV and follow `track_no` from 001 to 180. On Apple Music or Apple Music Classical, paste the `apple_search_keywords` field. On other platforms, start with `strict_search_query`, then try `medium_search_query` or `fallback_search_query`. If the exact recording is missing, keep the work and main performer as anchors, then choose a clearly labeled substitute.
 
 Opera, symphony, concerto, sonata, film score, and game score are genres or forms, not single historical periods. The prose below follows historical periods; the spreadsheet lets you reorganize the same 180 tracks by form, difficulty, date, or performer.
 

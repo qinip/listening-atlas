@@ -8,7 +8,7 @@
 
 本指南配套的歌单表是 `classical_atlas_playlist.zh-CN.tsv`。TSV 是一种用制表符分隔的表格文件，可以用 Excel、Numbers 或 Google Sheets 打开；每一行对应歌单里的一首曲目。`track_no` 是建议播放顺序，`chapter` 对应下面十个章节，`difficulty` 标出基础或进阶，`genre_or_form` 可以用来筛选歌剧、协奏曲、交响曲、电影配乐和游戏配乐等类型。
 
-如果只想开始听，可以先按章节读正文，再听每章表格里的 5 首基础曲目。想补齐完整路径，再打开 TSV，按 `track_no` 从 001 听到 180。想在 Apple Music 或 Apple Music Classical 里找同一版本，可以复制 `apple_search_keywords`；如果完全相同的录音不可用，优先保留作品和主要演奏者，再选择清楚标注的替代版本。
+如果只想开始听，可以先按章节读正文，再听每章表格里的 5 首基础曲目。想补齐完整路径，再打开 TSV，按 `track_no` 从 001 听到 180。想在 Apple Music 或 Apple Music Classical 里找同一版本，可以复制 `apple_search_keywords`；如果使用其他平台，先用 `strict_search_query`，再试 `medium_search_query` 或 `fallback_search_query`。如果完全相同的录音不可用，优先保留作品和主要演奏者，再选择清楚标注的替代版本。
 
 歌剧、交响曲、协奏曲、奏鸣曲、电影配乐和游戏配乐都不是单一历史时期，而是会跨越多个时期的体裁。正文按时代讲听法，表格则保留体裁字段，方便你从另一条线索重新筛选这 180 首。
 

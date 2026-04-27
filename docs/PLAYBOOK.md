@@ -135,8 +135,8 @@ Keep finished products separate from source instructions:
 
 - `products/zh-CN/`: Chinese guide, playlist, and ebook files.
 - `products/en/`: English guide, playlist, and ebook files.
-- `release-assets/`: ZIP files to upload to a GitHub Release.
-- `site/`: GitHub Pages static HTML with language-switch links.
+- `site/`: GitHub Pages static HTML with language-switch links and committed download copies in `site/downloads/`.
+- `release-assets/`: ignored local staging area for ZIP files to upload to a GitHub Release.
 
 ## 10. Review And Release
 

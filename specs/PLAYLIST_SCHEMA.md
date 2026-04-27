@@ -6,7 +6,7 @@ This schema defines the platform-agnostic source table for generated playlists. 
 
 | Field | Required | Description |
 | --- | --- | --- |
-| `row_id` | recommended | Stable ID such as `classical_atlas_001`; useful for guide links and appendices. |
+| `row_id` | yes | Stable ID such as `classical_atlas_001`; used for guide links, appendices, visuals, and execution logs. |
 | `chapter` | yes | Chapter label and order. |
 | `period_range` | yes | Approximate historical range. |
 | `genre_or_form` | yes | Form or medium, such as symphony, opera, chant, film score, or game score. |
@@ -21,9 +21,9 @@ This schema defines the platform-agnostic source table for generated playlists. 
 | `recommended_recording` | yes | Recommended album, release, or canonical recording label. |
 | `performers` | yes | Performer, conductor, ensemble, vocalist, or production credits. |
 | `search_keywords` | yes | Platform-neutral search query. |
-| `strict_search_query` | recommended | Composer + exact work/movement + key performer/release. |
-| `medium_search_query` | recommended | Composer + work/catalog + one performer or ensemble. |
-| `fallback_search_query` | recommended | Composer + work/catalog without version-specific metadata. |
+| `strict_search_query` | yes | Composer + exact work/movement + key performer/release. |
+| `medium_search_query` | yes | Composer + work/catalog + one performer or ensemble. |
+| `fallback_search_query` | yes | Composer + work/catalog without version-specific metadata. |
 | `difficulty` | yes | Basic, advanced, or custom scale. |
 | `role` | yes | Why this row exists in the guide. |
 
@@ -37,6 +37,12 @@ This schema defines the platform-agnostic source table for generated playlists. 
 | `listening_note` | One-sentence listening instruction. |
 | `region_or_tradition` | Cultural region, school, court, city, or national tradition. |
 | `medium_pathway` | Concert hall, church, opera, recording, film, game, streaming, etc. |
+| `recording_date` | Recording, session, or performance date when it matters editorially. |
+| `release_year` | Release year for recorded-music domains. |
+| `label_or_publisher` | Record label, publisher, game studio, film studio, or archival source. |
+| `personnel` | Session musicians, band lineup, soloists, or featured artists when creator metadata is not enough. |
+| `take_or_version` | Take number, live version, remix, arrangement, remaster, or edition. |
+| `standard_or_source_work` | Useful for jazz, folk, film, and game projects where a performance reinterprets an existing tune or theme. |
 
 ## Platform Case-Study Fields
 
@@ -70,3 +76,14 @@ For a broad beginner-to-intermediate classical music guide:
 - `track_no` must be unique, zero-padded when useful, and sortable as the final playlist order.
 - Guide entry works should be able to cite rows by `track_no` or `row_id`.
 - Platform execution data must not overwrite source metadata.
+
+## Non-Classical Adaptation Notes
+
+For jazz, rock, folk, electronic music, hip-hop, and other recorded-music domains, `composer` may not be the best primary browsing concept. Keep the core field for schema stability, but fill it with the most useful creator label for the guide, and use optional fields such as `personnel`, `recording_date`, `take_or_version`, `label_or_publisher`, and `standard_or_source_work` to capture what actually distinguishes versions.
+
+For jazz in particular, an agent should expect gaps that do not appear in classical music:
+
+- Multiple recordings of the same standard may need separate rows because personnel, solo order, date, and take number are musically significant.
+- The guide may need both composer/standard metadata and performer/session metadata.
+- Platform search may work better with artist + track title + album than composer + work.
+- Appendix material should explain band roles, improvisation vocabulary, session chronology, and recording labels rather than only composers and historical periods.
