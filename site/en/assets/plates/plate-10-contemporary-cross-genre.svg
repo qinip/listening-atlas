@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" role="img" aria-label="Contemporary cross-genre and streaming">
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="2" seed="19"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.055"/></feComponentTransfer>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#34281e" flood-opacity="0.18"/>
+    </filter>
+    <linearGradient id="warmPaper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbf2df"/>
+      <stop offset="0.55" stop-color="#efe1c8"/>
+      <stop offset="1" stop-color="#dcc8a9"/>
+    </linearGradient>
+    <linearGradient id="stage" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6e2f2d"/>
+      <stop offset="0.5" stop-color="#b86947"/>
+      <stop offset="1" stop-color="#2f4053"/>
+    </linearGradient>
+    <pattern id="staff" width="160" height="72" patternUnits="userSpaceOnUse">
+      <path d="M0 8H160 M0 20H160 M0 32H160 M0 44H160 M0 56H160" stroke="#6f655a" stroke-opacity=".25" stroke-width="2"/>
+    </pattern>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#6f655a" stroke-opacity=".13" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1440" height="600" fill="#f3eee8"/>
+  <rect width="1440" height="600" filter="url(#grain)"/>
+  <g stroke="#6f655a" stroke-width="3" opacity=".32">
+    <path d="M180 292C332 86 534 94 684 294S1020 510 1240 252" fill="none"/>
+    <path d="M178 366C368 482 512 498 706 340S1042 130 1268 376" fill="none"/>
+  </g>
+  <g filter="url(#softShadow)">
+    <circle cx="292" cy="286" r="84" fill="#d8c3a3"/><circle cx="292" cy="286" r="42" fill="#fbf6eb"/>
+    <circle cx="532" cy="176" r="58" fill="#4b79a1"/><circle cx="668" cy="352" r="76" fill="#3f7d72"/><circle cx="874" cy="222" r="66" fill="#9a5659"/><circle cx="1088" cy="374" r="92" fill="#6f6fa8"/><circle cx="1232" cy="198" r="54" fill="#b9852b"/>
+  </g>
+  <g stroke="#fbf6eb" stroke-width="6" stroke-linecap="round" fill="none" opacity=".86">
+    <path d="M246 286h92M292 240v92"/>
+    <path d="M502 176h60M532 146v60"/>
+    <path d="M622 352h92M668 306v92"/>
+    <path d="M830 222h88M874 178v88"/>
+    <path d="M1030 374h116M1088 316v116"/>
+    <path d="M1202 198h60M1232 168v60"/>
+  </g>
+  <g transform="translate(118 468)" fill="none" stroke="#25211d" stroke-linecap="round" opacity=".72">
+    <path d="M0 41v18" stroke-width="3"/><path d="M24 37.5v25" stroke-width="4"/><path d="M48 34v32" stroke-width="5"/><path d="M72 30.5v39" stroke-width="3"/><path d="M96 27v46" stroke-width="4"/><path d="M120 23.5v53" stroke-width="5"/><path d="M144 20v60" stroke-width="3"/><path d="M168 16.5v67" stroke-width="4"/><path d="M192 13v74" stroke-width="5"/><path d="M216 41v18" stroke-width="3"/><path d="M240 37.5v25" stroke-width="4"/><path d="M264 34v32" stroke-width="5"/><path d="M288 30.5v39" stroke-width="3"/><path d="M312 27v46" stroke-width="4"/><path d="M336 23.5v53" stroke-width="5"/><path d="M360 20v60" stroke-width="3"/><path d="M384 16.5v67" stroke-width="4"/><path d="M408 13v74" stroke-width="5"/><path d="M432 41v18" stroke-width="3"/><path d="M456 37.5v25" stroke-width="4"/><path d="M480 34v32" stroke-width="5"/><path d="M504 30.5v39" stroke-width="3"/><path d="M528 27v46" stroke-width="4"/><path d="M552 23.5v53" stroke-width="5"/><path d="M576 20v60" stroke-width="3"/><path d="M600 16.5v67" stroke-width="4"/><path d="M624 13v74" stroke-width="5"/><path d="M648 41v18" stroke-width="3"/><path d="M672 37.5v25" stroke-width="4"/><path d="M696 34v32" stroke-width="5"/><path d="M720 30.5v39" stroke-width="3"/><path d="M744 27v46" stroke-width="4"/><path d="M768 23.5v53" stroke-width="5"/><path d="M792 20v60" stroke-width="3"/><path d="M816 16.5v67" stroke-width="4"/><path d="M840 13v74" stroke-width="5"/><path d="M864 41v18" stroke-width="3"/><path d="M888 37.5v25" stroke-width="4"/><path d="M912 34v32" stroke-width="5"/><path d="M936 30.5v39" stroke-width="3"/><path d="M960 27v46" stroke-width="4"/><path d="M984 23.5v53" stroke-width="5"/><path d="M1008 20v60" stroke-width="3"/><path d="M1032 16.5v67" stroke-width="4"/><path d="M1056 13v74" stroke-width="5"/><path d="M1080 41v18" stroke-width="3"/><path d="M1104 37.5v25" stroke-width="4"/><path d="M1128 34v32" stroke-width="5"/>
+  </g>
+  <text x="90" y="96" font-family="Georgia, serif" font-size="38" fill="#34281e">after 1990: looser borders</text>
+  <text x="90" y="546" font-family="Georgia, serif" font-size="25" fill="#57483a" letter-spacing="2">voice · strings · electronics · screen · stream</text>
+</svg>
