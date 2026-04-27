@@ -4,7 +4,9 @@ Listening Atlas 是一套文档优先的 agent kit，用来让具备浏览器或
 
 English README: [README.md](README.md).
 
-![古典音乐图谱歌单界面的手绘风预览](docs/assets/classical-atlas-playlist-sketch.png)
+<p align="center">
+  <img src="docs/assets/classical-atlas-playlist-sketch.png" alt="古典音乐图谱歌单界面的手绘风预览" width="720">
+</p>
 
 ## 这个仓库是什么
 

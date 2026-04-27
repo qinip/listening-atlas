@@ -4,7 +4,9 @@ Listening Atlas is a documentation-first kit for asking browser or computer-use 
 
 中文说明见 [README.zh-CN.md](README.zh-CN.md).
 
-![Hand-drawn preview of a Classical Atlas playlist interface](docs/assets/classical-atlas-playlist-sketch.png)
+<p align="center">
+  <img src="docs/assets/classical-atlas-playlist-sketch.png" alt="Hand-drawn preview of a Classical Atlas playlist interface" width="720">
+</p>
 
 ## What This Is
 
