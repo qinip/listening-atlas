@@ -6,11 +6,24 @@ This file answers the practical question: if a new user wants to create their ow
 
 Use this repository as an instruction pack for an AI agent. You do not need to run code from it.
 
-Give the agent the relevant docs, have it fill a project brief, then have it generate and execute a playlist plan on your chosen platform.
+If your agent can read files from a cloned repository, point it to `docs/AGENT_HANDOFF.md` first. That file is the entry point. The agent should read the other docs, specs, templates, and prompts as each phase needs them.
 
-## Recommended File Pack For A New Project
+## One-File Bootstrap Prompt
 
-Start by giving your agent these files:
+Use this when your agent has access to the repository:
+
+```text
+Read docs/AGENT_HANDOFF.md first and use it as the entry point for this repository.
+Help me create a music listening guide, playlist TSV, and platform playlist for [genre or domain].
+Target platform: [Apple Music / Spotify / YouTube Music / YouTube / TIDAL / NetEase Cloud Music / other].
+Target size: about [50 / 100 / 180] tracks.
+Language: [English / Chinese / other].
+Ask me for any missing project-brief choices, then follow the kit.
+```
+
+## If Your Agent Cannot Read The Repository
+
+Some chat agents cannot browse a local repository or follow relative file paths. In that case, attach `docs/AGENT_HANDOFF.md` first, then attach the files it asks for phase by phase. For the first phase, the minimum useful pack is:
 
 - `docs/USAGE.md`
 - `docs/AGENT_HANDOFF.md`
@@ -35,32 +48,11 @@ After the brief is complete, add the next prompt for the current phase:
 - Visual map, chapter art, and appendices: `prompts/07_visuals_and_appendices.md`, `specs/VISUAL_AND_APPENDIX_MODULES.md`, `specs/ASSET_MANIFEST_SPEC.md`
 - Final review: `prompts/06_qa_review.md`
 
-## One-Shot Bootstrap Prompt
-
-If your agent can read files from a repository, start with:
-
-```text
-Read docs/USAGE.md, docs/PLAYBOOK.md, specs/DELIVERABLES.md,
-specs/PLAYLIST_SCHEMA.md, specs/PLATFORM_ADAPTERS.md, and
-templates/project_brief.template.md.
-
-Create a project brief for my listening atlas. Ask only for missing
-preferences that materially change the output. After the brief is settled,
-produce the required deliverables in specs/DELIVERABLES.md:
-
-1. guide Markdown
-2. platform-agnostic playlist TSV
-3. platform execution log TSV if you create or edit a streaming playlist
-
-Optional features such as a music-history map, chapter images, asset manifest,
-and appendices should follow specs/VISUAL_AND_APPENDIX_MODULES.md.
-```
-
 ## Workflow With Codex, Claude Code, Or Similar Agents
 
 1. Open a new agent session in a workspace where you want the new project to live.
-2. Add or paste the recommended file pack.
-3. Tell the agent: “Read these files and create my project brief. Ask only if a missing preference materially changes the output.”
+2. Clone or download this repository into that workspace, or attach `docs/AGENT_HANDOFF.md` if the agent cannot read local files.
+3. Tell the agent to read `docs/AGENT_HANDOFF.md`, create the project brief, and ask only if a missing preference materially changes the output.
 4. Answer the agent’s questions about audience, language, music platform, track count, and scope.
 5. If the domain fit worksheet shows gaps, ask the agent to select or draft a domain extension before generating the playlist.
 6. Ask the agent to generate a playlist TSV using `specs/PLAYLIST_SCHEMA.md` plus any selected extension.

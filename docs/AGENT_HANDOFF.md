@@ -2,6 +2,12 @@
 
 Read this first if you are the AI agent using this repository to create a new listening atlas.
 
+## How To Use This File
+
+Treat this file as the entry point for the repository. If you can read local files, do not ask the user to paste a long file pack. Read the files named below when each phase needs them.
+
+If you cannot read repository files directly, ask the user to attach `docs/AGENT_HANDOFF.md` first, then request the next phase's files only when you need them. Do not ask for the whole repository at once.
+
 ## Your Job
 
 Create a structured music listening project from the user's brief. The required outputs are:
@@ -13,9 +19,17 @@ Create a structured music listening project from the user's brief. The required 
 
 Optional outputs include a static HTML ebook, music-history map, chapter images, appendices, asset manifest, and release ZIPs.
 
+## Start Here
+
+1. Read `docs/USAGE.md`, `docs/PLAYBOOK.md`, `specs/DELIVERABLES.md`, `specs/PLAYLIST_SCHEMA.md`, and `templates/project_brief.template.md`.
+2. Ask the user only for choices that materially change the project: music domain, audience, language, platform, track count, privacy, modern-music scope, screen/video inclusion, and whether the output needs an ebook or release package.
+3. Fill the project brief before drafting a playlist.
+4. Work through the phases below in order. Do not jump to platform execution before the source playlist TSV and recording review are coherent.
+5. Keep the playlist TSV as the source of truth. Platform search results, substitutions, and unavailable tracks belong in the execution log.
+
 ## Files To Read First
 
-Read these before generating content:
+Read these before generating content. If you already read them from the Start Here step, continue to Phase 1.
 
 - `docs/USAGE.md`
 - `docs/PLAYBOOK.md`

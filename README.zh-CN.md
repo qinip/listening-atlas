@@ -1,81 +1,47 @@
 # Listening Atlas Agent Kit（聆听图谱 Agent Kit）
 
-这是一套文档优先的工具包，用来让具备浏览器或 computer-use 能力的 AI agent 在任意音乐平台上生成结构化音乐歌单、听音指南和静态 HTML 电子书。仓库里的参考成品是 `Classical Atlas / 古典音乐图谱`。
+Listening Atlas 是一套文档优先的 agent kit，用来让具备浏览器或 computer-use 能力的 AI agent 生成音乐聆听指南、有顺序的歌单和静态 HTML 电子书。它适合交给 Codex、Claude Code，以及其他能读文件、浏览网页、操作流媒体界面的 agent。
 
 English README: [README.md](README.md).
 
+![古典音乐图谱歌单界面的手绘风预览](docs/assets/classical-atlas-playlist-sketch.png)
+
 ## 这个仓库是什么
 
-这个仓库不是自动化代码项目，而是一套 agent kit：它包含 prompts、specs、检查清单、模板和样本输出。用户可以把这些文件交给 Codex、Claude Code 或其他 browser/computer-use agent，让 agent 按文档执行。
+这个仓库给 agent 提供编辑流程、数据 contract、prompts 和 QA 检查方式。真正可复用的 kit 在 [docs/](docs)、[specs/](specs)、[prompts/](prompts) 和 [templates/](templates) 里。仓库不发布平台自动化脚本。
 
-核心目标是平台无关。用户应该能够用同一套编辑方法，在 Apple Music、Spotify、YouTube Music、YouTube、TIDAL、网易云音乐或其他平台上生成自己的歌单和指南。
-
-## 包含内容
-
-- `docs/`：工作流和 QA 检查清单。
-- `specs/`：交付物 contract、数据 schema、平台协议、视觉模块和发布规范。
-- `specs/extensions/`：可选的领域扩展 stub，用来记录不应塞进核心 schema 的字段和平台规则。
-- `prompts/`：可直接复制给 agent 的 prompts。
-- `templates/`：project brief、playlist row 和 asset manifest 模板。
-- `products/zh-CN/`：中文成品指南和歌单。
-- `products/en/`：英文成品指南和歌单。
-- `site/`：带语言切换的 GitHub Pages 静态电子书原型。
-- `samples/`：原始 Apple Music 案例材料。
-- `DEMO_RELEASE_NOTES.md`：可复制到 GitHub Release 的说明文字，明确附件 ZIP 是 demo 成品包。
-- GitHub Releases：中英文成品 ZIP 下载包。
+仓库里的参考成品是 **Classical Atlas / 古典音乐图谱**。它包含中英文指南、歌单 TSV、Apple Music 执行日志、release ZIP 和 GitHub Pages 电子书。它的作用是展示这套 kit 可以生成什么结果，不是限制你只能做古典音乐或 Apple Music。Kit 本身是平台无关的；Classical Atlas demo 是 Apple Music case-study edition。
 
 ## 快速开始
 
-如果你想用这个仓库制作自己的歌单：
+下载或 clone 这个仓库。然后给你的 agent 一个入口文件：
 
-1. 下载或 clone 这个仓库。
-2. 把这些文件交给你的 agent：
-   - `docs/USAGE.md`
-   - `docs/AGENT_HANDOFF.md`
-   - `docs/PLAYBOOK.md`
-   - `specs/DELIVERABLES.md`
-   - `templates/project_brief.template.md`
-   - `specs/PLAYLIST_SCHEMA.md`
-   - `specs/PLATFORM_ADAPTERS.md`
-   - `prompts/` 中与你当前阶段匹配的 prompt
-   - 如果你的领域需要额外字段、视频或 archive 处理，再加入 `specs/EXTENSION_CONTRACT.md` 和 `specs/extensions/*`
-3. 让 agent 根据你的目标读者、语言、平台和曲目数量填写 project brief。
-4. 让 agent 生成平台无关的 playlist TSV。
-5. 让 browser/computer-use agent 在你选择的音乐平台上逐条执行 TSV。
-6. 让 agent 写指南并生成静态 HTML 电子书。
-7. 发布前执行 QA 检查清单。
+```text
+先读 docs/AGENT_HANDOFF.md，并把它作为这个仓库的入口。
+请帮我为 [音乐类型或领域] 生成一份聆听指南、playlist TSV，并在指定平台创建真实歌单。
+目标平台：[Apple Music / Spotify / YouTube Music / YouTube / TIDAL / 网易云音乐 / 其他]。
+目标规模：约 [50 / 100 / 180] 首。
+语言：[中文 / 英文 / 其他]。
+如果 project brief 还缺信息，先问我；然后按这个 kit 执行。
+```
 
-详细步骤见 [docs/USAGE.md](docs/USAGE.md)。
+`AGENT_HANDOFF.md` 会告诉 agent 接下来该读哪些 docs、specs、templates 和 prompts。你不需要在第一条消息里塞一长串文件名。面向人类用户的完整说明见 [docs/USAGE.md](docs/USAGE.md)。
 
-## 成品
+## 可以怎么定制
 
-仓库里有两套独立成品：
+一次生成会先从 project brief 开始。Agent 应该询问音乐领域、目标读者、语言、平台、曲目数量、难度比例、地区覆盖，以及是否包含当代音乐、电影、游戏或其他屏幕音乐。这些选择会进入歌单 schema、指南大纲、平台搜索策略和 QA 检查。
 
-- 中文：`products/zh-CN/classical_atlas_guide.zh-CN.md` 和 `products/zh-CN/classical_atlas_playlist.zh-CN.tsv`
-- 英文：`products/en/classical_atlas_guide.en.md` 和 `products/en/classical_atlas_playlist.en.tsv`
+如果你做古典音乐，可以参考仓库里的 Classical Atlas 成品。如果你要做 jazz、rock、歌剧传统、电影音乐、游戏音乐、地区民间音乐或其他领域，核心交付物保持不变；当这个领域需要不同 metadata 时，再使用 extension 层。Extension 的规则在 [specs/EXTENSION_CONTRACT.md](specs/EXTENSION_CONTRACT.md)，示例在 [specs/extensions/](specs/extensions)。
 
-这两套成品是 Classical Atlas demo 的 Apple Music edition。Apple Music 搜索列、包内执行 prompt 和重建的 execution log 都属于案例材料；可复用的平台无关 contract 在 `specs/`、`prompts/` 和 `templates/` 里。
+## 交付物
 
-GitHub Release ZIP 是可下载的 **demo 成品包**，不是 agent kit 的主要交付物。真正可复用的 kit 是仓库本身：`docs/`、`specs/`、`prompts/` 和 `templates/`。`site/downloads/` 保存一份提交进仓库的 demo ZIP 副本，供 GitHub Pages 下载链接使用。本地可以用 `release-assets/` 暂存 ZIP，但该目录不提交，也不是 source of truth。
+一次完整 agent run 应该产出 project brief、平台无关的 playlist TSV、真实平台执行后的 execution log、Markdown 指南、静态 HTML 电子书，以及在打包图片时必须提供的 asset manifest。具体文件名和验收规则见 [specs/DELIVERABLES.md](specs/DELIVERABLES.md)。
 
-## GitHub Pages
+Classical Atlas demo 已经发布在 GitHub Pages，并提供 release ZIP。ZIP 是成品 demo 包。你要用这套 kit 做自己的项目时，应该从仓库里的 docs、specs、prompts 和 templates 开始，而不是从 demo ZIP 开始。
 
-`site/` 目录包含静态 HTML 电子书原型：
+## 素材和发布
 
-- `site/index.html`：中文版
-- `site/en/index.html`：英文版
-
-每个页面右上角都有语言切换链接。正式发布时，可以用 GitHub Pages workflow 部署 `site/`，也可以把 `site/` 的内容复制到仓库实际用于 Pages 的分支或目录。
-
-## 素材政策
-
-本项目采用保守的开源发布政策：
-
-- 打包图片必须是公有领域、CC0，或明确可在兼容开放授权下复用。
-- Wikimedia Commons 文件必须逐图确认授权、作者、来源和署名。
-- The Met Open Access / CC0 优先用于公版艺术作品插图。
-- Spotify、TIDAL、Apple Music、YouTube、网易云音乐等平台提供的专辑封面、音乐家照片、缩略图和 metadata 只做链接或用户本地生成说明，不打包进仓库。
-- 所有打包视觉素材必须先进入 asset manifest。
+这个 kit 采用保守的开源发布策略。打包图片应当是 public domain、CC0，或明确可以在兼容开放授权下复用。每张图片都要在 asset manifest 里记录 source、creator、license、attribution 和 reuse notes。平台专辑封面、音乐人照片、缩略图和平台截图不应直接复制进仓库；可以链接，或重新绘制成不依赖平台素材的泛化插图。
 
 ## 授权
 
