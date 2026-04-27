@@ -12,7 +12,7 @@ Listening Atlas is a documentation-first kit for asking browser or computer-use 
 
 This repository gives an agent the editorial workflow, data contracts, prompts, and QA checks needed to create a music guide from scratch. The core kit lives in [docs/](docs), [specs/](specs), [prompts/](prompts), and [templates/](templates). It does not ship platform automation scripts.
 
-The included reference product is **Classical Atlas**, a finished classical music demo with Chinese and English guides, playlist TSV files, Apple Music execution logs, release ZIPs, and a GitHub Pages ebook. Treat it as an example of what the kit can produce, not as the only possible output. The reusable method is platform-agnostic; the Classical Atlas demo is an Apple Music case-study edition.
+The included reference product is **Classical Atlas**, a finished classical music demo with Chinese and English guides, playlist TSV files, Apple Music execution logs, release ZIPs, and a [GitHub Pages ebook](https://qinip.github.io/listening-atlas/). Treat it as an example of what the kit can produce, not as the only possible output. The reusable method is platform-agnostic; the Classical Atlas demo is an Apple Music case-study edition.
 
 ## Quick Start
 

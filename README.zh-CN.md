@@ -12,7 +12,7 @@ English README: [README.md](README.md).
 
 这个仓库给 agent 提供编辑流程、数据 contract、prompts 和 QA 检查方式。真正可复用的 kit 在 [docs/](docs)、[specs/](specs)、[prompts/](prompts) 和 [templates/](templates) 里。仓库不发布平台自动化脚本。
 
-仓库里的参考成品是 **Classical Atlas / 古典音乐图谱**。它包含中英文指南、歌单 TSV、Apple Music 执行日志、release ZIP 和 GitHub Pages 电子书。它的作用是展示这套 kit 可以生成什么结果，不是限制你只能做古典音乐或 Apple Music。Kit 本身是平台无关的；Classical Atlas demo 是 Apple Music case-study edition。
+仓库里的参考成品是 **Classical Atlas / 古典音乐图谱**。它包含中英文指南、歌单 TSV、Apple Music 执行日志、release ZIP 和 [GitHub Pages 电子书](https://qinip.github.io/listening-atlas/)。它的作用是展示这套 kit 可以生成什么结果，不是限制你只能做古典音乐或 Apple Music。Kit 本身是平台无关的；Classical Atlas demo 是 Apple Music case-study edition。
 
 ## 快速开始
 
