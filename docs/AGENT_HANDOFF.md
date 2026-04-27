@@ -23,6 +23,11 @@ Read these before generating content:
 - `specs/PLAYLIST_SCHEMA.md`
 - `templates/project_brief.template.md`
 
+If the brief describes jazz, Peking opera, a local tradition, video-first performance, or another domain that does not fit the core schema, also read:
+
+- `specs/EXTENSION_CONTRACT.md`
+- the relevant file in `specs/extensions/`
+
 If you will create or edit a playlist on a streaming service, also read:
 
 - `specs/PLATFORM_ADAPTERS.md`
@@ -48,7 +53,7 @@ Output:
 
 - `{project_slug}_brief.md`
 
-Do not proceed until the brief specifies music domain, language, audience, track count, platform, privacy expectation, and required deliverables.
+Do not proceed until the brief specifies music domain, language, audience, track count, platform, privacy expectation, domain fit, extension needs, and required deliverables.
 
 ### Phase 2: Playlist Source TSV
 

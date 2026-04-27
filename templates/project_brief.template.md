@@ -5,11 +5,24 @@
 - Project title:
 - Project slug:
 - Music domain:
+- Domain extension:
 - Audience:
 - Language:
 - Tone:
 - Primary output:
 - Target platform:
+
+## Domain Fit Worksheet
+
+- Musical object identity model: composer+work / recording / performer / scene / tradition / other
+- Personnel granularity needed: none / lead performer / full lineup / accompanists / production credits
+- Version sensitivity: low / recording date / take or master / school or lineage / live-vs-studio / remaster or transfer
+- Primary playable type: audio_track / audio_and_video / video_primary / archival_only
+- Main platform cluster: Western streaming / Chinese streaming / video platforms / Bandcamp / specialist archives / mixed
+- Search anchor priority: composer+work / artist+track / leader+album / play+excerpt+performer / catalog number / archive source
+- Visual asset risk: low / mid-century gap / living artists / platform-only imagery / archive-only
+- Chapter axis: chronology / genre / scene / label / region / instrument / lineage / technique / mixed
+- Extension fields needed:
 
 ## Playlist Shape
 
@@ -39,6 +52,8 @@
 - Platform account confirmed:
 - Execution log required:
 - Final order verification required:
+- Allow video-as-primary results:
+- Allow archival-only rows:
 
 ## Asset Policy
 

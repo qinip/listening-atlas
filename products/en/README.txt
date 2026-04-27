@@ -10,6 +10,7 @@ Files:
 - create_playlist_on_platform.prompt.en.txt: Apple Music edition computer-use prompt for recreating the playlist
 - THIRD_PARTY_NOTICES.txt: third-party asset license notes
 - LICENSE.md: product license text covering CC BY 4.0 demo content and CC0 package prompt
+- RELEASE_NOTES.txt: package boundary note explaining this ZIP is a demo product artifact
 - assets/: portrait images and ASSET_MANIFEST.tsv with source and license metadata
 
 License:

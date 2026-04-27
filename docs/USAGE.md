@@ -21,6 +21,11 @@ Start by giving your agent these files:
 - `specs/PLATFORM_ADAPTERS.md`
 - `prompts/01_project_brief.md`
 
+If your domain does not fit the classical demo model, also give the agent:
+
+- `specs/EXTENSION_CONTRACT.md`
+- any relevant file in `specs/extensions/`
+
 After the brief is complete, add the next prompt for the current phase:
 
 - Playlist drafting: `prompts/02_playlist_generation.md`
@@ -57,11 +62,12 @@ and appendices should follow specs/VISUAL_AND_APPENDIX_MODULES.md.
 2. Add or paste the recommended file pack.
 3. Tell the agent: “Read these files and create my project brief. Ask only if a missing preference materially changes the output.”
 4. Answer the agent’s questions about audience, language, music platform, track count, and scope.
-5. Ask the agent to generate a playlist TSV using `specs/PLAYLIST_SCHEMA.md`.
-6. Ask the agent to review recording choices using `prompts/03_recording_selection.md`.
-7. If the agent has browser/computer-use access, ask it to execute the playlist on your platform using `prompts/04_platform_execution.md` and log the result with `specs/PLATFORM_EXECUTION_LOG_SCHEMA.md`.
-8. Ask the agent to write the listening guide and HTML ebook using `prompts/05_guide_and_ebook.md`.
-9. Ask the agent to run `prompts/06_qa_review.md` against `docs/QUALITY_CHECKLISTS.md`.
+5. If the domain fit worksheet shows gaps, ask the agent to select or draft a domain extension before generating the playlist.
+6. Ask the agent to generate a playlist TSV using `specs/PLAYLIST_SCHEMA.md` plus any selected extension.
+7. Ask the agent to review recording choices using `prompts/03_recording_selection.md`.
+8. If the agent has browser/computer-use access, ask it to execute the playlist on your platform using `prompts/04_platform_execution.md` and log the result with `specs/PLATFORM_EXECUTION_LOG_SCHEMA.md`.
+9. Ask the agent to write the listening guide and HTML ebook using `prompts/05_guide_and_ebook.md`.
+10. Ask the agent to run `prompts/06_qa_review.md` against `docs/QUALITY_CHECKLISTS.md`.
 
 ## What The User Has To Decide
 
@@ -97,6 +103,8 @@ For exact filenames and acceptance rules, use `specs/DELIVERABLES.md`.
 The files in `products/zh-CN/` and `products/en/` are examples of finished outputs. They are useful references for structure, tone, and scope.
 
 Do not treat the Apple Music case-study fields as required. If you are using Spotify, YouTube Music, TIDAL, NetEase Cloud Music, or another platform, keep the core playlist fields and add your own platform execution notes.
+
+The release ZIPs attached to GitHub Releases are demo products for Classical Atlas. To use the agent kit, clone or download the repository and read the docs/specs/prompts/templates rather than starting from the ZIP alone.
 
 ## What Not To Do
 

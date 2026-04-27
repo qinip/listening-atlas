@@ -54,6 +54,7 @@ Use these checklists before publishing a generated playlist, guide, ebook, GitHu
 ## Release ZIPs
 
 - ZIP files contain finished products only: guide, playlist, ebook, license, and a short readme.
+- ZIP files identify themselves as demo product artifacts when they are attached to a release for this repository.
 - ZIP files do not contain source prompts unless intentionally included.
 - ZIP files do not contain automation scripts, binaries, credentials, cookies, or browser profiles.
 - Chinese and English products are packaged separately.

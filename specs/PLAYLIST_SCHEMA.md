@@ -37,6 +37,7 @@ This schema defines the platform-agnostic source table for generated playlists. 
 | `listening_note` | One-sentence listening instruction. |
 | `region_or_tradition` | Cultural region, school, court, city, or national tradition. |
 | `medium_pathway` | Concert hall, church, opera, recording, film, game, streaming, etc. |
+| `playable_type` | `audio_track`, `video`, `audio_and_video`, or `archival_only`. Defaults to `audio_track` if omitted. |
 | `recording_date` | Recording, session, or performance date when it matters editorially. |
 | `release_year` | Release year for recorded-music domains. |
 | `label_or_publisher` | Record label, publisher, game studio, film studio, or archival source. |
@@ -87,3 +88,5 @@ For jazz in particular, an agent should expect gaps that do not appear in classi
 - The guide may need both composer/standard metadata and performer/session metadata.
 - Platform search may work better with artist + track title + album than composer + work.
 - Appendix material should explain band roles, improvisation vocabulary, session chronology, and recording labels rather than only composers and historical periods.
+
+For performance-art domains such as opera video, Peking opera, dance, theater music, and ritual traditions, `playable_type` may be `video` or `archival_only`. Keep those rows in the source TSV and execution log even when they cannot become normal streaming-audio playlist items.

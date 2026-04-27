@@ -1,0 +1,7 @@
+Classical Atlas English Demo Package
+
+This ZIP is a demo product artifact, not the full reusable agent kit.
+
+It contains the English Apple Music edition of Classical Atlas: guide Markdown, static HTML ebook, playlist TSV, reconstructed Apple Music execution log, package prompt, visual assets, asset manifest, license, and third-party notices.
+
+To generate a new guide or playlist for another music domain or platform, use the repository's docs/, specs/, prompts/, and templates/ directories.

@@ -1,0 +1,7 @@
+古典音乐图谱中文版 Demo 包
+
+这个 ZIP 是 demo 成品包，不是完整可复用 agent kit。
+
+它包含 Classical Atlas 的中文 Apple Music edition：Markdown 指南、静态 HTML 电子书、歌单 TSV、重建的 Apple Music execution log、包内 prompt、视觉素材、asset manifest、授权文件和第三方素材说明。
+
+如果要为其他音乐领域或平台生成新的指南和歌单，请使用仓库里的 docs/、specs/、prompts/ 和 templates/ 目录。

@@ -7,6 +7,7 @@ Before publishing this repository:
 - Confirm `products/zh-CN/` and `products/en/` both contain finished guide and playlist files.
 - Confirm `site/index.html` and `site/en/index.html` both exist and link to each other in the top-right language switch.
 - Confirm release ZIP files exist in `site/downloads/` for GitHub Pages links and in local `release-assets/` only as ignored upload staging.
+- Confirm release text says these ZIPs are demo product artifacts, while the repository docs/specs/prompts/templates are the reusable agent kit deliverable.
 - Confirm no `.py`, `.swift`, `.applescript`, shell scripts, binary helpers, credentials, cookies, or browser profiles are present.
 - Confirm `specs/DELIVERABLES.md` names the required outputs clearly.
 - Confirm `specs/PLATFORM_EXECUTION_LOG_SCHEMA.md` can log one row per source playlist row.

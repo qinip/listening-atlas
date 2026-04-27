@@ -14,12 +14,14 @@ English README: [README.md](README.md).
 
 - `docs/`：工作流和 QA 检查清单。
 - `specs/`：交付物 contract、数据 schema、平台协议、视觉模块和发布规范。
+- `specs/extensions/`：可选的领域扩展 stub，用来记录不应塞进核心 schema 的字段和平台规则。
 - `prompts/`：可直接复制给 agent 的 prompts。
 - `templates/`：project brief、playlist row 和 asset manifest 模板。
 - `products/zh-CN/`：中文成品指南和歌单。
 - `products/en/`：英文成品指南和歌单。
 - `site/`：带语言切换的 GitHub Pages 静态电子书原型。
 - `samples/`：原始 Apple Music 案例材料。
+- `DEMO_RELEASE_NOTES.md`：可复制到 GitHub Release 的说明文字，明确附件 ZIP 是 demo 成品包。
 - GitHub Releases：中英文成品 ZIP 下载包。
 
 ## 快速开始
@@ -36,6 +38,7 @@ English README: [README.md](README.md).
    - `specs/PLAYLIST_SCHEMA.md`
    - `specs/PLATFORM_ADAPTERS.md`
    - `prompts/` 中与你当前阶段匹配的 prompt
+   - 如果你的领域需要额外字段、视频或 archive 处理，再加入 `specs/EXTENSION_CONTRACT.md` 和 `specs/extensions/*`
 3. 让 agent 根据你的目标读者、语言、平台和曲目数量填写 project brief。
 4. 让 agent 生成平台无关的 playlist TSV。
 5. 让 browser/computer-use agent 在你选择的音乐平台上逐条执行 TSV。
@@ -53,7 +56,7 @@ English README: [README.md](README.md).
 
 这两套成品是 Classical Atlas demo 的 Apple Music edition。Apple Music 搜索列、包内执行 prompt 和重建的 execution log 都属于案例材料；可复用的平台无关 contract 在 `specs/`、`prompts/` 和 `templates/` 里。
 
-发布 ZIP 包会上传到 GitHub Release 页面，作为用户可下载的成品文件。`site/downloads/` 保存一份提交进仓库的副本，供 GitHub Pages 下载链接使用。本地可以用 `release-assets/` 暂存 ZIP，但该目录不提交，也不是 source of truth。
+GitHub Release ZIP 是可下载的 **demo 成品包**，不是 agent kit 的主要交付物。真正可复用的 kit 是仓库本身：`docs/`、`specs/`、`prompts/` 和 `templates/`。`site/downloads/` 保存一份提交进仓库的 demo ZIP 副本，供 GitHub Pages 下载链接使用。本地可以用 `release-assets/` 暂存 ZIP，但该目录不提交，也不是 source of truth。
 
 ## GitHub Pages
 

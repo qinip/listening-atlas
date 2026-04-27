@@ -14,12 +14,14 @@ The goal is platform independence. A user should be able to create a playlist an
 
 - `docs/`: the workflow and QA checklists.
 - `specs/`: deliverable contract, schemas, platform protocol, visual modules, and publishing requirements.
+- `specs/extensions/`: optional domain-extension stubs for fields and platform rules that do not belong in the core schema.
 - `prompts/`: copy-ready prompts for agents.
 - `templates/`: project brief, playlist row, and asset manifest templates.
 - `products/zh-CN/`: the Chinese finished guide and playlist.
 - `products/en/`: the English finished guide and playlist.
 - `site/`: static GitHub Pages ebook prototype with a language switch.
 - `samples/`: original Apple Music case-study material.
+- `DEMO_RELEASE_NOTES.md`: copy-ready GitHub Release text explaining that attached ZIPs are demo products.
 - GitHub Releases: downloadable ZIP files for the finished Chinese and English products.
 
 ## Quick Start
@@ -36,6 +38,7 @@ If you want to make your own playlist:
    - `specs/PLAYLIST_SCHEMA.md`
    - `specs/PLATFORM_ADAPTERS.md`
    - the relevant prompt from `prompts/`
+   - `specs/EXTENSION_CONTRACT.md` and `specs/extensions/*` when your domain needs extra fields or video/archive handling
 3. Ask the agent to fill the project brief for your audience, language, platform, and track count.
 4. Ask the agent to generate a platform-agnostic playlist TSV.
 5. Ask a browser/computer-use agent to execute the TSV on your chosen music platform.
@@ -53,7 +56,7 @@ The repository contains two independent finished products:
 
 These products are the Apple Music edition of the Classical Atlas demo. Apple Music search columns, package prompts, and reconstructed execution logs are case-study material; the reusable platform-agnostic contract lives in `specs/`, `prompts/`, and `templates/`.
 
-Release ZIP files are uploaded to the GitHub Release page as downloadable product artifacts. `site/downloads/` contains committed copies for GitHub Pages links. Local build output may be staged in `release-assets/`, but that directory is not committed and is not the source of truth.
+GitHub Release ZIP files are downloadable **demo product artifacts**, not the primary agent kit deliverable. The reusable kit is the repository itself: `docs/`, `specs/`, `prompts/`, and `templates/`. `site/downloads/` contains committed demo ZIP copies for GitHub Pages links. Local build output may be staged in `release-assets/`, but that directory is not committed and is not the source of truth.
 
 ## GitHub Pages
 

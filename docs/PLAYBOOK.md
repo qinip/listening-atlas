@@ -30,6 +30,9 @@ Start from `templates/project_brief.template.md`. The brief must settle:
 - Whether film, game, screen media, and cross-genre music are in scope.
 - Ebook target: Markdown only, static HTML, or static HTML plus later EPUB.
 - Asset policy and release criteria.
+- Domain fit worksheet and whether an extension is needed.
+
+If the project does not fit the core identity model, read `specs/EXTENSION_CONTRACT.md` and any relevant file in `specs/extensions/`. Do not add a separate workflow phase unless the user explicitly asks for a new extension-design deliverable; treat domain fit as part of the brief.
 
 ## 2. Build The Historical Frame
 
@@ -91,6 +94,7 @@ Use `specs/PLATFORM_ADAPTERS.md` and `specs/PLATFORM_EXECUTION_LOG_SCHEMA.md`. T
 
 - Search one row at a time.
 - Confirm title, composer, movement, performers, album, and duration when available.
+- Confirm the selected playable type when the source row expects video, audio+video, or archival-only material.
 - Add the best match to the playlist.
 - Record mismatches, unavailable tracks, duplicate adds, and fallback choices.
 - Verify final playlist order against ascending `track_no`.
@@ -137,6 +141,8 @@ Keep finished products separate from source instructions:
 - `products/en/`: English guide, playlist, and ebook files.
 - `site/`: GitHub Pages static HTML with language-switch links and committed download copies in `site/downloads/`.
 - `release-assets/`: ignored local staging area for ZIP files to upload to a GitHub Release.
+
+Release ZIPs are demo product artifacts. The reusable agent kit deliverable is the repository documentation and templates, not the Classical Atlas ZIPs alone.
 
 ## 10. Review And Release
 

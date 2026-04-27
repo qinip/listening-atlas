@@ -17,6 +17,38 @@ For every platform:
 9. Keep platform URLs or screenshots as local execution notes, not as source truth.
 10. Do not download or package platform artwork.
 
+If the source row has `playable_type=video`, `audio_and_video`, or `archival_only`, do not force it into a normal audio-track match. Record the selected playable type in the execution log. If the row can only be represented by an archive page, keep it in the log with a documented `external_archive_url` and an extension-defined match status such as `archival_only`.
+
+## Playable Type Modes
+
+### Audio Track
+
+The normal case for most Western streaming services. Use the shared search protocol and add one best audio result.
+
+### Audio And Video
+
+Use when either a streaming track or a performance video can satisfy the row. Record which one was selected and why.
+
+### Video Primary
+
+Use for opera scenes, Peking opera, dance, theater music, live performance traditions, game performance footage, or other domains where visual performance is part of the musical object.
+
+Agent instructions:
+
+- Prefer official, institutional, artist, label, opera house, theater, festival, or archive channels.
+- Record source channel, visible title, duration, and whether the video is official, archival, live, broadcast, or user-uploaded.
+- Do not treat the video thumbnail or still frame as reusable artwork.
+
+### Archival Only
+
+Use when the row is historically important but unavailable as a normal platform item.
+
+Agent instructions:
+
+- Keep the row in the execution log.
+- Record archive source, external URL, and reason it is accepted.
+- Do not count the row as a normal streaming playlist item unless the project brief allows mixed playlist/archive outputs.
+
 ## Apple Music / Apple Music Classical
 
 Strengths:
@@ -95,6 +127,44 @@ Agent instructions:
 - Use YouTube as a fallback or supplement unless the project brief makes it the primary platform.
 - Document source channel and reason for acceptance.
 
+## Qobuz
+
+Strengths:
+
+- Strong catalog for classical, jazz, high-resolution releases, and album-level metadata.
+- Useful when label, catalog, and audio quality matter.
+
+Risks:
+
+- Availability varies by country.
+- Playlist and sharing behavior may be less familiar to some agents.
+- Artwork and editorial metadata should not be republished as open assets.
+
+Agent instructions:
+
+- Search by artist/leader, work or track title, album, label, and catalog context.
+- Record release and quality context when visible.
+- Preserve links in the execution log when stable.
+
+## Bandcamp
+
+Strengths:
+
+- Important for contemporary jazz, experimental, independent, electronic, and local scenes.
+- Often has releases that are missing from mainstream streaming platforms.
+
+Risks:
+
+- It is release-first, not always playlist-first.
+- User accounts, purchases, downloads, and messages are out of scope unless the user explicitly asks.
+- Album art and artist images are not reusable unless separately licensed.
+
+Agent instructions:
+
+- Treat Bandcamp as release discovery and listening support unless the brief explicitly defines a Bandcamp collection workflow.
+- Do not purchase, download, or follow without user confirmation.
+- Record release URL, artist, label, and track URL where available.
+
 ## TIDAL
 
 Strengths:
@@ -132,6 +202,40 @@ Agent instructions:
 - Use catalog numbers where possible.
 - Confirm the recording rather than relying on localized title alone.
 - Record Chinese title variants for user convenience.
+
+## QQ Music
+
+Strengths:
+
+- Useful for Chinese-language music, local catalog coverage, and some opera or traditional-performance recordings.
+
+Risks:
+
+- Metadata and rights availability vary by region and account tier.
+- Platform imagery, comments, and social data must not be republished.
+
+Agent instructions:
+
+- Search with Chinese title, performer, excerpt, and source-language variants.
+- Record localized title variants and availability limits.
+
+## Bilibili
+
+Strengths:
+
+- Often useful for performance video, archival recordings, opera, theater, game concerts, and educational material.
+
+Risks:
+
+- Upload provenance and rights vary widely.
+- Video comments, thumbnails, danmaku, and screenshots are not reusable release assets.
+- Video links may disappear.
+
+Agent instructions:
+
+- Prefer official, institutional, verified, archive, theater, broadcaster, or performer channels.
+- Record uploader/channel, video title, duration, and reason for acceptance.
+- Use as primary only when the brief or domain extension allows video-primary execution.
 
 ## Order And Completion Rules
 

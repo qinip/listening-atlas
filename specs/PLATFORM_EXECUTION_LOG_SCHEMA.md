@@ -14,17 +14,20 @@ Use `templates/platform_execution_log.template.tsv`.
 | `source_composer` | yes | Composer or creator from the source TSV. |
 | `source_recording` | recommended | Preferred recording or release from the source TSV. |
 | `source_performers` | recommended | Preferred performers, conductor, ensemble, channel, or production credits from the source TSV. |
+| `source_playable_type` | recommended | Source expectation: `audio_track`, `video`, `audio_and_video`, or `archival_only`. |
 | `platform` | yes | Target platform. |
 | `playlist_name` | yes | Playlist being created or edited. |
 | `playlist_visibility` | recommended | Public, unlisted, private, library-only, or not recorded. |
 | `query_attempt` | yes | `strict`, `medium`, `fallback`, `manual`, or `not_searched`. |
 | `platform_query` | yes if searched | Exact query typed or pasted. |
 | `source_search_keywords` | recommended | Search keywords copied from the source TSV before platform-specific edits. |
+| `selected_playable_type` | recommended | Selected result type: audio track, official video, user upload, archival page, etc. |
 | `selected_title` | yes if added | Visible selected track or video title. |
 | `selected_creator_or_artist` | recommended | Visible artist, performer, channel, or album artist. |
 | `selected_album_or_source` | recommended | Album, release, video, channel, or collection where visible. |
 | `selected_duration` | recommended | Duration shown by the platform, if visible. |
 | `selected_url` | recommended | Stable platform URL if the platform exposes one. |
+| `external_archive_url` | optional | Non-streaming archive page when the item is archival-only. |
 | `selected_isrc_or_platform_id` | optional | ISRC, video ID, track ID, or another stable identifier if visible or exportable. |
 | `match_status` | yes | `exact`, `acceptable`, `fallback`, `unavailable`, `duplicate`, `rejected`, or `needs_human_review`. |
 | `fallback_used` | yes | `yes` or `no`. |
@@ -56,6 +59,8 @@ Required checks:
 - Missing rows must remain visible in the log as `unavailable`, `rejected`, or `needs_human_review`.
 - If the platform added a result to the wrong position, move it when possible and record `order_status=moved`.
 - If the platform UI does not expose the full order, record `order_status=not_visible` and explain the limitation.
+
+Domain extensions may add match-status values such as `wrong_take`, `wrong_master`, `different_school`, or `archival_only`. These values must be documented in the relevant `specs/extensions/*.md` file.
 
 ## Reconstruction Rule
 

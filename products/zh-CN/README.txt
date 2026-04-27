@@ -10,6 +10,7 @@
 - create_playlist_on_platform.prompt.zh-CN.txt：用于 Apple Music edition 复现歌单的 computer-use prompt
 - THIRD_PARTY_NOTICES.txt：第三方素材授权说明
 - LICENSE.md：产品授权文本，说明 CC BY 4.0 demo 内容和 CC0 包内 prompt
+- RELEASE_NOTES.txt：说明本 ZIP 是 demo 成品包的边界说明
 - assets/：肖像图片，以及记录来源和授权信息的 ASSET_MANIFEST.tsv
 
 授权：

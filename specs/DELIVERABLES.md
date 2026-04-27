@@ -9,6 +9,7 @@ Use a stable project slug such as `classical_atlas`, `jazz_atlas`, or `film_musi
 | Deliverable | Suggested filename | Required | Purpose |
 | --- | --- | --- | --- |
 | Project brief | `{project_slug}_brief.md` | yes | Freezes audience, language, platform, track count, scope, ratios, and asset policy. |
+| Domain extension | `specs/extensions/{domain}.md` or `{project_slug}_extension.md` | if needed | Documents domain-specific fields, search rules, match statuses, and platform priorities. |
 | Source playlist TSV | `{project_slug}_playlist.{lang}.tsv` | yes | Platform-agnostic source of truth for all tracks and order. |
 | Recording review notes | `{project_slug}_recording_review.{lang}.tsv` | recommended | Flags ambiguous works, weak metadata, fallback recordings, and search risks before platform execution. |
 | Platform execution log | `{project_slug}_{platform}_execution_log.{lang}.tsv` | yes if a playlist is created on a platform | Records what was actually searched, selected, added, skipped, substituted, and order-verified. |
@@ -23,6 +24,7 @@ Use a stable project slug such as `classical_atlas`, `jazz_atlas`, or `film_musi
 - The platform execution log owns platform-specific results, URLs, substitutions, unavailable rows, and final order verification.
 - The guide must cite playlist rows by `track_no` or a stable row identifier when it recommends entry works.
 - The asset manifest owns all bundled visual-asset rights and attribution metadata.
+- A domain extension owns domain-specific field meanings and match-status additions.
 - Platform artwork, thumbnails, comments, user account data, cookies, screenshots, or private URLs must not become source truth.
 
 ## Minimum Viable Output
